@@ -22,7 +22,7 @@ function Preview() {
             {origin && (
               <SwanRemoteRuntimeGen2
                 baseURL={`${origin}`}
-                scriptURL={`swan`}
+                scriptURL={`swan-build`}
                 socketURL={"http://localhost:8521"}
               ></SwanRemoteRuntimeGen2>
             )}
@@ -32,7 +32,7 @@ function Preview() {
         <Suspense fallback={null}>
           <SwanRemoteRuntimeGen2
             baseURL={`https://agape-swan-gen2.vercel.app`}
-            scriptURL={`swan`}
+            scriptURL={`swan-build`}
             socketURL={false}
           ></SwanRemoteRuntimeGen2>
         </Suspense>
@@ -51,6 +51,7 @@ function Preview() {
       </Canvas>
 
       <CommonSwanHTML></CommonSwanHTML>
+
       <RemoteCommonSwanHTMLGen2></RemoteCommonSwanHTMLGen2>
     </>
   );

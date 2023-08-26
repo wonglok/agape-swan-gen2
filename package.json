@@ -3,14 +3,14 @@
   "type": "module",
   "source": "src-swan/entry/*",
   "exports": {
-    "require": "./public/swan/main.cjs",
-    "default": "./public/swan/main.modern.js"
+    "require": "./public/swan-build/main.cjs",
+    "default": "./public/swan-build/main.modern.js"
   },
-  "main": "./public/swan/main.cjs",
-  "module": "./public/swan/main.module.js",
-  "unpkg": "./public/swan/main.umd.js",
+  "main": "./public/swan-build/main.cjs",
+  "module": "./public/swan-build/main.module.js",
+  "unpkg": "./public/swan-build/main.umd.js",
   "files": [
-    "public/swan"
+    "public/swan-build"
   ],
   "scripts": {
     "start": "next start",
@@ -21,21 +21,7 @@
     "liveDev": "nodemon ./src-swan/live-dev.mjs --watch src-swan",
     "buildCode": "microbundle --jsx window.React.createElement --tsconfig tsconfig.json --globals three=window.Joy --jsxFragment window.React.Fragment --no-sourcemap --external 'none'",
     "watchCode": "microbundle watch --jsx window.React.createElement --tsconfig tsconfig.json --globals three=window.Joy --jsxFragment window.React.Fragment --no-sourcemap --external 'none'",
-    "yo1": "echo yo;",
-    "yo2": "echo yo;",
-    "yo3": "echo yo;",
-    "disable-dev": "concurrently \"npm run watch\" \"npm run code\" \"npm run copy\" \"npm run next-dev\"",
-    "disable-build2": "microbundle --jsx window.React.createElement --jsxFragment window.React.Fragment --no-sourcemap --external 'none'",
-    "disable-watch2": "microbundle watch --jsx window.React.createElement --jsxFragment window.React.Fragment --no-sourcemap --external 'none'",
-    "disable-copy": "nodemon --watch public --exec \"cp -rf ./public/. ./public/dist/.\"",
-    "disable-build_old": "rm -fr ./dist; npm run buildCode; cp -rf ./public/. ./public/dist/;",
-    "disable-build_old2": "npm run vite-build; npm run buildCode; cp -rf ./public/. ./public/dist/;",
-    "disable-old-deploy": "npm run build; vercel --prod",
-    "disable-old-vite-dev": "vite",
-    "disable-old-vite-build": "vite build",
-    "disable-old-vite-lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "disable-old-vite-preview": "vite preview",
-    "disable-next-lint": "next lint"
+    "lint": "next lint"
   },
   "devDependencies": {
     "@react-three/drei": "^9.80.2",
