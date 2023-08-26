@@ -83,8 +83,7 @@ export function SwanLibRuntime() {
       //!SECTION
       //
       import("../../src-swan/entry/main.jsx").then((M) => {
-        console.log(M);
-
+        // console.log(M);
         set3D(
           <>
             <M.SmartObject></M.SmartObject>

@@ -18,6 +18,9 @@ const port = process.env.PORT || 8521;
 
 app.use(cors({}));
 
+app.get("/heartbeat", (req, res) => {
+  res.json({ heartbeat: "ok" });
+});
 // app.use("/", staticFiles("public"));
 // app.use("/", staticFiles("dist"));
 

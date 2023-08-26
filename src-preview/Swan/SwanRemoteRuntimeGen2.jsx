@@ -7,9 +7,10 @@
 // import * as ReactThreeXR from '@react-three/xr'
 // import * as THREESTDLIB from 'three-stdlib'
 
+// import { io } from 'socket.io-client'
+
 import { useEffect } from "react";
 import * as React from "react";
-// import { io } from 'socket.io-client'
 import tunnel from "tunnel-rat";
 
 const t = tunnel();
@@ -32,6 +33,8 @@ export function SwanRemoteRuntimeGen2({
     window["React"] = React;
 
     window.Globals = window.Globals || {};
+
+    //
     // window.Globals['agape-sdk'] = AgapeSDK
     // window.Globals['react'] = React
     // window.Globals['three'] = THREE
@@ -72,11 +75,13 @@ export function SwanRemoteRuntimeGen2({
               "@react-three/drei"
             );
           }
-          if (!window.Globals[name] && name === "@react-three/postprocessing") {
-            window.Globals["@react-three/postprocessing"] = await import(
-              "@react-three/postprocessing"
-            );
-          }
+
+          // if (!window.Globals[name] && name === "@react-three/postprocessing") {
+          //   window.Globals["@react-three/postprocessing"] = await import(
+          //     "@react-three/postprocessing"
+          //   );
+          // }
+
           if (!window.Globals[name] && name === "@react-three/xr") {
             window.Globals["@react-three/xr"] = await import("@react-three/xr");
           }
@@ -118,7 +123,6 @@ export function SwanRemoteRuntimeGen2({
                   <React.Suspense fallback={null}>
                     <r.Runtime
                       baseURL={baseURL}
-                      appIID={appID}
                       onReady={() => {
                         setInsert3D(<r.SmartObject></r.SmartObject>);
                         setInsertHTML(<r.HTMLOverlay></r.HTMLOverlay>);
@@ -220,9 +224,12 @@ export const DefaultSetting = {
     });
   },
   onResolve: ({ id, parentUrl, resolve }) => {
+    console.log(id, parentUrl);
+
     if (parentUrl.indexOf("blob:") === 0) {
       return resolve(id, "");
     }
+
     return resolve(id, parentUrl);
   },
 };

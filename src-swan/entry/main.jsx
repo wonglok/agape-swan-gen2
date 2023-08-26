@@ -11,7 +11,9 @@ export function Runtime({
 }) {
   let [ready, setReady] = useState(false);
   useEffect(() => {
-    useSwan.getState().setBaseURL({ baseURL });
+    if (baseURL) {
+      useSwan.getState().setBaseURL({ baseURL });
+    }
 
     new Promise((resolve) => {
       resolve();
