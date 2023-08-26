@@ -38,23 +38,21 @@ export function DiamondBox() {
           useSwan.setState({ openOverlay: !useSwan.getState().openOverlay });
         }}
       >
-        <Center>
-          <mesh ref={ball} geometry={geo}>
-            <MeshTransmissionMaterial
-              transmission={1}
-              thickness={1.0}
-              roughness={0.3}
-              color={"#ffffff"}
-              attenuationDistance={5}
-              attenuationColor={"#ff00ff"}
-              metalness={0.0}
-              reflectivity={0.5}
-              chromaticAberration={0.0}
-              transmissionSampler
-              temporalDistortion={0.5}
-            ></MeshTransmissionMaterial>
-          </mesh>
-        </Center>
+        <mesh ref={ball} geometry={geo}>
+          <MeshTransmissionMaterial
+            transmission={1}
+            thickness={1.0}
+            roughness={0.3}
+            color={"#ffffff"}
+            attenuationDistance={5}
+            attenuationColor={"#ff00ff"}
+            metalness={0.0}
+            reflectivity={0.5}
+            chromaticAberration={0.0}
+            transmissionSampler
+            temporalDistortion={0.5}
+          ></MeshTransmissionMaterial>
+        </mesh>
       </group>
     </>
   );
