@@ -67,56 +67,44 @@ let sendReload = async () => {
   }, 50);
 };
 
-var watcherSRC = chokidar.watch("./src-swan", {
-  ignored: /^\./,
-  persistent: true,
-});
-
 let needsRefresh = false;
 setInterval(() => {
   if (needsRefresh) {
     needsRefresh = false;
     sendReload();
   }
-}, 100);
+}, 0);
 
-watcherSRC
-  .on("add", function (path) {
-    // console.log("File", path, "has been added");
-    needsRefresh = true;
-  })
-  .on("change", function (path) {
-    // console.log("File", path, "has been changed");
-    needsRefresh = true;
-  })
-  .on("unlink", function (path) {
-    // console.log("File", path, "has been removed");
-    needsRefresh = true;
-  })
-  .on("error", function (error) {
-    // console.error("Error happened", error);
-    needsRefresh = true;
-  });
+function reloader(watch) {
+  watch
+    .on("add", function (path) {
+      // console.log("File", path, "has been added");
+      needsRefresh = true;
+    })
+    .on("change", function (path) {
+      // console.log("File", path, "has been changed");
+      needsRefresh = true;
+    })
+    .on("unlink", function (path) {
+      // console.log("File", path, "has been removed");
+      needsRefresh = true;
+    })
+    .on("error", function (error) {
+      // console.error("Error happened", error);
+      needsRefresh = true;
+    });
+}
+
+var watcherSRC = chokidar.watch("./src-swan", {
+  ignored: /^\./,
+  persistent: true,
+});
+
+reloader(watcherSRC);
 
 var watcherDist = chokidar.watch("./public/swan-build", {
   ignored: /^\./,
   persistent: true,
 });
 
-watcherDist
-  .on("add", function (path) {
-    // console.log("File", path, "has been added");
-    needsRefresh = true;
-  })
-  .on("change", function (path) {
-    // console.log("File", path, "has been changed");
-    needsRefresh = true;
-  })
-  .on("unlink", function (path) {
-    // console.log("File", path, "has been removed");
-    needsRefresh = true;
-  })
-  .on("error", function (error) {
-    // console.error("Error happened", error);
-    needsRefresh = true;
-  });
+reloader(watcherDist);
