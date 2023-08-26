@@ -1,4 +1,6 @@
-import {
+import { THREE } from "../../dx/LibraryCache.js";
+
+let {
   Box3,
   BufferAttribute,
   BufferGeometry,
@@ -12,7 +14,7 @@ import {
   Sphere,
   Vector2,
   Vector3,
-} from "three";
+} = THREE;
 
 const _m1 = new Matrix4();
 const _obj = new Object3D();
