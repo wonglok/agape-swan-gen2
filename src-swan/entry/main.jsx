@@ -1,7 +1,9 @@
-import { useSwan } from "../store/useSwan";
-import { TextRow } from "../components/TextRow";
-import { DiamondBox } from "../components/DiamondBox";
-import { useEffect, useState } from "../dx/ShortCut";
+import { useSwan } from "../store/useSwan.js";
+import { TextRow } from "../components/TextRow.jsx";
+import { DiamondBox } from "../components/DiamondBox.jsx";
+import { useEffect, useState } from "../dx/ShortCut.js";
+import { TheVortex } from "../components/TheVortex/TheVortex.js";
+import { useThree } from "../dx/ShortCut.js";
 
 export function Runtime({
   children,
@@ -27,10 +29,13 @@ export function Runtime({
 }
 
 export function SmartObject() {
-  //
   return (
     <>
       <group>
+        <group position={[0, 0.0, 0]} scale={0.02 * 10}>
+          <TheVortex></TheVortex>
+        </group>
+
         <group position={[0, 2, 0]}>
           <TextRow></TextRow>
         </group>

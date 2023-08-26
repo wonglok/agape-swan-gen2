@@ -1,4 +1,4 @@
-import { create } from "../dx/ShortCut";
+import { create } from "../dx/ShortCut.js";
 
 export const useSwan = create((set) => {
   return {

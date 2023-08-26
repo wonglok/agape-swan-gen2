@@ -1,4 +1,4 @@
-import { Drei, Fiber, React, Zustand } from "./LibraryCache";
+import { Drei, Fiber, React, Zustand } from "./LibraryCache.js";
 
 /** @type {import("react").then((r) => r.useEffect)} */
 export const useEffect = React.useEffect;
@@ -23,6 +23,9 @@ export const Canvas = Fiber.Canvas;
 
 /** @type {import("@react-three/fiber").then((r) => r.createPortal)} */
 export const createPortal = Fiber.createPortal;
+
+/** @type {import("@react-three/fiber").then((r) => r.useThree)} */
+export const useThree = Fiber.useThree;
 
 /** @type {import("@react-three/fiber").then((r) => r.useFrame)} */
 export const useFrame = Fiber.useFrame;

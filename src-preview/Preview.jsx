@@ -31,20 +31,20 @@ function Preview() {
         </Suspense>
 
         {/* Remote Loading... */}
-        <Suspense fallback={null}>
+        {/* <Suspense fallback={null}>
           <SwanRemoteRuntimeGen2
             baseURL={`https://agape-swan-gen2.vercel.app`}
             swanPath={`swan-build`}
             socketURL={false}
           ></SwanRemoteRuntimeGen2>
-        </Suspense>
+        </Suspense> */}
 
         {/* Swan lib runtime */}
-        <group position={[0, -6, 0]}>
+        {/* <group position={[0, -6, 0]}>
           <Suspense fallback={null}>
             <SwanLibRuntime></SwanLibRuntime>
           </Suspense>
-        </group>
+        </group> */}
 
         <Suspense fallback={null}>
           <Environment files={`/hdr/grass.hdr`} background></Environment>

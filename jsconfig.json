@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "three": "src-swan/dx/proxy/three.module.js"
+    }
   }
 }

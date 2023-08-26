@@ -1,6 +1,6 @@
-import { useSwan } from "../store/useSwan";
-import { useGLTF, createPortal, useFrame } from "../dx/ShortCut";
-import { Drei, React, Fiber } from "../dx/LibraryCache";
+import { useSwan } from "../store/useSwan.js";
+import { useGLTF, createPortal, useFrame } from "../dx/ShortCut.js";
+import { Drei, React, Fiber } from "../dx/LibraryCache.js";
 // import { Center } from "@react-three/drei";
 
 let { MeshTransmissionMaterial, Center } = Drei;

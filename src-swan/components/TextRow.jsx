@@ -1,6 +1,6 @@
-import { useSwan } from "../store/useSwan";
-import { useRef, useEffect } from "../dx/ShortCut";
-import { THREE, Drei } from "../dx/LibraryCache";
+import { useSwan } from "../store/useSwan.js";
+import { useRef, useEffect } from "../dx/ShortCut.js";
+import { THREE, Drei } from "../dx/LibraryCache.js";
 
 let { Clock } = THREE;
 let { MeshTransmissionMaterial, Text3D, Center } = Drei;
