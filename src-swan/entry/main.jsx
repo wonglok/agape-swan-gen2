@@ -3,7 +3,6 @@ import { TextRow } from "../components/TextRow.jsx";
 import { DiamondBox } from "../components/DiamondBox.jsx";
 import { useEffect, useState } from "../dx/ShortCut.js";
 import { TheVortex } from "../components/TheVortex/TheVortex.js";
-import { useThree } from "../dx/ShortCut.js";
 
 export function Runtime({
   children,
