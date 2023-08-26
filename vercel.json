@@ -45,6 +45,6 @@
   ],
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
-  "framework": null,
+  "framework": "next",
   "outputDirectory": "dist"
 }
