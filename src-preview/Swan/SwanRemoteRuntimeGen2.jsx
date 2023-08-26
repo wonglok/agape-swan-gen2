@@ -14,21 +14,19 @@ import tunnel from "tunnel-rat";
 
 const t = tunnel();
 
-export function RemoteCommonSwanHTML() {
+export function RemoteCommonSwanHTMLGen2() {
   return <t.Out></t.Out>;
 }
 
-export function SwanRemoteRuntime({
+export function SwanRemoteRuntimeGen2({
   baseURL,
   scriptURL,
-  mode,
   appID,
   socketURL,
 }) {
   let [insertCTX, setInsertCTX] = React.useState(null);
   let [insert3D, setInsert3D] = React.useState(null);
   let [insertHTML, setInsertHTML] = React.useState(null);
-  let isDev = mode === "development";
 
   useEffect(() => {
     window["React"] = React;
@@ -163,8 +161,14 @@ export function SwanRemoteRuntime({
 
     //
     getLoader().then(async (loaderUtils) => {
-      let io = await import("socket.io-client").then((r) => r.io);
-      socket = isDev ? io(`${socketURL}`, {}) : false;
+      let isAlive = await fetch(`${socketURL}/heartbeat`)
+        .then((r) => r.ok && r.json())
+        .then((r) => r.heartbeat === "ok");
+
+      let io = isAlive
+        ? await import("socket.io-client").then((r) => r.io)
+        : false;
+      socket = io ? io(`${socketURL}`, {}) : false;
 
       await loaderUtils
         .load(
@@ -191,7 +195,7 @@ export function SwanRemoteRuntime({
         socket.close();
       }
     };
-  }, [socketURL, baseURL, scriptURL, appID, isDev]);
+  }, [socketURL, baseURL, scriptURL, appID]);
   return (
     <>
       {insertCTX}

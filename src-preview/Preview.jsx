@@ -6,9 +6,9 @@ import { Environment, OrbitControls } from "@react-three/drei";
 import { CommonSwanHTML, SwanLibRuntime } from "./Swan/SwanLibRuntime";
 import { Suspense, useEffect, useState } from "react";
 import {
-  RemoteCommonSwanHTML,
-  SwanRemoteRuntime,
-} from "./Swan/SwanRemoteRuntime";
+  RemoteCommonSwanHTMLGen2,
+  SwanRemoteRuntimeGen2,
+} from "./Swan/SwanRemoteRuntimeGen2";
 
 function Preview() {
   let [origin, setOrigin] = useState(false);
@@ -21,12 +21,11 @@ function Preview() {
       <Canvas>
         <group position={[0, 3, 0]}>
           {origin && (
-            <SwanRemoteRuntime
-              mode={"development"}
+            <SwanRemoteRuntimeGen2
               baseURL={`${origin}`}
               scriptURL={`/swan`}
               socketURL={"http://localhost:8521"}
-            ></SwanRemoteRuntime>
+            ></SwanRemoteRuntimeGen2>
           )}
         </group>
         <group position={[0, -3, 0]}>
@@ -43,7 +42,7 @@ function Preview() {
       </Canvas>
 
       <CommonSwanHTML></CommonSwanHTML>
-      <RemoteCommonSwanHTML></RemoteCommonSwanHTML>
+      <RemoteCommonSwanHTMLGen2></RemoteCommonSwanHTMLGen2>
     </>
   );
 }
