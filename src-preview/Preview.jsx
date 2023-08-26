@@ -19,7 +19,7 @@ function Preview() {
   return (
     <>
       <Canvas>
-        <group position={[0, 3, 0]}>
+        <group position={[0, 5, 0]}>
           {origin && (
             <SwanRemoteRuntimeGen2
               baseURL={`${origin}`}
@@ -28,7 +28,14 @@ function Preview() {
             ></SwanRemoteRuntimeGen2>
           )}
         </group>
-        <group position={[0, -3, 0]}>
+
+        <SwanRemoteRuntimeGen2
+          baseURL={`https://agape-swan-gen2.vercel.app`}
+          scriptURL={`swan`}
+          socketURL={false}
+        ></SwanRemoteRuntimeGen2>
+
+        <group position={[0, -5, 0]}>
           <Suspense fallback={null}>
             <SwanLibRuntime></SwanLibRuntime>
           </Suspense>
@@ -38,7 +45,7 @@ function Preview() {
           <Environment files={`/hdr/grass.hdr`} background></Environment>
         </Suspense>
 
-        <OrbitControls object-position={[0, 0, 13]}></OrbitControls>
+        <OrbitControls object-position={[0, 0, 15]}></OrbitControls>
       </Canvas>
 
       <CommonSwanHTML></CommonSwanHTML>

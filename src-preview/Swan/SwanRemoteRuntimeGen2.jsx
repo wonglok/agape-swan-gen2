@@ -161,9 +161,11 @@ export function SwanRemoteRuntimeGen2({
 
     //
     getLoader().then(async (loaderUtils) => {
-      let isAlive = await fetch(`${socketURL}/heartbeat`)
-        .then((r) => r.ok && r.json())
-        .then((r) => r.heartbeat === "ok");
+      let isAlive =
+        socketURL &&
+        (await fetch(`${socketURL}/heartbeat`)
+          .then((r) => r.ok && r.json())
+          .then((r) => r.heartbeat === "ok"));
 
       let io = isAlive
         ? await import("socket.io-client").then((r) => r.io)
