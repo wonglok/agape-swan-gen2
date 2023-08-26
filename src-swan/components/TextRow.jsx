@@ -50,8 +50,6 @@ export function TextRow() {
       });
   }, [baseURL]);
 
-  //
-
   return (
     <>
       <group ref={tjRef}>

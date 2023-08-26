@@ -98,7 +98,7 @@ watcherSRC
     needsRefresh = true;
   });
 
-var watcherDist = chokidar.watch("./dist", {
+var watcherDist = chokidar.watch("./public/swan-build", {
   ignored: /^\./,
   persistent: true,
 });
