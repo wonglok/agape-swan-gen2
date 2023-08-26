@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 app.get("/heartbeat", (req, res) => {
   res.json({ heartbeat: "ok" });
 });
+
 // app.use("/", staticFiles("public"));
 // app.use("/", staticFiles("dist"));
 

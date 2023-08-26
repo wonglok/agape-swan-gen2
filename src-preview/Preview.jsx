@@ -17,6 +17,7 @@ function Preview() {
   return (
     <>
       <Canvas>
+        {/* Test Component livelink */}
         <Suspense fallback={null}>
           <group position={[0, 6, 0]}>
             {origin && (
