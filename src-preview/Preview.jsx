@@ -16,7 +16,7 @@ function Preview() {
   return (
     <>
       <Canvas>
-        <group position={[0, 5, 0]}>
+        <group position={[0, 6, 0]}>
           {origin && (
             <SwanRemoteRuntimeGen2
               baseURL={`${origin}`}
@@ -32,7 +32,7 @@ function Preview() {
           socketURL={false}
         ></SwanRemoteRuntimeGen2>
 
-        <group position={[0, -5, 0]}>
+        <group position={[0, -6, 0]}>
           <Suspense fallback={null}>
             <SwanLibRuntime></SwanLibRuntime>
           </Suspense>

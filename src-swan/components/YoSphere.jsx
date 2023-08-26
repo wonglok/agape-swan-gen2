@@ -38,6 +38,19 @@ export function YoSphere() {
       window.removeEventListener("lenis-scroll", lenisScroll);
     };
   }, []);
+  useEffect(() => {
+    fetch(`${baseURL}/api/hi`)
+      .then((r) => (r.ok ? r.json() : {}))
+      .then((r) => r.rand)
+      .then((v) => {
+        console.log(v);
+        useSwan.setState({
+          text: "click da box \n" + `${v.toFixed(3)}`,
+        });
+      });
+
+    //
+  }, [baseURL]);
 
   return (
     <>

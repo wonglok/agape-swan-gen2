@@ -1,3 +1,3 @@
 export default async function (req, res) {
-  return res.status(200).json({ text: "Hello", ts: new Date().getTime() });
+  return res.status(200).json({ text: "Hello", rand: Math.random() });
 }

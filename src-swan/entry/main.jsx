@@ -11,10 +11,10 @@ export function SmartObject() {
   return (
     <>
       <group>
-        <group position={[0, 1.3, 0]}>
+        <group position={[0, 2, 0]}>
           <YoSphere></YoSphere>
         </group>
-        <group position={[0, -1.3, 0]}>
+        <group position={[0, -2, 0]}>
           <DiamondBox></DiamondBox>
         </group>
       </group>
