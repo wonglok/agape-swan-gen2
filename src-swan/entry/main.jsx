@@ -9,22 +9,19 @@ export function Runtime({
   preloader = null,
   onReady = () => {},
 }) {
-  let [ok, setOK] = useState(false);
+  let [ready, setReady] = useState(false);
   useEffect(() => {
-    //
-    baseURL[baseURL.length - 1] === "/" ? baseURL.slice(0, -1) : baseURL;
-
-    useSwan.setState({ baseURL: baseURL });
+    useSwan.getState().setBaseURL({ baseURL });
 
     new Promise((resolve) => {
       resolve();
     }).then(() => {
       onReady();
-      setOK(true);
+      setReady(true);
     });
   }, [baseURL, onReady]);
 
-  return ok ? children : preloader;
+  return ready ? children : preloader;
 }
 
 export function SmartObject() {
