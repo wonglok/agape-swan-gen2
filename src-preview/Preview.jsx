@@ -39,6 +39,7 @@ function Preview() {
           ></SwanRemoteRuntimeGen2>
         </Suspense>
 
+        {/* Swan lib runtime */}
         <group position={[0, -6, 0]}>
           <Suspense fallback={null}>
             <SwanLibRuntime></SwanLibRuntime>
