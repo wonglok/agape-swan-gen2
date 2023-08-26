@@ -1,6 +1,6 @@
 import { useSwan } from "../store/useSwan";
 
-import { YoSphere } from "../components/YoSphere";
+import { TextRow } from "../components/TextRow";
 import { DiamondBox } from "../components/DiamondBox";
 import { Runtime } from "../store/Runtime";
 
@@ -12,7 +12,7 @@ export function SmartObject() {
     <>
       <group>
         <group position={[0, 2, 0]}>
-          <YoSphere></YoSphere>
+          <TextRow></TextRow>
         </group>
         <group position={[0, -2, 0]}>
           <DiamondBox></DiamondBox>

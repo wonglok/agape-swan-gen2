@@ -1,12 +1,11 @@
 import { useSwan } from "../store/useSwan";
-import { Drei } from "../dx/LibraryCache";
 import { useRef, useEffect } from "../dx/ShortCut";
-import { THREE } from "../dx/LibraryCache";
+import { THREE, Drei } from "../dx/LibraryCache";
 
 let { Clock } = THREE;
 let { MeshTransmissionMaterial, Text3D, Center } = Drei;
 
-export function YoSphere() {
+export function TextRow() {
   let baseURL = useSwan((r) => r.baseURL);
   let text = useSwan((r) => r.text);
   let tjRef = useRef();
@@ -38,6 +37,7 @@ export function YoSphere() {
       window.removeEventListener("lenis-scroll", lenisScroll);
     };
   }, []);
+
   useEffect(() => {
     fetch(`${baseURL}/api/hi`)
       .then((r) => (r.ok ? r.json() : {}))
@@ -48,8 +48,6 @@ export function YoSphere() {
           text: "click da box \n" + `${v.toFixed(3)}`,
         });
       });
-
-    //
   }, [baseURL]);
 
   return (
