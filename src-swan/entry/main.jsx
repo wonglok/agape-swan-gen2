@@ -55,7 +55,7 @@ export function HTMLOverlay() {
             }}
           >
             {/*  */}
-            <input
+            <textarea
               className="bg-transparent p-3 w-full block text-white appearance-none bg-opacity-0 border-none outline-none focus:outline-none "
               defaultValue={text}
               style={{
@@ -67,7 +67,7 @@ export function HTMLOverlay() {
               onChange={(ev) => {
                 useSwan.setState({ text: ev.target.value });
               }}
-            ></input>
+            ></textarea>
             {/*  */}
           </div>
         </>
