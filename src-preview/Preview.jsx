@@ -1,7 +1,4 @@
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
 import { Canvas } from "@react-three/fiber";
-// import { SwanRuntime } from "./Swan/SwanRuntime";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { CommonSwanHTML, SwanLibRuntime } from "./Swan/SwanLibRuntime";
 import { Suspense, useEffect, useState } from "react";
