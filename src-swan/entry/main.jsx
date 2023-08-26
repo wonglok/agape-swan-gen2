@@ -1,10 +1,31 @@
 import { useSwan } from "../store/useSwan";
-
 import { TextRow } from "../components/TextRow";
 import { DiamondBox } from "../components/DiamondBox";
-import { Runtime } from "../store/Runtime";
+import { useEffect, useState } from "../dx/ShortCut";
 
-export { Runtime };
+export function Runtime({
+  children,
+  baseURL,
+  preloader = null,
+  onReady = () => {},
+}) {
+  let [ok, setOK] = useState(false);
+  useEffect(() => {
+    //
+    baseURL[baseURL.length - 1] === "/" ? baseURL.slice(0, -1) : baseURL;
+
+    useSwan.setState({ baseURL: baseURL });
+
+    new Promise((resolve) => {
+      resolve();
+    }).then(() => {
+      onReady();
+      setOK(true);
+    });
+  }, [baseURL, onReady]);
+
+  return ok ? children : preloader;
+}
 
 export function SmartObject() {
   //
@@ -25,6 +46,7 @@ export function SmartObject() {
 export function HTMLOverlay() {
   let openOverlay = useSwan((r) => r.openOverlay);
   let text = useSwan((r) => r.text);
+
   return (
     <>
       {openOverlay && (
@@ -54,7 +76,6 @@ export function HTMLOverlay() {
               boxShadow: "0px 0px 30px 0px #888",
             }}
           >
-            {/*  */}
             <textarea
               className="bg-transparent h-full p-3 w-full block text-white appearance-none bg-opacity-0 border-none outline-none focus:outline-none "
               defaultValue={text}
