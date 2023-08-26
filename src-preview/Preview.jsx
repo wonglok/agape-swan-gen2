@@ -13,6 +13,7 @@ function Preview() {
   useEffect(() => {
     setOrigin(window.location.origin);
   }, []);
+
   return (
     <>
       <Canvas>
@@ -21,7 +22,7 @@ function Preview() {
             {origin && (
               <SwanRemoteRuntimeGen2
                 baseURL={`${origin}`}
-                scriptURL={`/swan`}
+                scriptURL={`swan`}
                 socketURL={"http://localhost:8521"}
               ></SwanRemoteRuntimeGen2>
             )}
