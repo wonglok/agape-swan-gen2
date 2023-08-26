@@ -47,7 +47,7 @@ export function TextRow() {
       .then((r) => r.rand)
       .then((v) => {
         useSwan.setState({
-          text: "click da box \n" + `${v.toFixed(3)}`,
+          text: `hi from server. \nrandom number - ${(v * 100).toFixed(0)}`,
         });
       });
   }, [baseURL]);
