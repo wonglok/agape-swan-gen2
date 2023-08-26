@@ -25,6 +25,7 @@ export function SwanRemoteRuntimeGen2({
   appID,
   socketURL,
 }) {
+  //
   let [insertCTX, setInsertCTX] = React.useState(null);
   let [insert3D, setInsert3D] = React.useState(null);
   let [insertHTML, setInsertHTML] = React.useState(null);
@@ -42,9 +43,6 @@ export function SwanRemoteRuntimeGen2({
         .map(async (r) => {
           let name = r.name;
 
-          // if (!window.Globals[name] && name === "agape-sdk") {
-          //   window.Globals["agape-sdk"] = await import("agape-sdk");
-          // }
           if (!window.Globals[name] && name === "react") {
             window.Globals["react"] = await import("react");
           }
@@ -64,13 +62,6 @@ export function SwanRemoteRuntimeGen2({
               "@react-three/drei"
             );
           }
-
-          // if (!window.Globals[name] && name === "@react-three/postprocessing") {
-          //   window.Globals["@react-three/postprocessing"] = await import(
-          //     "@react-three/postprocessing"
-          //   );
-          // }
-
           if (!window.Globals[name] && name === "@react-three/xr") {
             window.Globals["@react-three/xr"] = await import("@react-three/xr");
           }

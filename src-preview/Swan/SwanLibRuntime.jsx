@@ -84,14 +84,15 @@ export function SwanLibRuntime() {
       //
       import("../../src-swan/entry/main.jsx").then((M) => {
         // console.log(M);
+
         set3D(
           <>
-            <M.SmartObject></M.SmartObject>
-            {
+            <M.Runtime baseURL={origin} onReady={() => {}}>
+              <M.SmartObject></M.SmartObject>
               <t.In>
                 <M.HTMLOverlay></M.HTMLOverlay>
               </t.In>
-            }
+            </M.Runtime>
           </>
         );
 
