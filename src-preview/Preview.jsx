@@ -16,21 +16,25 @@ function Preview() {
   return (
     <>
       <Canvas>
-        <group position={[0, 6, 0]}>
-          {origin && (
-            <SwanRemoteRuntimeGen2
-              baseURL={`${origin}`}
-              scriptURL={`/swan`}
-              socketURL={"http://localhost:8521"}
-            ></SwanRemoteRuntimeGen2>
-          )}
-        </group>
+        <Suspense fallback={null}>
+          <group position={[0, 6, 0]}>
+            {origin && (
+              <SwanRemoteRuntimeGen2
+                baseURL={`${origin}`}
+                scriptURL={`/swan`}
+                socketURL={"http://localhost:8521"}
+              ></SwanRemoteRuntimeGen2>
+            )}
+          </group>
+        </Suspense>
 
-        <SwanRemoteRuntimeGen2
-          baseURL={`https://agape-swan-gen2.vercel.app`}
-          scriptURL={`swan`}
-          socketURL={false}
-        ></SwanRemoteRuntimeGen2>
+        <Suspense fallback={null}>
+          <SwanRemoteRuntimeGen2
+            baseURL={`https://agape-swan-gen2.vercel.app`}
+            scriptURL={`swan`}
+            socketURL={false}
+          ></SwanRemoteRuntimeGen2>
+        </Suspense>
 
         <group position={[0, -6, 0]}>
           <Suspense fallback={null}>
