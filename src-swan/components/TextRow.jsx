@@ -42,6 +42,7 @@ export function TextRow() {
     if (!baseURL) {
       return;
     }
+
     fetch(`${baseURL}/api/hi`)
       .then((r) => (r.ok ? r.json() : {}))
       .then((r) => r.rand)
