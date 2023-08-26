@@ -8,12 +8,7 @@ export function RemoteCommonSwanHTMLGen2() {
   return <t.Out></t.Out>;
 }
 
-export function SwanRemoteRuntimeGen2({
-  baseURL,
-  scriptURL,
-  appID,
-  socketURL,
-}) {
+export function SwanRemoteRuntimeGen2({ baseURL, swanPath, appID, socketURL }) {
   //
   let [insertCTX, setInsertCTX] = React.useState(null);
   let [insert3D, setInsert3D] = React.useState(null);
@@ -74,7 +69,7 @@ export function SwanRemoteRuntimeGen2({
       let loadCode = (i = 0) => {
         loaderUtils
           .load(
-            `${baseURL}/${scriptURL}/main.module.js?hash=${encodeURIComponent(
+            `${baseURL}/${swanPath}/main.module.js?hash=${encodeURIComponent(
               "_" + Math.random()
             )}`
           )
@@ -153,7 +148,7 @@ export function SwanRemoteRuntimeGen2({
 
       await loaderUtils
         .load(
-          `${baseURL}/${scriptURL}/preload.module.js?hash=${encodeURIComponent(
+          `${baseURL}/${swanPath}/preload.module.js?hash=${encodeURIComponent(
             "_" + Math.random()
           )}}`
         )
@@ -176,7 +171,7 @@ export function SwanRemoteRuntimeGen2({
         socket.close();
       }
     };
-  }, [socketURL, baseURL, scriptURL, appID]);
+  }, [socketURL, baseURL, swanPath, appID]);
   return (
     <>
       {insertCTX}
