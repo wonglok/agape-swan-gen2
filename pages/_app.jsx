@@ -1,4 +1,4 @@
-import { SessionProvider } from "next-auth/react";
+// import { SessionProvider } from "next-auth/react";
 import "../css/global.css";
 export default function Page({
   Component,
@@ -6,9 +6,9 @@ export default function Page({
 }) {
   return (
     <>
-      <SessionProvider session={session}>
-        <Component {...pageProps}></Component>
-      </SessionProvider>
+      {/* <SessionProvider session={session}> */}
+      <Component {...pageProps}></Component>
+      {/* </SessionProvider> */}
     </>
   );
 }
