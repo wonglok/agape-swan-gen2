@@ -56,7 +56,7 @@ export function HTMLOverlay() {
           >
             {/*  */}
             <textarea
-              className="bg-transparent p-3 w-full block text-white appearance-none bg-opacity-0 border-none outline-none focus:outline-none "
+              className="bg-transparent h-full p-3 w-full block text-white appearance-none bg-opacity-0 border-none outline-none focus:outline-none "
               defaultValue={text}
               style={{
                 background: "transparent",
