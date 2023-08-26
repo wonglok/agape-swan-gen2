@@ -45,5 +45,6 @@
   ],
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "outputDirectory": ".next"
 }
