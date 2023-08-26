@@ -50,6 +50,8 @@ export function TextRow() {
       });
   }, [baseURL]);
 
+  //
+
   return (
     <>
       <group ref={tjRef}>
@@ -70,7 +72,7 @@ export function TextRow() {
               roughness={0.3}
               color={"#ffffff"}
               attenuationDistance={5}
-              attenuationColor={"#ffff00"}
+              attenuationColor={"#0000ff"}
               metalness={0.0}
               reflectivity={0.5}
               chromaticAberration={0.0}
