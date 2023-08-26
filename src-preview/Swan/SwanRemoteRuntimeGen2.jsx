@@ -214,7 +214,7 @@ export const DefaultSetting = {
     });
   },
   onResolve: ({ id, parentUrl, resolve }) => {
-    console.log(id, parentUrl);
+    // console.log(id, parentUrl);
 
     if (parentUrl.indexOf("blob:") === 0) {
       return resolve(id, "");
