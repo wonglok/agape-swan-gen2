@@ -44,7 +44,7 @@ export function DiamondBox() {
               roughness={0.3}
               color={"#ffffff"}
               attenuationDistance={5}
-              attenuationColor={"#00ffff"}
+              attenuationColor={"#ff00ff"}
               metalness={0.0}
               reflectivity={0.5}
               chromaticAberration={0.0}
