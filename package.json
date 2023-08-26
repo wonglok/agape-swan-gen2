@@ -23,7 +23,7 @@
     "watchMicrobundle": "microbundle watch --jsx window.React.createElement --tsconfig tsconfig.json --jsxFragment window.React.Fragment --no-sourcemap --external 'none'",
     "watchMicrobundle2": "microbundle watch --jsx window.React.createElement --tsconfig tsconfig.json --globals three=window.Joy --jsxFragment window.React.Fragment --no-sourcemap --external 'none'",
     "lint": "next lint",
-    "webpackWatch": "webpack --watch --config ./webpack.dev.config.cjs --mode development",
+    "webpackWatch": "webpack --watch --config ./webpack.config.cjs --mode production",
     "webpackBuild": "webpack --config ./webpack.config.cjs --mode production"
   },
   "devDependencies": {
