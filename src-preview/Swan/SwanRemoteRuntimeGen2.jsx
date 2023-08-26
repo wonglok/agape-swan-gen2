@@ -34,17 +34,6 @@ export function SwanRemoteRuntimeGen2({
 
     window.Globals = window.Globals || {};
 
-    //
-    // window.Globals['agape-sdk'] = AgapeSDK
-    // window.Globals['react'] = React
-    // window.Globals['three'] = THREE
-    // window.Globals['zustand'] = Zustand
-    // window.Globals['@react-three/fiber'] = ReactThreeFiber
-    // window.Globals['@react-three/drei'] = ReactThreeDrei
-    // window.Globals['@react-three/postprocessing'] = ReactThreePostProc
-    // window.Globals['@react-three/xr'] = ReactThreeXR
-    // window.Globals['three-stdlib'] = THREESTDLIB
-
     let loadGlobals = async ({ globals: array }) => {
       let res = array
         .filter((r) => {
@@ -224,7 +213,7 @@ export const DefaultSetting = {
     });
   },
   onResolve: ({ id, parentUrl, resolve }) => {
-    console.log(id, parentUrl);
+    // console.log(id, parentUrl);
 
     if (parentUrl.indexOf("blob:") === 0) {
       return resolve(id, "");
