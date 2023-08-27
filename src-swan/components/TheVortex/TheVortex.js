@@ -144,7 +144,7 @@ class TheVortexInside extends Object3D {
     if (error !== null) {
       console.error(error);
     }
-    let boxGeo = new IcosahedronGeometry(1, 0).toNonIndexed();
+    let boxGeo = new IcosahedronGeometry(1, 0);
 
     let geo = new InstancedBufferGeometry();
     geo.setAttribute("position", boxGeo.attributes.position);
@@ -238,8 +238,7 @@ class TheVortexInside extends Object3D {
     `,
     });
 
-    //uvinfo
-
+    //
     //
     // let matt = new MeshPhysicalMaterial({
     //   transparent: true,
@@ -315,8 +314,9 @@ class TheVortexInside extends Object3D {
       node: this.core,
       getHeadList: () => current.texture,
       howManyTrackers: 128,
-      tailLength: 32,
+      tailLength: 64,
     });
+
     noodleO3.o3d.scale.setScalar((1 / 350) * 50);
 
     this.add(noodleO3.o3d);
