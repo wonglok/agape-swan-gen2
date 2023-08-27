@@ -1,6 +1,4 @@
-import { THREE } from "../../dx/LibraryCache.js";
-
-let {
+import {
   Scene,
   Camera,
   Mesh,
@@ -13,7 +11,7 @@ let {
   NearestFilter,
   ClampToEdgeWrapping,
   RawShaderMaterial,
-} = THREE;
+} from "three";
 
 /**
  * GPUComputationRenderer, based on SimulationRenderer by zz85

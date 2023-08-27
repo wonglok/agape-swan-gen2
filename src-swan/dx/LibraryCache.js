@@ -18,8 +18,5 @@ export const Drei = LibraryCache["@react-three/drei"];
 /** @type {import("@react-three/xr")} */
 export const XR = LibraryCache["@react-three/xr"];
 
-/** @type {import("@react-three/postprocessing")} */
-export const PostProc = LibraryCache["@react-three/postprocessing"];
-
 /** @type {import("three-stdlib")} */
 export const ThreeStdlib = LibraryCache["three-stdlib"];

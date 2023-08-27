@@ -2,10 +2,8 @@ import { CustomGPU } from "./CustomGPU.js";
 import { vortexComputeShader } from "./computeShader.js";
 import { NoodleO3 } from "./NoodleO3.js";
 import { Core } from "./Core.js";
-import { THREE } from "../../dx/LibraryCache.js";
-import { useEffect, useRef, useThree } from "../../dx/ShortCut.js";
-
-let {
+import { useEffect, useRef } from "react";
+import {
   BoxGeometry,
   Color,
   DataTexture,
@@ -18,7 +16,8 @@ let {
   InstancedBufferAttribute,
   InstancedBufferGeometry,
   FrontSide,
-} = THREE;
+} from "three";
+import { useThree } from "@react-three/fiber";
 
 let generateUUID = () => "_" + Math.random();
 

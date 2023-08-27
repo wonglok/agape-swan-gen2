@@ -1,8 +1,4 @@
-import { THREE } from "../../dx/LibraryCache.js";
-import { CustomGPU } from "./CustomGPU.js";
-import { Geometry } from "./Geometry.js";
-
-let {
+import {
   Vector3,
   BufferAttribute,
   CylinderGeometry,
@@ -18,7 +14,9 @@ let {
   MeshStandardMaterial,
   MeshPhysicalMaterial,
   FloatType,
-} = THREE;
+} from "three";
+import { CustomGPU } from "./CustomGPU.js";
+import { Geometry } from "./Geometry.js";
 
 let generateUUID = () => "_" + Math.random();
 
