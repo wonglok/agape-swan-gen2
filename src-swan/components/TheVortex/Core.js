@@ -10,7 +10,7 @@ class TJCore {
     this.isPaused = false;
     this.id = md5(Math.random());
 
-    // console.trace(name);
+    console.log("[CREATE]", name);
 
     if (typeof window !== "undefined") {
       global = window;
@@ -249,21 +249,10 @@ class TJCore {
     );
 
     if (parent) {
-      // parent.onLoop(() => {
-      //   this.work();
-      // });
       parent.onClean(() => {
         this.clean();
       });
     }
-
-    // console.log(
-    //   "make core:",
-    //   JSON.stringify({
-    //     name: this.name,
-    //     parent: this.parent.name,
-    //   })
-    // );
 
     this.autoEvent = (eventName, fnc, dom = global, config) => {
       //
