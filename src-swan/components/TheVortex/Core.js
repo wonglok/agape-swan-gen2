@@ -10,8 +10,6 @@ class TJCore {
     this.isPaused = false;
     this.id = md5(Math.random());
 
-    console.log("init: ", name);
-
     // console.trace(name);
 
     if (typeof window !== "undefined") {
@@ -279,7 +277,7 @@ class TJCore {
       // subname
       let tj = new TJCore({
         parent: self,
-        name: `create Node: ${name}`,
+        name: `[CREATE]: ${name}`,
       });
 
       if (autoLoop) {
@@ -290,7 +288,7 @@ class TJCore {
 
       self.onClean(() => {
         tj.clean();
-        console.log("cleanup Node: " + name);
+        console.log("[CLEAN]: " + name);
       });
 
       return tj;
@@ -299,7 +297,7 @@ class TJCore {
     this.makeDisposableNode = ({ name }) => {
       let tj = new TJCore({
         parent: self,
-        name: "createAutoNode: " + name,
+        name: "[CREATE]: " + name,
       });
 
       let tt = 0;
@@ -311,7 +309,7 @@ class TJCore {
 
       tj.onClean(() => {
         cancelAnimationFrame(tt);
-        console.log("cleanupAutoNode: " + name);
+        console.log("[CLEAN]: " + name);
       });
 
       return {
