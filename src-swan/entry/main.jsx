@@ -1,7 +1,8 @@
 import { useSwan } from "../store/useSwan.js";
+import { useEffect, useState } from "react";
+
 import { TextRow } from "../components/TextRow.jsx";
 import { DiamondBox } from "../components/DiamondBox.jsx";
-import { useEffect, useState } from "../dx/ShortCut.js";
 import { TheVortex } from "../components/TheVortex/TheVortex.js";
 
 export function Runtime({

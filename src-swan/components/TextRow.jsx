@@ -1,9 +1,7 @@
 import { useSwan } from "../store/useSwan.js";
-import { useRef, useEffect } from "../dx/ShortCut.js";
-import { THREE, Drei } from "../dx/LibraryCache.js";
-
-let { Clock } = THREE;
-let { MeshTransmissionMaterial, Text3D, Center } = Drei;
+import { useRef, useEffect } from "react";
+import { MeshTransmissionMaterial, Text3D, Center } from "@react-three/drei";
+import { Clock } from "three";
 
 export function TextRow() {
   let baseURL = useSwan((r) => r.baseURL);
