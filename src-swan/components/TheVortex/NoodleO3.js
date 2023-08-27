@@ -111,6 +111,11 @@ export class LokLokWiggleSimulation {
     this.fillPositionTexture(dtPosition);
     this.fillLookupTexture(lookUpTexture);
 
+    this.node.onClean(() => {
+      lookUpTexture.dispose();
+      dtPosition.dispose();
+    });
+
     this.positionVariable = this.gpu.addVariable(
       "texturePosition",
       this.positionShader(),

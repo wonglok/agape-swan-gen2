@@ -300,7 +300,7 @@ class TJCore {
 
       tj.onClean(() => {
         cancelAnimationFrame(tt);
-        console.log("[CLEAN]" + name);
+        console.log("[CLEAN]", name);
       });
 
       return {

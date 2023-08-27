@@ -295,6 +295,11 @@ class TheVortexInside extends Object3D {
     let current = {
       texture: gpuCompute.getCurrentRenderTarget(posVar).texture,
     };
+    this.core.onClean(() => {
+      gpuCompute.getCurrentRenderTarget(posVar).texture.dispose();
+      gpuCompute.getAlternateRenderTarget(posVar).texture.dispose();
+    });
+
     this.core.onLoop((dt) => {
       let time = window.performance.now() / 1000;
       posVar.material.uniforms.iTime.value = time;
