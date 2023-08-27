@@ -243,7 +243,6 @@ class TheVortexInside extends Object3D {
     //uvinfo
 
     //
-
     // let matt = new MeshPhysicalMaterial({
     //   transparent: true,
     //   color: new Color('#ffffff'),
@@ -253,13 +252,13 @@ class TheVortexInside extends Object3D {
     // })
     // matt.onBeforeCompile = (shader, gl) => {
     //   //
-
+    //
     //   shader.uniforms.tPos = { value: null }
     //   this.core.onLoop(() => {
     //     shader.uniforms.tPos.value =
     //       gpuCompute.getCurrentRenderTarget(posVar).texture
     //   })
-
+    //
     //   shader.vertexShader = shader.vertexShader.replace(
     //     `void main() {`,
     //     /* glsl */ `
@@ -267,17 +266,17 @@ class TheVortexInside extends Object3D {
     //   attribute vec3 uvinfo;
     //   void main() {`
     //   )
-
+    //
     //   //
     //   shader.vertexShader = shader.vertexShader.replace(
     //     `#include <begin_vertex>`,
     //     /* glsl */ `
     //     vec4 tt = texture2D(tPos, uvinfo.xy);
-
     //     vec3 transformed = vec3( tt.rgb + position * 2.0);
     //   `
     //   )
     // }
+    //
 
     let renderable = new Mesh(geo, material);
     renderable.frustumCulled = false;
