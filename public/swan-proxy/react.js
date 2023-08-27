@@ -1,4 +1,4 @@
-const G = window.Globals["react"];
+const G = window.Globals['react']; 
 export const Children = G.Children;
 export const Component = G.Component;
 export const Fragment = G.Fragment;
@@ -6,8 +6,7 @@ export const Profiler = G.Profiler;
 export const PureComponent = G.PureComponent;
 export const StrictMode = G.StrictMode;
 export const Suspense = G.Suspense;
-export const __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED =
-  G.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+export const __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = G.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 export const cloneElement = G.cloneElement;
 export const createContext = G.createContext;
 export const createElement = G.createElement;
