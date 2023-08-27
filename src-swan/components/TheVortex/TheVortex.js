@@ -16,6 +16,7 @@ import {
   InstancedBufferAttribute,
   InstancedBufferGeometry,
   FrontSide,
+  IcosahedronGeometry,
 } from "three";
 import { useThree } from "@react-three/fiber";
 
@@ -145,7 +146,7 @@ class TheVortexInside extends Object3D {
     if (error !== null) {
       console.error(error);
     }
-    let boxGeo = new BoxGeometry(2, 2, 2).toNonIndexed();
+    let boxGeo = new IcosahedronGeometry(1, 0).toNonIndexed();
 
     let geo = new InstancedBufferGeometry();
     geo.setAttribute("position", boxGeo.attributes.position);
@@ -237,7 +238,6 @@ class TheVortexInside extends Object3D {
     }
 
     `,
-      side: FrontSide,
     });
 
     //uvinfo
