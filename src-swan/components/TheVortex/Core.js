@@ -33,8 +33,6 @@ class TJCore {
     });
 
     //
-
-    //
     this.makeKeyReactive = this.reactTo;
     this.parent = parent;
     this.name = name;
@@ -43,6 +41,7 @@ class TJCore {
     this.remove = (k) => {
       this.resource.delete(k);
     };
+
     this.get = (k) => {
       return new Promise((resolve) => {
         let ttt = 0;
@@ -61,6 +60,7 @@ class TJCore {
         });
       });
     };
+
     let NS = `_${Math.random()}`;
     this.set = (k, v) => {
       this.resource.set(k, v);
@@ -167,7 +167,7 @@ class TJCore {
     };
 
     this.clean = () => {
-      console.log("clean core:", name);
+      console.log("[CLEAN]", name);
       this.isAborted = true;
       this.isPaused = true;
       try {
@@ -277,7 +277,7 @@ class TJCore {
       // subname
       let tj = new TJCore({
         parent: self,
-        name: `[CREATE]: ${name}`,
+        name: `${name}`,
       });
 
       if (autoLoop) {
@@ -288,7 +288,7 @@ class TJCore {
 
       self.onClean(() => {
         tj.clean();
-        console.log("[CLEAN]: " + name);
+        // console.log("[CLEAN]" + name);
       });
 
       return tj;
@@ -297,8 +297,10 @@ class TJCore {
     this.makeDisposableNode = ({ name }) => {
       let tj = new TJCore({
         parent: self,
-        name: "[CREATE]: " + name,
+        name: "" + name,
       });
+
+      //
 
       let tt = 0;
       let rAF = () => {
@@ -309,7 +311,7 @@ class TJCore {
 
       tj.onClean(() => {
         cancelAnimationFrame(tt);
-        console.log("[CLEAN]: " + name);
+        console.log("[CLEAN]" + name);
       });
 
       return {
