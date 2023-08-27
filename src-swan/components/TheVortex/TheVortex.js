@@ -18,8 +18,6 @@ import {
 } from "three";
 import { useThree } from "@react-three/fiber";
 
-let generateUUID = () => "_" + Math.random();
-
 export function TheVortex() {
   let ref = useRef();
 
@@ -328,5 +326,3 @@ class TheVortexInside extends Object3D {
     });
   }
 }
-
-TheVortex.key = generateUUID() + NoodleO3.key + vortexComputeShader;
