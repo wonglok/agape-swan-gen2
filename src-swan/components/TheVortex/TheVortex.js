@@ -30,10 +30,12 @@ export function TheVortex() {
       return;
     }
     let o3 = new TheVortexInside({ gl: gl });
+
     ref.current.clear();
     ref.current.add(o3);
 
     return () => {
+      o3.removeFromParent();
       o3.core.clean();
     };
   }, [gl]);
@@ -46,8 +48,6 @@ class TheVortexInside extends Object3D {
     super();
     this.gl = gl;
     this.setup();
-
-    // console.log()
   }
   setup() {
     this.core = Core.makeDisposableNode({ name: "vortex" }).sub;
