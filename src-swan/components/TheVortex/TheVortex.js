@@ -4,7 +4,6 @@ import { NoodleO3 } from "./NoodleO3.js";
 import { Core } from "./Core.js";
 import { useEffect, useRef } from "react";
 import {
-  BoxGeometry,
   Color,
   DataTexture,
   FloatType,
@@ -15,7 +14,6 @@ import {
   Mesh,
   InstancedBufferAttribute,
   InstancedBufferGeometry,
-  FrontSide,
   IcosahedronGeometry,
 } from "three";
 import { useThree } from "@react-three/fiber";
