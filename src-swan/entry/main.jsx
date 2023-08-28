@@ -4,37 +4,17 @@ import { useEffect, useState } from "react";
 import { TextRow } from "../components/TextRow.jsx";
 import { DiamondBox } from "../components/DiamondBox.jsx";
 import { TheVortex } from "../components/TheVortex/TheVortex.js";
-
-export function Runtime({
-  children,
-  baseURL,
-  preloader = null,
-  onReady = () => {},
-}) {
-  let [ready, setReady] = useState(false);
-  useEffect(() => {
-    if (baseURL) {
-      useSwan.getState().setBaseURL({ baseURL });
-    }
-
-    new Promise((resolve) => {
-      resolve();
-    }).then(() => {
-      onReady();
-      setReady(true);
-    });
-  }, [baseURL, onReady]);
-
-  return ready ? children : preloader;
-}
+import { MeshTransmissionMaterial, Sphere, Text } from "@react-three/drei";
 
 export function SmartObject() {
   return (
     <>
       <group>
-        <group position={[0, 0.0, 0]} scale={0.02 * 10}>
+        {/* <group position={[0, 0.0, 0]} scale={0.02 * 10}>
           <TheVortex></TheVortex>
-        </group>
+        </group> */}
+
+        {/* <Text>hi</Text> */}
 
         <group position={[0, 2, 0]}>
           <TextRow></TextRow>
@@ -42,6 +22,10 @@ export function SmartObject() {
         <group position={[0, -2, 0]}>
           <DiamondBox></DiamondBox>
         </group>
+
+        <Sphere>
+          <MeshTransmissionMaterial thickness={1.1}></MeshTransmissionMaterial>
+        </Sphere>
       </group>
     </>
   );
@@ -99,4 +83,27 @@ export function HTMLOverlay() {
       )}
     </>
   );
+}
+
+export function Runtime({
+  children,
+  baseURL,
+  preloader = null,
+  onReady = () => {},
+}) {
+  let [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (baseURL) {
+      useSwan.getState().setBaseURL({ baseURL });
+    }
+
+    new Promise((resolve) => {
+      resolve();
+    }).then(() => {
+      onReady();
+      setReady(true);
+    });
+  }, [baseURL, onReady]);
+
+  return ready ? children : preloader;
 }

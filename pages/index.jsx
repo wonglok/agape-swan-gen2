@@ -1,11 +1,23 @@
-import { Preview } from "src-preview/Preview";
+// import { Preview } from "src-preview/Preview";
 
 export default function Page() {
   return (
     <>
-      <Preview></Preview>
+      Landing Page
+      <br />
+      <a href={`/preview`}>1. Preview Component Page</a>
+      <a href={`/admin-portal`}>1. Admin Portal Page</a>
+      {/* <Preview></Preview> */}
     </>
   );
 }
+
+//
+
+//
+
+//
+
+//
 
 //

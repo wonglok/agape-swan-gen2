@@ -20,7 +20,8 @@ function Preview() {
       <Canvas>
         {/*  */}
         {/* Test Component Livelink */}
-        <Suspense fallback={null}>
+        {/* for loading collab code */}
+        {/* <Suspense fallback={null}>
           <group position={[0, 10, 0]}>
             {origin && (
               <SwanRemoteRuntimeGen2
@@ -30,19 +31,21 @@ function Preview() {
               ></SwanRemoteRuntimeGen2>
             )}
           </group>
-        </Suspense>
+        </Suspense> */}
 
         {/* Remote Loading... */}
-        <Suspense fallback={null}>
+        {/* For loading production code */}
+        {/* <Suspense fallback={null}>
           <SwanRemoteRuntimeGen2
             baseURL={`https://agape-swan-gen2.vercel.app`}
             swanPath={`swan-build`}
             socketURL={false}
           ></SwanRemoteRuntimeGen2>
-        </Suspense>
+        </Suspense> */}
 
         {/* Swan lib runtime */}
-        <group position={[0, -10, 0]}>
+        {/* for testing on your own */}
+        <group position={[0, -0, 0]}>
           <Suspense fallback={null}>
             <SwanLibRuntime></SwanLibRuntime>
           </Suspense>
@@ -63,6 +66,10 @@ function Preview() {
 }
 
 export { Preview };
+
+//
+
+//
 
 //
 
