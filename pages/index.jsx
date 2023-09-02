@@ -5,8 +5,12 @@ export default function Page() {
     <>
       Landing Page
       <br />
-      <a href={`/preview`}>1. Preview Component Page</a>
-      <a href={`/admin-portal`}>1. Admin Portal Page</a>
+      <a className="block" href={`/preview`}>
+        1. Preview Component Page
+      </a>
+      <a className="block" href={`/admin-portal`}>
+        1. Admin Portal Page
+      </a>
       {/* <Preview></Preview> */}
     </>
   );
