@@ -21,7 +21,7 @@ function Preview() {
         {/* Test Component Livelink */}
         {/* for loading collab code */}
         <Suspense fallback={null}>
-          <group position={[0, 10, 0]}>
+          <group position={[0, 15, 0]}>
             {origin && (
               <SwanRemoteRuntimeGen2
                 baseURL={`${origin}`}
@@ -45,7 +45,7 @@ function Preview() {
 
         {/* Swan lib runtime */}
         {/* for testing on your own */}
-        <group position={[0, -10, 0]}>
+        <group position={[0, -15, 0]}>
           <Suspense fallback={null}>
             <SwanLocalRuntime></SwanLocalRuntime>
           </Suspense>
