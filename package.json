@@ -18,11 +18,11 @@
     "next-dev": "next dev",
     "next-build": "next build",
     "build": "npm run webpackBuild; npm run next-build; ",
-    "liveBlender": "nodemon ./swan-tools/dev/blender.cjs --watch src-swan",
-    "liveDev": "nodemon ./swan-tools/dev/live-dev.mjs --watch src-swan",
+    "liveBlender": "nodemon ./swan-developer-tools/dev/blender.cjs --watch src-swan",
+    "liveDev": "nodemon ./swan-developer-tools/dev/live-dev.mjs --watch src-swan",
     "lint": "next lint",
-    "webpackWatch": "webpack --watch --config ./swan-tools/dev/webpack.config.cjs --mode production",
-    "webpackBuild": "webpack --config ./swan-tools/dev/webpack.config.cjs --mode production"
+    "webpackWatch": "webpack --watch --config ./swan-developer-tools/dev/webpack.config.cjs --mode production",
+    "webpackBuild": "webpack --config ./swan-developer-tools/dev/webpack.config.cjs --mode production"
   },
   "disable": {
     "@rollup/plugin-babel": "^6.0.3",

@@ -58,7 +58,9 @@ io.on("connection", (socket) => {
 // });
 
 http.listen(COMPONENT_PORT, () => {
-  console.log(`[COMPONENT_PORT] server running at http://localhost:${COMPONENT_PORT}/`);
+  console.log(
+    `[COMPONENT_PORT] server running at http://localhost:${COMPONENT_PORT}/`
+  );
 });
 
 let tt = 0;
