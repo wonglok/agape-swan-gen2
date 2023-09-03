@@ -38,7 +38,6 @@ module.exports.generate = ({ libs }) => {
       fs.writeFileSync(lib.writeTo, str);
       console.log(lib.name, lib.writeTo);
     }
-
     if (lib.name === "@react-three/fiber") {
       const r3f = require("@react-three/fiber");
       const fs = require("fs");
