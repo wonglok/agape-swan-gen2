@@ -9,7 +9,10 @@ export default function Page() {
         1. Preview Component Page
       </a>
       <a className="block" href={`/admin-portal`}>
-        1. Admin Portal Page
+        2. Admin Portal Page
+      </a>
+      <a className="block" href={`/blender`}>
+        3. Blender Livelink
       </a>
       {/* <Preview></Preview> */}
     </>
