@@ -2,11 +2,19 @@ import { useEffect, useState } from "react";
 export function Blender() {
   let [files, setFiles] = useState([]);
   let [activeIndex, setIndex] = useState(0);
+
+  useEffect(() => {
+    import("@google/model-viewer");
+  }, []);
+
   useEffect(() => {
     let newFiles = getFiles();
     setFiles(newFiles);
-    import("@google/model-viewer");
-  }, []);
+
+    return () => {
+      //
+    };
+  }, [activeIndex]);
 
   return (
     <>
@@ -37,7 +45,7 @@ export function Blender() {
               <model-viewer
                 camera-controls
                 class="w-full h-full"
-                src={`${files[activeIndex].file}`}
+                src={`${files[activeIndex].file}?v=${performance.now()}`}
               ></model-viewer>
             </>
           )}
