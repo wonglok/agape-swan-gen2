@@ -1,11 +1,11 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
-import { CommonSwanHTML, SwanLibRuntime } from "./Swan/SwanLibRuntime";
+import { SwanLocalHTML, SwanLocalRuntime } from "./SwanLoader/SwanLocalRuntime";
 import { Suspense, useEffect, useState } from "react";
 import {
-  RemoteCommonSwanHTMLGen2,
+  SwanRemoteHTMLGen2,
   SwanRemoteRuntimeGen2,
-} from "./Swan/SwanRemoteRuntimeGen2";
+} from "./SwanLoader/SwanRemoteRuntimeGen2";
 
 function Preview() {
   let [origin, setOrigin] = useState(false);
@@ -35,6 +35,7 @@ function Preview() {
 
         {/* Remote Loading... */}
         {/* For loading production code */}
+
         {/* <Suspense fallback={null}>
           <SwanRemoteRuntimeGen2
             baseURL={`https://agape-swan-gen2.vercel.app`}
@@ -45,9 +46,9 @@ function Preview() {
 
         {/* Swan lib runtime */}
         {/* for testing on your own */}
-        <group position={[0, -0, 0]}>
+        <group position={[0, -10, 0]}>
           <Suspense fallback={null}>
-            <SwanLibRuntime></SwanLibRuntime>
+            <SwanLocalRuntime></SwanLocalRuntime>
           </Suspense>
         </group>
 
@@ -58,9 +59,9 @@ function Preview() {
         <OrbitControls object-position={[0, 0, 20]}></OrbitControls>
       </Canvas>
 
-      <CommonSwanHTML></CommonSwanHTML>
+      <SwanLocalHTML></SwanLocalHTML>
 
-      <RemoteCommonSwanHTMLGen2></RemoteCommonSwanHTMLGen2>
+      <SwanRemoteHTMLGen2></SwanRemoteHTMLGen2>
     </>
   );
 }

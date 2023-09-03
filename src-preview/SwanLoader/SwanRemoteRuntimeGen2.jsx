@@ -4,7 +4,7 @@ import tunnel from "tunnel-rat";
 
 const t = tunnel();
 
-export function RemoteCommonSwanHTMLGen2() {
+export function SwanRemoteHTMLGen2() {
   return <t.Out></t.Out>;
 }
 

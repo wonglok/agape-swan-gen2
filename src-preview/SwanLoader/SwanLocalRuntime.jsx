@@ -6,11 +6,11 @@ import tunnel from "tunnel-rat";
 
 const t = tunnel();
 
-export function CommonSwanHTML() {
+export function SwanLocalHTML() {
   return <t.Out></t.Out>;
 }
 
-export function SwanLibRuntime() {
+export function SwanLocalRuntime() {
   let [o3d, set3D] = React.useState(false);
   // let [html, setHTML] = React.useState(false);
   React.useEffect(() => {
