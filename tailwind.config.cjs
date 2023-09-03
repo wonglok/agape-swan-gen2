@@ -21,6 +21,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./src-swan/**/*.{js,ts,jsx,tsx}",
+    "./src-blender/**/*.{js,ts,jsx,tsx}",
 
     "./node_modules/flowbite-react/**/*.js",
     "./pages/**/*.{ts,tsx}",
