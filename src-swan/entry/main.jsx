@@ -10,7 +10,7 @@ export function SmartObject() {
   return (
     <>
       <group>
-        <group position={[0, 0.0, 0]} scale={0.02 * 10}>
+        <group position={[0, 0.0, 0]} scale={0.01 * 6}>
           <TheVortex></TheVortex>
         </group>
 
