@@ -20,7 +20,7 @@ function Preview() {
       <Canvas>
         {/* Test Component Livelink */}
         {/* for loading collab code */}
-        {/* <Suspense fallback={null}>
+        <Suspense fallback={null}>
           <group position={[0, 10, 0]}>
             {origin && (
               <SwanRemoteRuntimeGen2
@@ -30,7 +30,7 @@ function Preview() {
               ></SwanRemoteRuntimeGen2>
             )}
           </group>
-        </Suspense> */}
+        </Suspense>
 
         {/* Remote Loading... */}
         {/* For loading production code */}
