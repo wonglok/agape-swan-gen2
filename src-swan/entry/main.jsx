@@ -1,8 +1,8 @@
 import { useSwan } from "../store/useSwan.js";
 import { useEffect, useState } from "react";
 
-import { TextRow } from "../components/TextRow.jsx";
-import { DiamondBox } from "../components/DiamondBox.jsx";
+import { TextRow } from "../components/TextRow/TextRow.jsx";
+import { DiamondBox } from "../components/DiamondBox/DiamondBox.jsx";
 import { TheVortex } from "../components/TheVortex/TheVortex.js";
 import { MeshTransmissionMaterial, Sphere, Text } from "@react-three/drei";
 
@@ -23,7 +23,7 @@ export function SmartObject() {
           <DiamondBox></DiamondBox>
         </group>
 
-        <Sphere>
+        <Sphere scale={13}>
           <MeshTransmissionMaterial thickness={1.1}></MeshTransmissionMaterial>
         </Sphere>
       </group>

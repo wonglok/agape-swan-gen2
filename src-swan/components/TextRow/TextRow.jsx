@@ -1,4 +1,4 @@
-import { useSwan } from "../store/useSwan.js";
+import { useSwan } from "../../store/useSwan.js";
 import { useRef, useEffect } from "react";
 import { MeshTransmissionMaterial, Text3D, Center } from "@react-three/drei";
 import { Clock } from "three";
@@ -49,6 +49,8 @@ export function TextRow() {
           text: `hi from server.\nrandom number - ${(v * 100).toFixed(0)}`,
         });
       });
+
+    //
   }, [baseURL]);
 
   return (

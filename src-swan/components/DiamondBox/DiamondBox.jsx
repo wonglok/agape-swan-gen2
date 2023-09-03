@@ -1,4 +1,4 @@
-import { useSwan } from "../store/useSwan.js";
+import { useSwan } from "../../store/useSwan.js";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { MeshTransmissionMaterial, useGLTF } from "@react-three/drei";
