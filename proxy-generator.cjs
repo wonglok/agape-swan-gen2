@@ -10,7 +10,7 @@ module.exports.generate = ({ libs }) => {
       });
 
       fs.writeFileSync(lib.writeTo, str);
-      console.log(lib.name, lib.writeTo);
+      console.log("[generated]", lib.name); //, lib.writeTo);
     }
 
     if (lib.name === "react") {
@@ -23,7 +23,7 @@ module.exports.generate = ({ libs }) => {
       });
 
       fs.writeFileSync(lib.writeTo, str);
-      console.log(lib.name, lib.writeTo);
+      console.log("[generated]", lib.name); //, lib.writeTo);
     }
 
     if (lib.name === "zustand") {
@@ -36,7 +36,7 @@ module.exports.generate = ({ libs }) => {
       });
 
       fs.writeFileSync(lib.writeTo, str);
-      console.log(lib.name, lib.writeTo);
+      console.log("[generated]", lib.name); //, lib.writeTo);
     }
     if (lib.name === "@react-three/fiber") {
       const r3f = require("@react-three/fiber");
@@ -48,7 +48,7 @@ module.exports.generate = ({ libs }) => {
       });
 
       fs.writeFileSync(lib.writeTo, str);
-      console.log(lib.name, lib.writeTo);
+      console.log("[generated]", lib.name); //, lib.writeTo);
     }
     if (lib.name === "@react-three/drei") {
       const mod = require("@react-three/drei");
@@ -60,7 +60,7 @@ module.exports.generate = ({ libs }) => {
       });
 
       fs.writeFileSync(lib.writeTo, str);
-      console.log(lib.name, lib.writeTo);
+      console.log("[generated]", lib.name); //, lib.writeTo);
     }
     if (lib.name === "@react-three/xr") {
       const mod = require("@react-three/xr");
@@ -72,7 +72,7 @@ module.exports.generate = ({ libs }) => {
       });
 
       fs.writeFileSync(lib.writeTo, str);
-      console.log(lib.name, lib.writeTo);
+      console.log("[generated]", lib.name); //, lib.writeTo);
     }
 
     if (lib.name === "three-stdlib") {
@@ -85,7 +85,7 @@ module.exports.generate = ({ libs }) => {
       });
 
       fs.writeFileSync(lib.writeTo, str);
-      console.log(lib.name, lib.writeTo);
+      console.log("[generated]", lib.name); //, lib.writeTo);
     }
   });
 };
