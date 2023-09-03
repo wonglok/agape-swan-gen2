@@ -14,7 +14,7 @@ let io = new socket.Server(http, {
   },
 });
 
-const port = process.env.PORT || 8521;
+const COMPONENT_PORT = 8521; //  process.env.PORT ||
 
 app.use(cors({}));
 
@@ -57,8 +57,8 @@ io.on("connection", (socket) => {
 //   console.log(db.data);
 // });
 
-http.listen(port, () => {
-  console.log(`Socket.IO server running at http://localhost:${port}/`);
+http.listen(COMPONENT_PORT, () => {
+  console.log(`[COMPONENT_PORT] server running at http://localhost:${COMPONENT_PORT}/`);
 });
 
 let tt = 0;

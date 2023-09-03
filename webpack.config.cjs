@@ -6,31 +6,31 @@ generate({
   libs: [
     {
       name: "three",
-      writeTo: path.resolve(__dirname, "./swan-proxy/three.js"),
+      writeTo: path.resolve(__dirname, "./swan/build-globals/three.js"),
     },
     {
       name: "react",
-      writeTo: path.resolve(__dirname, "./swan-proxy/react.js"),
+      writeTo: path.resolve(__dirname, "./swan/build-globals/react.js"),
     },
     {
       name: "zustand",
-      writeTo: path.resolve(__dirname, "./swan-proxy/zustand.js"),
+      writeTo: path.resolve(__dirname, "./swan/build-globals/zustand.js"),
     },
     {
       name: "@react-three/fiber",
-      writeTo: path.resolve(__dirname, "./swan-proxy/r3f.js"),
+      writeTo: path.resolve(__dirname, "./swan/build-globals/r3f.js"),
     },
     {
       name: "@react-three/drei",
-      writeTo: path.resolve(__dirname, "./swan-proxy/drei.js"),
+      writeTo: path.resolve(__dirname, "./swan/build-globals/drei.js"),
     },
     {
       name: "@react-three/xr",
-      writeTo: path.resolve(__dirname, "./swan-proxy/xr.js"),
+      writeTo: path.resolve(__dirname, "./swan/build-globals/xr.js"),
     },
     {
       name: "three-stdlib",
-      writeTo: path.resolve(__dirname, "./swan-proxy/three-stdlib.js"),
+      writeTo: path.resolve(__dirname, "./swan/build-globals/three-stdlib.js"),
     },
   ],
 });
@@ -42,13 +42,16 @@ module.exports = {
   },
   resolve: {
     alias: {
-      ["three"]: path.resolve(__dirname, "./swan-proxy/three.js"),
-      ["react"]: path.resolve(__dirname, "./swan-proxy/react.js"),
-      ["zustand"]: path.resolve(__dirname, "./swan-proxy/zustand.js"),
-      ["@react-three/fiber"]: path.resolve(__dirname, "./swan-proxy/r3f.js"),
-      ["@react-three/drei"]: path.resolve(__dirname, "./swan-proxy/drei.js"),
-      ["@react-three/xr"]: path.resolve(__dirname, "./swan-proxy/xr.js"),
-      ["three-stdlib"]: path.resolve(__dirname, "./swan-proxy/three-stdlib.js"),
+      ["three"]: path.resolve(__dirname, "./swan/build-globals/three.js"),
+      ["react"]: path.resolve(__dirname, "./swan/build-globals/react.js"),
+      ["zustand"]: path.resolve(__dirname, "./swan/build-globals/zustand.js"),
+      ["@react-three/fiber"]: path.resolve(__dirname, "./swan/build-globals/r3f.js"),
+      ["@react-three/drei"]: path.resolve(__dirname, "./swan/build-globals/drei.js"),
+      ["@react-three/xr"]: path.resolve(__dirname, "./swan/build-globals/xr.js"),
+      ["three-stdlib"]: path.resolve(
+        __dirname,
+        "./swan/build-globals/three-stdlib.js"
+      ),
     },
     extensions: [".js", ".mjs", ".jsx"],
   },

@@ -4,8 +4,6 @@
     "paths": {
       // "three": "src-swan/dx/proxy/three.module.js"
     },
-    "allowJs": true,
-    "pretty": true
   },
   "include": ["./src-preview", "./src-swan"],
   "exclude": [

@@ -14,11 +14,12 @@
   ],
   "scripts": {
     "start": "next start",
-    "dev": "concurrently \"npm run webpackWatch\" \"npm run liveDev\" \"npm run next-dev\"",
+    "dev": "concurrently \"npm run webpackWatch\" \"npm run liveDev\" \"npm run liveBlender\" \"npm run next-dev\"",
     "next-dev": "next dev",
     "next-build": "next build",
     "build": "npm run webpackBuild; npm run next-build; ",
-    "liveDev": "nodemon ./src-swan/live-dev.mjs --watch src-swan",
+    "liveBlender": "nodemon ./swan/dev/blender.cjs --watch src-swan",
+    "liveDev": "nodemon ./swan/dev/live-dev.mjs --watch src-swan",
     "lint": "next lint",
     "webpackWatch": "webpack --watch --config ./webpack.config.cjs --mode production",
     "webpackBuild": "webpack --config ./webpack.config.cjs --mode production"
@@ -58,11 +59,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "express": "^4.17.1",
-    "md5": "^2.3.0",
     "next": "^13.4.19",
     "next-auth": "^4.23.1",
-    "nodemon": "^3.0.1",
     "postcss": "^8.4.28",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -75,7 +73,16 @@
     "typescript": "5.2.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
-    "zustand": "^4.4.1"
+    "zustand": "^4.4.1",
+    "@gltf-transform/core": "^3.5.1",
+    "@gltf-transform/extensions": "^3.5.1",
+    "@gltf-transform/functions": "^3.5.1",
+    "draco3dgltf": "^1.5.6",
+    "express": "^4.18.2",
+    "formidable": "^3.5.0",
+    "md5": "^2.3.0",
+    "moment": "^2.29.4",
+    "nodemon": "^3.0.1"
   },
   "dependencies": {}
 }
