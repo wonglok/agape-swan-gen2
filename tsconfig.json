@@ -11,20 +11,12 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {},
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "exclude": [
-    "**/*/node_modules"
-  ],
-  "include": [
-    "**/*"
-  ]
+  "exclude": ["public", "./swan-tools", "**/*/node_modules"],
+  "include": ["**/*"]
 }
