@@ -18,7 +18,6 @@ function Preview() {
   return (
     <>
       <Canvas>
-        {/*  */}
         {/* Test Component Livelink */}
         {/* for loading collab code */}
         {/* <Suspense fallback={null}>
