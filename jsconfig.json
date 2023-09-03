@@ -3,7 +3,16 @@
     "baseUrl": ".",
     "paths": {
       // "three": "src-swan/dx/proxy/three.module.js"
-    }
+    },
+    "allowJs": true,
+    "pretty": true
   },
-  "exclude": ["./public", "./swan-build", "./swan-proxy", "./dist"]
+  "include": ["./src-preview", "./src-swan"],
+  "exclude": [
+    "./swan-proxy/*",
+    "./public",
+    "./swan-build",
+    "./swan-proxy",
+    "./dist"
+  ]
 }
