@@ -11,14 +11,15 @@ export function Blender() {
   return (
     <>
       <div className="flex w-full h-full">
-        <div
-          className="overflow-x-hidden"
-          style={{ width: `280px`, height: "100%" }}
-        >
+        <div className="" style={{ width: `280px`, height: "100%" }}>
           {files.map((it, idx) => {
             return (
               <div
-                className=""
+                className={
+                  activeIndex === idx
+                    ? `overflow-x-scroll m-2 bg-purple-100 p-2 hover:bg-purple-200 cursor-pointer`
+                    : `overflow-x-scroll m-2 bg-gray-100 p-2 hover:bg-gray-200 cursor-pointer`
+                }
                 key={it.file}
                 onClick={() => {
                   setIndex(idx);
