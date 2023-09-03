@@ -67,19 +67,19 @@ export function TextRow() {
             font={`${baseURL}/fonts/days-font/Days_Regular.json`}
           >
             {`${text}`}
-            <MeshTransmissionMaterial
-              transmission={1}
-              thickness={1.0}
-              roughness={0.3}
-              color={"#ffffff"}
-              attenuationDistance={5}
-              attenuationColor={"#0000ff"}
-              metalness={0.0}
-              reflectivity={0.5}
-              chromaticAberration={0.0}
-              transmissionSampler
-              temporalDistortion={0.5}
-            ></MeshTransmissionMaterial>
+            <meshStandardMaterial
+              // transmission={1}
+              // thickness={1.0}
+              roughness={0.15}
+              color={"#0000ff"}
+              // attenuationDistance={5}
+              // attenuationColor={"#0000ff"}
+              metalness={1}
+              // reflectivity={0.5}
+              // chromaticAberration={0.0}
+              // transmissionSampler
+              // temporalDistortion={0.5}
+            ></meshStandardMaterial>
           </Text3D>
         </Center>
       </group>
