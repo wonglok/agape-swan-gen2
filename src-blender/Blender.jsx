@@ -8,7 +8,6 @@ import {
   useGLTF,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import { useEffect, useState } from "react";
 export function Blender() {
   let [files, setFiles] = useState([]);
@@ -56,7 +55,7 @@ export function Blender() {
               <Canvas shadows>
                 <Stage
                   key={`stage${files[activeIndex].file}?v=${performance.now()}`}
-                  adjustCamera={2}
+                  adjustCamera={1.5}
                   shadows="contact"
                 >
                   <GLB
@@ -69,16 +68,7 @@ export function Blender() {
                   object-position={[0, 4, 8]}
                   makeDefault
                 ></OrbitControls>
-
-                {/* <EffectComposer>
-                  <N8AO></N8AO>
-                </EffectComposer> */}
               </Canvas>
-              {/* <model-viewer
-                camera-controls
-                class="w-full h-full"
-                src={}
-              ></model-viewer> */}
             </>
           )}
         </div>
@@ -91,9 +81,12 @@ function GLB({ src }) {
   let glb = useGLTF(`${src}`);
   const { ref, mixer, names, actions, clips } = useAnimations(glb.animations);
   useEffect(() => {
-    if (names[0]) {
-      actions[names[0]].play();
-    }
+    (names || []).forEach((name) => {
+      if (name) {
+        actions[name].reset();
+        actions[name].play();
+      }
+    });
   }, [actions, names]);
 
   glb.scene.traverse((it) => {
