@@ -94,9 +94,10 @@ async function optimiseGLB({ data, name }) {
     const glb = await io.writeBinary(document); // Document → Uint8Array
 
     let dateStr = moment().format("YYYY-MM-DD");
+    let ts = new Date().getTime()
 
     await fs.promises.mkdir(`./public/blender-livelink-dropzone/${dateStr}`, { recursive: true }).catch(console.error);
-    await io.write(`./public/blender-livelink-dropzone/${dateStr}/${name}.${md5(glb)}.glb`, document);
+    await io.write(`./public/blender-livelink-dropzone/${dateStr}/${name}.${ts}.glb`, document);
 
     return glb;
   } catch (e) {

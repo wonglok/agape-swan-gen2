@@ -10,6 +10,7 @@ import {
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 import copyToClipboard from "copy-to-clipboard";
+import moment from "moment";
 export function Blender() {
   let [files, setFiles] = useState([]);
   let [activeIndex, setIndex] = useState(0);
@@ -24,6 +25,7 @@ export function Blender() {
   }, [activeIndex]);
 
   let fileURL = files[activeIndex]?.file;
+
   return (
     <>
       <div className="flex w-full h-full">
@@ -31,8 +33,10 @@ export function Blender() {
           {files.map((it, idx) => {
             let name = it.basename.split(".");
             let ext = name.pop().toUpperCase();
-            let md5note = name.pop();
+            let date = name.pop();
+
             name = name.join(".");
+            let dateStr = moment(new Date(Number(date))).fromNow();
 
             return (
               <div
@@ -48,9 +52,8 @@ export function Blender() {
                 }}
               >
                 <div>{name}</div>
-                <div className="text-sm text-gray-500">
-                  [{ext}] {it.date}
-                </div>
+                <div className="text-xs text-gray-400">[{dateStr}]</div>
+                <div className="text-xs text-gray-400">{it.date}</div>
                 <div
                   className="text-gray-400 overflow-x-hidden"
                   style={{ fontSize: "8px" }}
@@ -148,11 +151,27 @@ function getFiles() {
         let segs = item.file.split("/");
 
         item.date = segs[2];
+
+        let name = item.basename.split(".");
+        let ext = name.pop().toUpperCase();
+        let date = name.pop();
+
+        item.ts = Number(date || performance.now());
+
         files.push(item);
       }
     });
 
     console.log(files);
+
+    files = files.sort((a, b) => {
+      if (b.ts > a.ts) {
+        return 1;
+      } else if (b.ts < a.ts) {
+        return -1;
+      }
+      return 0;
+    });
 
     return files;
   }
