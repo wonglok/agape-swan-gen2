@@ -80,6 +80,7 @@ export function Blender() {
             <>
               <Canvas shadows>
                 <Stage
+                  environment={{ files: `/hdr/grass.hdr` }}
                   key={`stage${files[activeIndex].file}?v=${performance.now()}`}
                   adjustCamera={1.5}
                   shadows="contact"
