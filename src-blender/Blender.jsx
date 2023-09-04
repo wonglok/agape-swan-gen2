@@ -52,7 +52,7 @@ export function Blender() {
                 }}
               >
                 <div>{name}</div>
-                <div className="text-xs text-gray-400">[{dateStr}]</div>
+                <div className="text-xs text-gray-400">{dateStr}</div>
                 <div className="text-xs text-gray-400">{it.date}</div>
                 <div
                   className="text-gray-400 overflow-x-hidden"
