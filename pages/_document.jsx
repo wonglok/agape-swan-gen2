@@ -14,6 +14,7 @@ export default function Document() {
             `,
           }}
         />
+        <title>SWAN</title>
       </Head>
       <body className="h-full w-full">
         <Main />
