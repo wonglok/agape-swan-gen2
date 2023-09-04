@@ -23,6 +23,7 @@ export function Blender() {
     };
   }, [activeIndex]);
 
+  let fileURL = files[activeIndex]?.file;
   return (
     <>
       <div className="flex w-full h-full">
@@ -76,22 +77,22 @@ export function Blender() {
           })}
         </div>
         <div style={{ width: `calc(100% - 280px)`, height: `100%` }}>
-          {files[activeIndex]?.file && (
+          {fileURL && (
             <>
-              <Canvas shadows>
+              <Canvas shadows="variance">
                 <Stage
                   environment={{ files: `/hdr/grass.hdr` }}
-                  key={`stage${files[activeIndex].file}?v=${performance.now()}`}
+                  key={`stage${fileURL}?v=${performance.now()}`}
                   adjustCamera={1.5}
                   shadows="contact"
                 >
                   <GLB
-                    key={`glb${files[activeIndex].file}?v=${performance.now()}`}
-                    src={`${files[activeIndex].file}?v=${performance.now()}`}
+                    key={`glb${fileURL}?v=${performance.now()}`}
+                    src={`${fileURL}?v=${performance.now()}`}
                   ></GLB>
                 </Stage>
                 <OrbitControls
-                  key={`cam${files[activeIndex].file}?v=${performance.now()}`}
+                  key={`cam${fileURL}?v=${performance.now()}`}
                   object-position={[0, 4, 8]}
                   makeDefault
                 ></OrbitControls>
