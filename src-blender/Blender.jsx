@@ -1,3 +1,12 @@
+import {
+  Backdrop,
+  Gltf,
+  OrbitControls,
+  PresentationControls,
+  Stage,
+  useGLTF,
+} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 export function Blender() {
   let [files, setFiles] = useState([]);
@@ -42,17 +51,35 @@ export function Blender() {
         <div style={{ width: `calc(100% - 280px)`, height: `100%` }}>
           {files[activeIndex]?.file && (
             <>
-              <model-viewer
+              <Canvas shadows>
+                <Stage adjustCamera={2} shadows="contact">
+                  <GLB
+                    src={`${files[activeIndex].file}?v=${performance.now()}`}
+                  ></GLB>
+                </Stage>
+                <OrbitControls
+                  key={`${files[activeIndex].file}?v=${performance.now()}`}
+                  object-position={[0, 4, 8]}
+                  makeDefault
+                ></OrbitControls>
+              </Canvas>
+              {/* <model-viewer
                 camera-controls
                 class="w-full h-full"
-                src={`${files[activeIndex].file}?v=${performance.now()}`}
-              ></model-viewer>
+                src={}
+              ></model-viewer> */}
             </>
           )}
         </div>
       </div>
     </>
   );
+}
+
+function GLB({ src }) {
+  let glb = useGLTF(`${src}`);
+
+  return <primitive object={glb.scene}></primitive>;
 }
 
 /*

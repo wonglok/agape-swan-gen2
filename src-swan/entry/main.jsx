@@ -23,9 +23,9 @@ export function SmartObject() {
           <DiamondBox></DiamondBox>
         </group>
 
-        <Sphere scale={13}>
+        {/* <Sphere scale={1}>
           <MeshTransmissionMaterial thickness={1.1}></MeshTransmissionMaterial>
-        </Sphere>
+        </Sphere> */}
       </group>
     </>
   );

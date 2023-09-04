@@ -1,21 +1,9 @@
 {
   "name": "swan",
-  "type": "module",
-  "source": "src-swan/entry/*",
-  "exports": {
-    "require": "./public/swan-build/main.cjs",
-    "default": "./public/swan-build/main.modern.js"
-  },
-  "main": "./public/swan-build/main.cjs",
-  "module": "./public/swan-build/main.module.js",
-  "unpkg": "./public/swan-build/main.umd.js",
-  "files": [
-    "public/swan-build"
-  ],
   "scripts": {
     "start": "next start",
     "dev": "concurrently \"npm run webpackWatch\" \"npm run liveDev\" \"npm run liveBlender\" \"npm run next-dev\"",
-    "next-dev": "next dev",
+    "next-dev": "PORT=3001 next dev",
     "next-build": "next build",
     "build": "npm run webpackBuild; npm run next-build; ",
     "liveBlender": "nodemon ./swan-developer-tools/dev/blender.cjs --watch src-swan",
@@ -80,12 +68,14 @@
     "three-stdlib": "^2.24.2",
     "tunnel-rat": "^0.1.2",
     "typescript": "5.2.2",
+    "vercel": "^32.1.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "zustand": "^4.4.1"
   },
   "dependencies": {
     "@google/model-viewer": "^3.2.1",
+    "express-http-proxy": "^1.6.3",
     "file-loader": "^6.2.0"
   }
 }

@@ -4,6 +4,8 @@ import express from "express";
 import * as Http from "http";
 import * as socket from "socket.io";
 import * as chokidar from "chokidar";
+import proxy from 'express-http-proxy'
+
 let app = express();
 let http = Http.Server(app);
 let io = new socket.Server(http, {
@@ -18,9 +20,22 @@ const COMPONENT_PORT = 8521; //  process.env.PORT ||
 
 app.use(cors({}));
 
+// app.use('/api/*', proxy(`http://localhost:3001`, {
+//   proxyReqPathResolver: (req) =>{
+//     var parts = req.url.split('?');
+//     var queryString = parts[1];
+//     var updatedPath = parts[0] + '/api';
+//     return updatedPath + (queryString ? '?' + queryString : '');
+//   }
+// }))
+
+app.use(express.static('public'));
+
+
 app.get("/", (req, res) => {
   res.json({ welcome: "dear" });
 });
+
 app.get("/heartbeat", (req, res) => {
   res.json({ heartbeat: "ok" });
 });

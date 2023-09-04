@@ -18,7 +18,6 @@ export function SwanLocalRuntime() {
 
     window.Globals = window.Globals || {};
 
-    //
     // window.Globals['agape-sdk'] = AgapeSDK
     // window.Globals['react'] = React
     // window.Globals['three'] = THREE
