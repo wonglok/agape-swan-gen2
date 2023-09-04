@@ -4,9 +4,11 @@ import {
   OrbitControls,
   PresentationControls,
   Stage,
+  useAnimations,
   useGLTF,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import { useEffect, useState } from "react";
 export function Blender() {
   let [files, setFiles] = useState([]);
@@ -52,16 +54,25 @@ export function Blender() {
           {files[activeIndex]?.file && (
             <>
               <Canvas shadows>
-                <Stage adjustCamera={2} shadows="contact">
+                <Stage
+                  key={`stage${files[activeIndex].file}?v=${performance.now()}`}
+                  adjustCamera={2}
+                  shadows="contact"
+                >
                   <GLB
+                    key={`glb${files[activeIndex].file}?v=${performance.now()}`}
                     src={`${files[activeIndex].file}?v=${performance.now()}`}
                   ></GLB>
                 </Stage>
                 <OrbitControls
-                  key={`${files[activeIndex].file}?v=${performance.now()}`}
+                  key={`cam${files[activeIndex].file}?v=${performance.now()}`}
                   object-position={[0, 4, 8]}
                   makeDefault
                 ></OrbitControls>
+
+                {/* <EffectComposer>
+                  <N8AO></N8AO>
+                </EffectComposer> */}
               </Canvas>
               {/* <model-viewer
                 camera-controls
@@ -78,8 +89,23 @@ export function Blender() {
 
 function GLB({ src }) {
   let glb = useGLTF(`${src}`);
+  const { ref, mixer, names, actions, clips } = useAnimations(glb.animations);
+  useEffect(() => {
+    if (names[0]) {
+      actions[names[0]].play();
+    }
+  }, [actions, names]);
 
-  return <primitive object={glb.scene}></primitive>;
+  glb.scene.traverse((it) => {
+    it.castShadow = true;
+    it.receiveShadow = true;
+  });
+
+  return (
+    <group ref={ref}>
+      <primitive object={glb.scene}></primitive>
+    </group>
+  );
 }
 
 /*
