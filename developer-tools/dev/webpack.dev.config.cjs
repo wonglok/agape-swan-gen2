@@ -1,4 +1,4 @@
 module.exports = {
-  ...require("./webpack.config.cjs"),
-  mode: "development",
-};
+  ...require('./webpack.config.cjs'),
+  mode: 'development',
+}

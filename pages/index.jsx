@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <>
       <Head>
-        <title>SWAN</title>
+        <title>Yo</title>
       </Head>
       Landing Page
       <br />
