@@ -77,6 +77,10 @@
     "@google/model-viewer": "^3.2.1",
     "copy-to-clipboard": "^3.3.3",
     "express-http-proxy": "^1.6.3",
-    "file-loader": "^6.2.0"
+    "file-loader": "^6.2.0",
+    "glslify": "^7.1.1",
+    "glslify-loader": "^2.0.0",
+    "raw-loader": "^4.0.2",
+    "url-loader": "^4.1.1"
   }
 }

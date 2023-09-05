@@ -31,13 +31,15 @@ app.post("/file", async (req, res) => {
 
   let name = req.headers["filename"] || "";
 
-  optimiseGLB({ data, name: name }).then((glb) => {
-    res.json({ ok: true });
-    console.log('[FILE_PROCESSED]')
-  }).catch(r=>{
-    console.log(r)
-    console.log('[ERROR]')
-  });
+  optimiseGLB({ data, name: name })
+    .then((glb) => {
+      res.json({ ok: true });
+      console.log("[FILE_PROCESSED]");
+    })
+    .catch((r) => {
+      console.log(r);
+      console.log("[ERROR]");
+    });
 });
 
 async function optimiseGLB({ data, name }) {
@@ -94,17 +96,23 @@ async function optimiseGLB({ data, name }) {
     const glb = await io.writeBinary(document); // Document → Uint8Array
 
     let dateStr = moment().format("YYYY-MM-DD");
-    let ts = new Date().getTime()
+    let ts = new Date().getTime();
 
-    await fs.promises.mkdir(`./public/blender-livelink-dropzone/${dateStr}`, { recursive: true }).catch(console.error);
-    await io.write(`./public/blender-livelink-dropzone/${dateStr}/${name}.${ts}.glb`, document);
+    await fs.promises
+      .mkdir(`./public/blender-livelink-dropzone/${dateStr}`, {
+        recursive: true,
+      })
+      .catch(console.error);
+    await io.write(
+      `./public/blender-livelink-dropzone/${dateStr}/${name}.${ts}.glb`,
+      document
+    );
 
     return glb;
   } catch (e) {
     console.log(e);
   }
 }
-
 
 app.listen(BLENDER_PORT, () => {
   console.log(`[BLENDER_PORT] http://localhost:${BLENDER_PORT}`);

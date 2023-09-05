@@ -2,15 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      // "three": "src-swan/dx/proxy/three.module.js"
-    },
-  },
-  "include": ["./src-preview", "./src-swan"],
-  "exclude": [
-    "./swan-proxy/*",
-    "./public",
-    "./swan-build",
-    "./swan-proxy",
-    "./dist"
-  ]
+      "@/*": ["src-swan/*"]
+    }
+  }
 }

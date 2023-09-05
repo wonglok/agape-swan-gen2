@@ -1,4 +1,4 @@
-import { Preview } from "src-preview/Preview";
+import { Preview } from 'src-preview/Preview'
 
 export default function Page() {
   return (
@@ -6,7 +6,7 @@ export default function Page() {
       {/* Landing Page */}
       <Preview></Preview>
     </>
-  );
+  )
 }
 
 //

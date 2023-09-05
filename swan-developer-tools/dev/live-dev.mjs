@@ -4,7 +4,7 @@ import express from "express";
 import * as Http from "http";
 import * as socket from "socket.io";
 import * as chokidar from "chokidar";
-import proxy from 'express-http-proxy'
+import proxy from "express-http-proxy";
 
 let app = express();
 let http = Http.Server(app);
@@ -29,8 +29,7 @@ app.use(cors({}));
 //   }
 // }))
 
-app.use(express.static('public'));
-
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.json({ welcome: "dear" });
