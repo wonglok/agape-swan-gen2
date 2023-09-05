@@ -17,6 +17,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "exclude": ["public", "./swan-developer-tools", "**/*/node_modules"],
+  "exclude": ["public", "./developer-tools", "**/*/node_modules"],
   "include": ["**/*"]
 }

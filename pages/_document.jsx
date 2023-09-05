@@ -1,4 +1,4 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
@@ -14,12 +14,11 @@ export default function Document() {
             `,
           }}
         />
-        <title>SWAN</title>
       </Head>
-      <body className="h-full w-full">
+      <body className='h-full w-full'>
         <Main />
         <NextScript />
       </body>
     </Html>
-  );
+  )
 }
