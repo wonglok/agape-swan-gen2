@@ -1,18 +1,15 @@
-import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls } from "@react-three/drei";
-import { SwanLocalHTML, SwanLocalRuntime } from "./SwanLoader/SwanLocalRuntime";
-import { Suspense, useEffect, useState } from "react";
-import {
-  SwanRemoteHTMLGen2,
-  SwanRemoteRuntimeGen2,
-} from "./SwanLoader/SwanRemoteRuntimeGen2";
+import { Canvas } from '@react-three/fiber'
+import { Environment, OrbitControls } from '@react-three/drei'
+import { SwanLocalHTML, SwanLocalRuntime } from './SwanLoader/SwanLocalRuntime'
+import { Suspense, useEffect, useState } from 'react'
+import { SwanRemoteHTMLGen2, SwanRemoteRuntimeGen2 } from './SwanLoader/SwanRemoteRuntimeGen2'
 
 function Preview() {
-  let [origin, setOrigin] = useState(false);
+  let [origin, setOrigin] = useState(false)
 
   useEffect(() => {
-    setOrigin(window.location.origin);
-  }, []);
+    setOrigin(window.location.origin)
+  }, [])
 
   //
   return (
@@ -62,10 +59,10 @@ function Preview() {
 
       <SwanRemoteHTMLGen2></SwanRemoteHTMLGen2>
     </>
-  );
+  )
 }
 
-export { Preview };
+export { Preview }
 
 //
 

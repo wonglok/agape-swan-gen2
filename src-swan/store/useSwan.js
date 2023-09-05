@@ -1,20 +1,18 @@
-import { create } from "zustand";
+import { create } from 'zustand'
 
 export const useSwan = create((set) => {
   return {
-    baseURL: "",
+    baseURL: '',
     setBaseURL: ({ baseURL }) => {
-      baseURL[baseURL.length - 1] === "/"
-        ? baseURL.slice(0, baseURL.length - 1)
-        : baseURL;
+      baseURL[baseURL.length - 1] === '/' ? baseURL.slice(0, baseURL.length - 1) : baseURL
 
-      set({ baseURL });
+      set({ baseURL })
     },
 
     //
     openOverlay: false,
 
     //
-    text: "Click Box",
-  };
-});
+    text: 'Click Box',
+  }
+})
