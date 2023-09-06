@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import createAnimation from './dataToClip'
 import { AnimationMixer, LoopOnce } from 'three'
 import { useFrame } from '@react-three/fiber'
-import { useSwan } from 'src-swan/store/useSwan'
+import { useSwan } from '../../store/useSwan'
 
 export function DearLok() {
   let baseURL = useSwan((r) => r.baseURL)
