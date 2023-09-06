@@ -29,22 +29,23 @@ function Preview() {
           </group>
         </Suspense> */}
 
-        {/* Remote Loading... */}
-        {/* For loading production code */}
-
-        <Suspense fallback={null}>
-          <SwanRemoteRuntimeGen2
-            baseURL={`https://agape-swan-gen2.vercel.app`}
-            swanPath={`swan-build`}
-            socketURL={false}
-          ></SwanRemoteRuntimeGen2>
-        </Suspense>
-
         {/* Swan lib runtime */}
         {/* for testing on your own */}
-        <group position={[0, -15, 0]}>
+        <group position={[0, 0, 0]}>
           <Suspense fallback={null}>
             <SwanLocalRuntime></SwanLocalRuntime>
+          </Suspense>
+        </group>
+
+        {/* Remote Loading... */}
+        {/* For loading production code */}
+        <group position={[0, -15, 0]}>
+          <Suspense fallback={null}>
+            <SwanRemoteRuntimeGen2
+              baseURL={`https://agape-swan-gen2.vercel.app`}
+              swanPath={`swan-build`}
+              socketURL={false}
+            ></SwanRemoteRuntimeGen2>
           </Suspense>
         </group>
 
