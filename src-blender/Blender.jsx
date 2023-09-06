@@ -11,11 +11,13 @@ function TSLive({ date }) {
   useEffect(() => {
     let ttt = setInterval(() => {
       let dateStr = moment(new Date(Number(date))).fromNow()
-      ref.current.innerText = dateStr
+      if (ref.current) {
+        ref.current.innerText = dateStr
+      }
     }, 100)
 
     return () => {
-      setInterval(ttt)
+      clearInterval(ttt)
     }
   }, [])
 
@@ -64,7 +66,7 @@ export function Blender() {
                   copyToClipboard(files[idx].file)
                 }}
               >
-                <div>{name}</div>
+                {/* <div>{name}</div> */}
                 <div className='text-xs text-gray-600' style={{ fontSize: '14px' }}>
                   {it.basename}
                 </div>
