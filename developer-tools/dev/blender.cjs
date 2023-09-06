@@ -45,11 +45,11 @@ async function optimiseGLB({ data, name }) {
       'draco3d.encoder': await draco3d.createEncoderModule(), // Optional.
     })
 
-    let document
+    //
 
+    let document
     document = await io.readBinary(data) // Uint8Array → Document
 
-    // Write.
     // await io.write("model.glb", document); // → void
 
     await document.transform(
