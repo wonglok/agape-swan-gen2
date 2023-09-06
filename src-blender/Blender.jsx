@@ -1,10 +1,25 @@
 import { OrbitControls, Stage, useAnimations, useGLTF } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
-import { useEffect, useState } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { useEffect, useRef, useState } from 'react'
 import copyToClipboard from 'copy-to-clipboard'
 import moment from 'moment'
 
 // - - //
+
+function TSLive({ date }) {
+  let ref = useRef()
+  useEffect(() => {
+    let ttt = setInterval(() => {
+      let dateStr = moment(new Date(Number(date))).fromNow()
+      ref.current.innerText = dateStr
+    }, 100)
+
+    return () => {
+      setInterval(ttt)
+    }
+  }, [])
+  return <span ref={ref}></span>
+}
 
 export function Blender() {
   let [files, setFiles] = useState([])
@@ -33,7 +48,7 @@ export function Blender() {
 
           {files.map((it, idx) => {
             let date = it.ts
-            let dateStr = moment(new Date(Number(date))).fromNow()
+            // let dateStr = moment(new Date(Number(date))).fromNow()
 
             return (
               <div
@@ -56,7 +71,7 @@ export function Blender() {
                   {it.date}
                 </div>
                 <div className='text-gray-400 overflow-x-hidden' style={{ fontSize: '10px' }}>
-                  [{dateStr}]
+                  [{<TSLive date={date}></TSLive>}]
                 </div>
                 <div className=' absolute top-1 right-1 m-1 w-5 h-5'>
                   <svg
