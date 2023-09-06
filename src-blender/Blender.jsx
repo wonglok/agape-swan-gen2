@@ -26,11 +26,7 @@ export function Blender() {
       <div className='flex w-full h-full'>
         <div className='' style={{ width: `280px`, height: '100%' }}>
           {files.map((it, idx) => {
-            let name = it.basename.split('.')
-            let ext = name.pop().toUpperCase()
-            let date = name.pop()
-
-            name = name.join('.')
+            let date = it.ts
             let dateStr = moment(new Date(Number(date))).fromNow()
 
             return (
@@ -141,11 +137,11 @@ function getFiles() {
 
         item.date = segs[2]
 
-        let name = item.basename.split('.')
-        let ext = name.pop().toUpperCase()
-        let date = name.pop()
+        // let name = item.basename.split('.')
+        // let ext = name.pop().toUpperCase()
+        // let date = name.pop()
 
-        item.ts = Number(date || performance.now())
+        item.ts = segs[3] // Number(date || performance.now())
 
         files.push(item)
       }
