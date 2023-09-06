@@ -18,6 +18,7 @@ function TSLive({ date }) {
       setInterval(ttt)
     }
   }, [])
+
   return <span ref={ref}></span>
 }
 
