@@ -45,8 +45,8 @@ export function Blender() {
       <div className='flex w-full h-full'>
         <div className='' style={{ width: `270px`, height: '100%' }}>
           <div className='overflow-x-scroll py-5 m-2 bg-blue-100 p-2 hover:bg-blue-200 cursor-pointer relative rounded-lg'>
-            <div className='text-xl font-bold text-center text-blue-800'>Blender Livelink</div>
-            <div className='text-xs text-center text-blue-500'>Click Boxes Below to Copy URL</div>
+            <div className='text-xl font-semibold text-center text-blue-800'>Blender Livelink</div>
+            <div className='text-xs font-light text-center text-blue-500'>Click Boxes Below to Copy URL</div>
           </div>
 
           {files.map((it, idx) => {
