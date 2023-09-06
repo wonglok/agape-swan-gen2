@@ -1,5 +1,5 @@
-import { useGLTF, Text } from '@react-three/drei'
-import { useCallback, useEffect, useRef } from 'react'
+import { useGLTF, Text, Html } from '@react-three/drei'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import createAnimation from './dataToClip'
 import { AnimationMixer, LoopOnce } from 'three'
 import { useFrame } from '@react-three/fiber'
@@ -83,16 +83,28 @@ export function DearLok() {
       })
   }, [])
 
+  let [text, setSt] = useState(`Good day. How are you? Welcome to Reunite Limited Avatar AI Speech`)
+
   return (
     <>
-      <Text
-        fontSize={2}
-        onPointerDown={() => {
-          sayDear({ text: `Good day. How are you? Welcome to Reunite Limited Avatar AI Speech` })
-        }}
-      >
-        Play
-      </Text>
+      <Html>
+        <div className='bg-white'>
+          <textarea
+            onInput={(event) => {
+              setSt(event.target.value)
+            }}
+            defaultValue={text}
+          ></textarea>
+          <button
+            onClick={() => {
+              sayDear({ text: text })
+            }}
+            className='bg-gray-200'
+          >
+            Say!
+          </button>
+        </div>
+      </Html>
 
       <primitive object={glb.scene}></primitive>
     </>
