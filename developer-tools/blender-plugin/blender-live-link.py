@@ -38,7 +38,7 @@ def server_start():
     filePath = bpy.app.tempdir + 'temp.glb'
 
     bpy.ops.export_scene.gltf(
-      filepath=filePath,
+        filepath=filePath,
     #  export_format='GLTF_EMBEDDED',
         export_apply=True,
         use_selection=True,

@@ -11,13 +11,14 @@ export function Blender() {
   let [activeIndex, setIndex] = useState(0)
 
   useEffect(() => {
+    setIndex(0)
+  }, [files])
+
+  useEffect(() => {
     let newFiles = getFiles()
     setFiles(newFiles)
-
-    return () => {
-      //
-    }
-  }, [activeIndex])
+    return () => {}
+  }, [getFiles])
 
   let fileURL = files[activeIndex]?.file
 
