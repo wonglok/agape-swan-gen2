@@ -6,7 +6,7 @@ import moment from 'moment'
 
 // - - //
 
-function TSLive({ date }) {
+function LiveRealtiveTime({ date }) {
   let ref = useRef()
   useEffect(() => {
     let ttt = setInterval(() => {
@@ -50,9 +50,6 @@ export function Blender() {
           </div>
 
           {files.map((it, idx) => {
-            let date = it.ts
-            // let dateStr = moment(new Date(Number(date))).fromNow()
-
             return (
               <div
                 className={
@@ -66,15 +63,14 @@ export function Blender() {
                   copyToClipboard(files[idx].file)
                 }}
               >
-                {/* <div>{name}</div> */}
                 <div className='text-xs text-gray-600' style={{ fontSize: '14px' }}>
                   {it.basename}
                 </div>
                 <div className='text-xs text-gray-400' style={{ fontSize: '10px' }}>
                   {it.date}
                 </div>
-                <div className='text-gray-400 overflow-x-hidden' style={{ fontSize: '10px' }}>
-                  [{<TSLive date={date}></TSLive>}]
+                <div className='text-gray-400 text-right overflow-x-hidden' style={{ fontSize: '10px' }}>
+                  <LiveRealtiveTime date={it.ts}></LiveRealtiveTime>
                 </div>
                 <div className=' absolute top-1 right-1 m-1 w-5 h-5'>
                   <svg
