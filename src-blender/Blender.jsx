@@ -71,6 +71,7 @@ export function Blender() {
             )
           })}
         </div>
+
         <div style={{ width: `calc(100% - 270px)`, height: `100%` }}>
           {fileURL && (
             <>

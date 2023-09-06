@@ -32,13 +32,13 @@ function Preview() {
         {/* Remote Loading... */}
         {/* For loading production code */}
 
-        {/* <Suspense fallback={null}>
+        <Suspense fallback={null}>
           <SwanRemoteRuntimeGen2
             baseURL={`https://agape-swan-gen2.vercel.app`}
             swanPath={`swan-build`}
             socketURL={false}
           ></SwanRemoteRuntimeGen2>
-        </Suspense> */}
+        </Suspense>
 
         {/* Swan lib runtime */}
         {/* for testing on your own */}
