@@ -6,7 +6,7 @@ import { useFrame } from '@react-three/fiber'
 import { useSwan } from '../../store/useSwan'
 
 export function DearLok() {
-  let baseURL = useSwan((r) => r.baseURL)
+  let baseURL = useSwan((r) => r.baseURL) || ''
   let glb = useGLTF(baseURL + '/avatar/loklok-modern.glb')
 
   let loop = useRef({})
@@ -40,6 +40,7 @@ export function DearLok() {
           let PartFound = false
 
           glb.scene.traverse((it) => {
+            it.frustumCulled = false
             if (it.name.includes(partName) && it.geometry) {
               PartFound = it
             }
