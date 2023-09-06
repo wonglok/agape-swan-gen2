@@ -25,7 +25,16 @@ export function Blender() {
   return (
     <>
       <div className='flex w-full h-full'>
-        <div className='' style={{ width: `280px`, height: '100%' }}>
+        <div className='' style={{ width: `270px`, height: '100%' }}>
+          <div className='overflow-x-scroll m-2 bg-blue-100 p-2 hover:bg-blue-200 cursor-pointer relative rounded-lg'>
+            <div className='text-xl font-bold text-center text-gray-600' style={{ fontSize: '14px' }}>
+              Blender Livelink
+            </div>
+            <div className='text-xs text-center text-gray-600' style={{ fontSize: '12px' }}>
+              Click Boxes Below to Copy URL
+            </div>
+          </div>
+
           {files.map((it, idx) => {
             let date = it.ts
             let dateStr = moment(new Date(Number(date))).fromNow()
@@ -72,7 +81,7 @@ export function Blender() {
             )
           })}
         </div>
-        <div style={{ width: `calc(100% - 280px)`, height: `100%` }}>
+        <div style={{ width: `calc(100% - 270px)`, height: `100%` }}>
           {fileURL && (
             <>
               <Canvas shadows='variance'>
