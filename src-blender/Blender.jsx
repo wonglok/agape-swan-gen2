@@ -1,28 +1,8 @@
 import { OrbitControls, Stage, useAnimations, useGLTF } from '@react-three/drei'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
 import copyToClipboard from 'copy-to-clipboard'
 import moment from 'moment'
-
-// - - //
-
-function LiveRealtiveTime({ date }) {
-  let ref = useRef()
-  useEffect(() => {
-    let ttt = setInterval(() => {
-      let dateStr = moment(new Date(Number(date))).fromNow()
-      if (ref.current) {
-        ref.current.innerText = dateStr
-      }
-    }, 100)
-
-    return () => {
-      clearInterval(ttt)
-    }
-  }, [])
-
-  return <span ref={ref}></span>
-}
 
 export function Blender() {
   let [files, setFiles] = useState([])
@@ -139,6 +119,24 @@ function GLB({ src }) {
       <primitive object={glb.scene}></primitive>
     </group>
   )
+}
+
+function LiveRealtiveTime({ date }) {
+  let ref = useRef()
+  useEffect(() => {
+    let ttt = setInterval(() => {
+      let dateStr = moment(new Date(Number(date))).fromNow()
+      if (ref.current) {
+        ref.current.innerText = dateStr
+      }
+    }, 100)
+
+    return () => {
+      clearInterval(ttt)
+    }
+  }, [])
+
+  return <span ref={ref}></span>
 }
 
 function basename(path) {
