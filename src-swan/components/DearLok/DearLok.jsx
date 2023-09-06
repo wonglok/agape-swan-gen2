@@ -3,9 +3,11 @@ import { useCallback, useEffect, useRef } from 'react'
 import createAnimation from './dataToClip'
 import { AnimationMixer, LoopOnce } from 'three'
 import { useFrame } from '@react-three/fiber'
+import { useSwan } from 'src-swan/store/useSwan'
 
 export function DearLok() {
-  let glb = useGLTF('/avatar/loklok-modern.glb')
+  let baseURL = useSwan((r) => r.baseURL)
+  let glb = useGLTF(baseURL + '/avatar/loklok-modern.glb')
 
   let loop = useRef({})
 
