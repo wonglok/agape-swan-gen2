@@ -87,7 +87,7 @@ export function DearLok() {
 
   return (
     <>
-      <Html>
+      <Html center position={[0.3, 1.75, 0]}>
         <div className='bg-white'>
           <textarea
             onInput={(event) => {

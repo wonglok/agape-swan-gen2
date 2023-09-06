@@ -53,7 +53,7 @@ function Preview() {
           <Environment files={`/hdr/grass.hdr`} background></Environment>
         </Suspense>
 
-        <OrbitControls object-position={[0, 0, 20]}></OrbitControls>
+        <OrbitControls object-position={[0, 1.75, 0.5]} target={[0, 1.75, 0]}></OrbitControls>
       </Canvas>
 
       <SwanLocalHTML></SwanLocalHTML>
