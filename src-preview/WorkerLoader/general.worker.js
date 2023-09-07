@@ -122,6 +122,8 @@ const hostConfig = {
 
       console.log(propName, propValue)
     })
+    //
+    dispatchEvent(new CustomEvent('renderer-commit-update', { detail: domElement.getJSON() }))
   },
   commitTextUpdate(textInstance, oldText, newText) {
     textInstance.props.text = newText
@@ -217,7 +219,6 @@ addEventListener('message', async ({ data }) => {
         let { action, result } = data
 
         eventNames.forEach((name) => {
-          // console.log(action, name, action === name, result)
           if (action === name) {
             let el = elMap.get(result.key)
             if (el.props[name]) {
@@ -225,6 +226,10 @@ addEventListener('message', async ({ data }) => {
             }
           }
         })
+      })
+
+      addEventListener('renderer-commit-update', ({ detail }) => {
+        postMessage({ action: 'renderer-commit-update', result: detail })
       })
 
       let sync = () => {

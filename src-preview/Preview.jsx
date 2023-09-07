@@ -38,7 +38,7 @@ function Preview() {
               //
               baseURL={`${origin}`}
               swanPath={`swan-build`}
-              socketURL={false}
+              socketURL={'http://localhost:8521'}
             ></WorkerLoader>
           </Suspense>
 

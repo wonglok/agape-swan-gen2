@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Worker from './general.worker.js'
 import EventEmitter from 'events'
 
-export function WorkerLoader({ baseURL, swanPath }) {
+export function WorkerLoader({ baseURL, swanPath, socketURL }) {
   //
   let [o3d, setO3D] = useState(null)
   let [{ worker, bus }, setAPIs] = useState({ worker: false, bus: false })
@@ -16,37 +16,52 @@ export function WorkerLoader({ baseURL, swanPath }) {
       console.error('need swanPath')
       return
     }
-
     let workerURL = `${baseURL}/${swanPath}/worker.module.js`
     let preloadURL = `${baseURL}/${swanPath}/preload.module.js`
 
     let cleanUpStuff = () => {}
-    Promise.resolve().then(async () => {
-      let newWorker = new Worker()
-      let bus = new EventEmitter()
-      newWorker.onmessage = ({ data }) => {
-        bus.emit(data.action, data)
-      }
+    let load = () => {
+      Promise.resolve().then(async () => {
+        let newWorker = new Worker()
+        let bus = new EventEmitter()
+        newWorker.onmessage = ({ data }) => {
+          bus.emit(data.action, data)
+        }
 
-      newWorker.postMessage({
-        //
-        action: 'initLoad',
-        baseURL: baseURL,
-        workerURL: workerURL,
-        preloadURL: preloadURL,
+        newWorker.postMessage({
+          //
+          action: 'initLoad',
+          baseURL: baseURL,
+          workerURL: workerURL,
+          preloadURL: preloadURL,
+        })
+
+        let onDone = () => {
+          bus.removeListener('doneInitLoad', onDone)
+          setAPIs({ worker: newWorker, bus })
+        }
+        bus.addListener('doneInitLoad', onDone)
+
+        cleanUpStuff()
+        cleanUpStuff = () => {
+          bus.removeAllListeners()
+          newWorker.terminate()
+          cleanUpStuff = () => {}
+        }
       })
+    }
+    load()
 
-      let onDone = () => {
-        bus.removeListener('doneInitLoad', onDone)
-        setAPIs({ worker: newWorker, bus })
-      }
-      bus.addListener('doneInitLoad', onDone)
+    if (socketURL) {
+      Promise.resolve().then(async () => {
+        let io = await import('socket.io-client').then((r) => r.io)
+        let socket = io(`${socketURL}`, {})
 
-      cleanUpStuff = () => {
-        bus.removeAllListeners()
-        newWorker.terminate()
-      }
-    })
+        socket.on('reload', (ev) => {
+          load()
+        })
+      })
+    }
 
     //
     return () => {
@@ -66,51 +81,74 @@ export function WorkerLoader({ baseURL, swanPath }) {
         })
       }
 
+      let ref = useRef()
+
+      useEffect(() => {
+        //
+        let hm = ({ data: { action, result } }) => {
+          if (action === 'renderer-commit-update') {
+            if (ref.current && ref.current.rotation && result?.props?.rotation) {
+              ref.current.rotation.fromArray(result?.props?.rotation)
+            }
+            if (ref.current && ref.current.position && result?.props?.position) {
+              ref.current.position.fromArray(result?.props?.position)
+            }
+            if (ref.current && ref.current.scale && result?.props?.scale) {
+              ref.current.scale.fromArray(result?.props?.scale)
+            }
+          }
+        }
+        worker.addEventListener('message', hm)
+
+        return () => {
+          worker.removeEventListener('message', hm)
+        }
+      }, [])
       console.log(node.type)
       return (
         <>
           {node?.type === 'root' && (
-            <group userData={{ key: node.props.key }} {...(node.props || {})}>
+            <group ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}
             </group>
           )}
 
           {node?.type === 'group' && (
-            <group userData={{ key: node.props.key }} {...(node.props || {})}>
+            <group ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}
             </group>
           )}
 
           {node?.type === 'object3d' && (
-            <group userData={{ key: node.props.key }} {...(node.props || {})}>
+            <group ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}
             </group>
           )}
 
           {node?.type === 'mesh' && (
-            <mesh userData={{ key: node.props.key }} {...(node.props || {})}>
+            <mesh ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}
             </mesh>
           )}
           {node?.type === 'sphereGeometry' && (
-            <sphereGeometry userData={{ key: node.props.key }} {...(node.props || {})}>
+            <sphereGeometry ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}
             </sphereGeometry>
           )}
 
           {node?.type === 'boxGeometry' && (
-            <boxGeometry userData={{ key: node.props.key }} {...(node.props || {})}>
+            <boxGeometry ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}
             </boxGeometry>
           )}
 
           {node?.type === 'meshBasicMaterial' && (
-            <meshBasicMaterial userData={{ key: node.props.key }} {...(node.props || {})}>
+            <meshBasicMaterial ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}
             </meshBasicMaterial>
           )}
           {node?.type === 'meshStandardMaterial' && (
-            <meshStandardMaterial userData={{ key: node.props.key }} {...(node.props || {})}>
+            <meshStandardMaterial ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}
             </meshStandardMaterial>
           )}
