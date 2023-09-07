@@ -48,7 +48,7 @@ function Preview() {
 
         {/* Remote Loading... */}
         {/* For loading production code */}
-        <group position={[3, 0, 0]}>
+        <group position={[0, 0, 0]}>
           <Suspense fallback={null}>
             <SwanRemoteRuntimeGen2
               baseURL={`https://agape-swan-gen2.vercel.app`}
