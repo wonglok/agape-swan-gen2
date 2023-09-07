@@ -65,9 +65,12 @@ async function optimiseGLB({ data, name }) {
       prune(),
 
       // Resize all textures to ≤1K.
-      textureResize({ size: [1024, 1024] }),
+      // textureResize({ size: [1024, 1024] }),
 
       textureCompress({
+        resize: [1024, 1024],
+        quality: 100,
+        lossless: true,
         encoder: sharp,
         targetFormat: 'webp',
         slots: /^(?!normalTexture).*$/, // exclude normal maps
@@ -92,11 +95,12 @@ async function optimiseGLB({ data, name }) {
     let ts = new Date().getTime()
 
     await fs.promises
-      .mkdir(`./public/blender-livelink-dropzone/${dateStr}/${name}/${ts}`, {
+      .mkdir(`./public/blender-livelink-dropzone/${dateStr}/${name}__TS__${ts}`, {
         recursive: true,
       })
       .catch(console.error)
-    await io.write(`./public/blender-livelink-dropzone/${dateStr}/${name}/${ts}/${name}.glb`, document)
+
+    await io.write(`./public/blender-livelink-dropzone/${dateStr}/${name}__TS__${ts}/${name}.glb`, document)
 
     return glb
   } catch (e) {

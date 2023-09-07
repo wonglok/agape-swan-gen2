@@ -163,10 +163,13 @@ function getFiles() {
         // let name = item.basename.split('.')
         // let ext = name.pop().toUpperCase()
         // let date = name.pop()
-        item.name = segs[3] // name.join('.')
-        item.ts = segs[4] // Number(date || performance.now())
 
-        files.push(item)
+        if (segs[3].includes('__TS__')) {
+          let [name, ts] = segs[3].split('__TS__')
+          item.name = name // name.join('.')
+          item.ts = ts // Number(date || performance.now())
+          files.push(item)
+        }
       }
     })
 
