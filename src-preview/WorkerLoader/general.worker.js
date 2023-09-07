@@ -237,11 +237,12 @@ addEventListener('message', async ({ data }) => {
         rAFID = requestAnimationFrame(rAF)
         let arr = []
         elMap.forEach((r) => {
-          if (r.needsUpdate) {
+          if (r.needsSync) {
             arr.push(r)
           }
         })
 
+        //
         arr.forEach((it) => {
           postMessage({ action: 'renderer-commit-update', result: it.getJSON() })
         })

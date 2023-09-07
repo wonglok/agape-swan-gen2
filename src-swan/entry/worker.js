@@ -15,7 +15,7 @@ export const AppRoot = () => {
     let hh = () => {
       rafID = requestAnimationFrame(hh)
       if (ref.current) {
-        ref.current.needsUpdate = true
+        ref.current.needsSync = true
         ref.current.props.rotation[1] += 0.5 * clock.getDelta()
       }
     }
