@@ -18,23 +18,24 @@ export const useMyFrame = (fnc) => {
   }, [])
 }
 
-export const AppRoot = () => {
+export const BoxRoot = () => {
   let ref = useRef()
 
   useMyFrame((dt) => {
     if (ref.current) {
       ref.current.needsSync = true
+      ref.current.props.rotation = ref.current.props.rotation || [0, 0, 0]
       ref.current.props.rotation[1] += 0.5 * dt
     }
   })
 
   return (
     <>
-      <group position={[0, 0, 0]}>
+      <group ref={ref} position={[0, 0, 0]}>
         <mesh
-          ref={ref}
           onPointerDown={() => {
             //
+            console.log(ev)
           }}
           onPointerEnter={(ev) => {
             //
@@ -55,10 +56,10 @@ export const getRoot = () => {
   return (
     <group>
       <group position={[1, 0, 0]}>
-        <AppRoot />
+        <BoxRoot />
       </group>
       <group position={[-1, 0, 0]}>
-        <AppRoot />
+        <BoxRoot />
       </group>
     </group>
   )
