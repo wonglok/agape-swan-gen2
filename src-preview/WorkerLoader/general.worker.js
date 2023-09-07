@@ -221,8 +221,8 @@ addEventListener('message', async ({ data }) => {
         eventNames.forEach((name) => {
           if (action === name) {
             let el = elMap.get(result.key)
-            if (el.props[name]) {
-              el.props[name](result)
+            if (el?.props[name]) {
+              el?.props[name](result)
             }
           }
         })
