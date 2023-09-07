@@ -57,12 +57,12 @@ function App() {
   return (
     <>
       <group
-        onPointerDown={(ev) => {
-          console.log(ev)
-        }}
-        onPointerLeave={(ev) => {
-          console.log(ev)
-        }}
+      // onPointerDown={(ev) => {
+      //   console.log(ev)
+      // }}
+      // onPointerLeave={(ev) => {
+      //   console.log(ev)
+      // }}
       >
         <gltf src={`/avatar/loklok-modern.glb`}>
           <animations
@@ -82,9 +82,7 @@ function App() {
           ></animations>
         </gltf>
       </group>
-      {/* <group position={[1, 0, 0]}>
-        <BoxRoot />
-      </group> */}
+
       <group
         onPointerDown={(ev) => {
           //
