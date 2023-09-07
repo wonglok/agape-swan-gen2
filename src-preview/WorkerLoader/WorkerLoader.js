@@ -109,7 +109,8 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
           worker.removeEventListener('message', hm)
         }
       }, [])
-      console.log(node.type)
+
+      // console.log(node.type)
       return (
         <>
           {node?.type === 'gltf' && (
