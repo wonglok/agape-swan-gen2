@@ -1,20 +1,14 @@
-import { useFrame } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
 import { Clock } from 'three'
 
-export const AppRoot = () => {
-  let ref = useRef()
-
+export const useMyFrame = (fnc) => {
   useEffect(() => {
     let clock = new Clock()
     let rafID = 0
 
     let hh = () => {
       rafID = requestAnimationFrame(hh)
-      if (ref.current) {
-        ref.current.needsSync = true
-        ref.current.props.rotation[1] += 0.5 * clock.getDelta()
-      }
+      fnc(clock.getDelta())
     }
     rafID = requestAnimationFrame(hh)
 
@@ -22,6 +16,18 @@ export const AppRoot = () => {
       cancelAnimationFrame(rafID)
     }
   }, [])
+}
+
+export const AppRoot = () => {
+  let ref = useRef()
+
+  useMyFrame((dt) => {
+    if (ref.current) {
+      ref.current.needsSync = true
+      ref.current.props.rotation[1] += 0.5 * dt
+    }
+  })
+
   return (
     <>
       <group position={[0, 0, 0]}>
