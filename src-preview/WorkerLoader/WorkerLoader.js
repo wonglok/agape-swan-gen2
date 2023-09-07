@@ -207,8 +207,9 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
           worker.postMessage({
             action: name,
             result: {
-              point: ev.point,
               key: ev?.object?.userData?.key,
+              type: name,
+              point: ev.point,
             },
           })
         }
