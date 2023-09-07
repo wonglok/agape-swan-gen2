@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Worker from './general.worker.js'
 import EventEmitter from 'events'
 
@@ -189,18 +189,47 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     }
   }, [bus, worker, swanPath, baseURL])
 
-  return (
-    <>
-      <group
-        onPointerDown={(ev) => {
+  let eventHandlers = useMemo(() => {
+    let eventHandlers = {}
+
+    {
+      ;[
+        'onPointerDown',
+        'onPointerUp',
+        'onPointerMove',
+        'onPointerCancel',
+        'onPointerEnter',
+        'onPointerLeave',
+        'onPointerOut',
+        'onPointerOver',
+      ].forEach((name) => {
+        eventHandlers[name] = (ev) => {
           worker.postMessage({
-            action: 'onPointerDown',
+            action: name,
             result: {
               point: ev.point,
               key: ev?.object?.userData?.key,
             },
           })
-        }}
+        }
+      })
+    }
+
+    return eventHandlers
+  })
+  return (
+    <>
+      <group
+        {...eventHandlers}
+        // onPointerDown={(ev) => {
+        //   worker.postMessage({
+        //     action: 'onPointerDown',
+        //     result: {
+        //       point: ev.point,
+        //       key: ev?.object?.userData?.key,
+        //     },
+        //   })
+        // }}
       >
         {o3d}
       </group>

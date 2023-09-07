@@ -36,6 +36,10 @@ export const AppRoot = () => {
           onPointerDown={() => {
             //
           }}
+          onPointerEnter={(ev) => {
+            //
+            console.log(ev)
+          }}
           rotation={[0, 0, 0]}
           position={[0, 0, 0]}
         >
