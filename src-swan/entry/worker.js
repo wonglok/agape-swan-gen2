@@ -3,12 +3,9 @@ import { useEffect, useRef, useState } from 'react'
 import { Clock } from 'three'
 
 export const AppRoot = () => {
-  let [rot1, setRot1] = useState(0)
   let ref = useRef()
 
   useEffect(() => {
-    //
-
     let clock = new Clock()
     let rafID = 0
 
@@ -20,17 +17,20 @@ export const AppRoot = () => {
       }
     }
     rafID = requestAnimationFrame(hh)
+
+    return () => {
+      cancelAnimationFrame(rafID)
+    }
   }, [])
   return (
     <>
       <group position={[0, 0, 0]}>
         <mesh
           ref={ref}
-          onPointerDown={(ev) => {
-            // console.log(ev)
-            setRot1((s) => s + 0.11)
+          onPointerDown={() => {
+            //
           }}
-          rotation={[0, rot1, 0]}
+          rotation={[0, 0, 0]}
           position={[0, 0, 0]}
         >
           <boxGeometry args={[1, 1, 1]}></boxGeometry>
@@ -42,5 +42,14 @@ export const AppRoot = () => {
 }
 
 export const getRoot = () => {
-  return <AppRoot />
+  return (
+    <group>
+      <group position={[1, 0, 0]}>
+        <AppRoot />
+      </group>
+      <group position={[-1, 0, 0]}>
+        <AppRoot />
+      </group>
+    </group>
+  )
 }
