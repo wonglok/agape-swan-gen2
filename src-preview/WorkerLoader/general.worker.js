@@ -237,10 +237,10 @@ addEventListener('message', async ({ data }) => {
       let rAFID = 0
       let rAF = () => {
         rAFID = requestAnimationFrame(rAF)
-        let arr = []
+        let arrLength = 0
         elMap.forEach((r) => {
           if (r.needsSync) {
-            arr.push(r)
+            arrLength += 1
           }
         })
 
@@ -248,7 +248,7 @@ addEventListener('message', async ({ data }) => {
         //   postMessage({ action: 'renderer-commit-update', result: it.getJSON() })
         // })
 
-        if (arr.length > 0) {
+        if (arrLength > 0) {
           let tree = rootElement.getJSON()
           postMessage({ action: 'leaf', result: tree })
         }
