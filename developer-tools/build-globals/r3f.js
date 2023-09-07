@@ -1,4 +1,4 @@
-const G = window.Globals["@react-three/fiber"]; 
+const G = (self || window).Globals["@react-three/fiber"]; 
 export const ReactThreeFiber = G.ReactThreeFiber;
 export const _roots = G._roots;
 export const act = G.act;

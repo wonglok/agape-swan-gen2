@@ -1,4 +1,4 @@
-const G = window.Globals["three-stdlib"]; 
+const G = (self || window).Globals["three-stdlib"]; 
 export const MD2CharacterComplex = G.MD2CharacterComplex;
 export const ConvexObjectBreaker = G.ConvexObjectBreaker;
 export const MorphBlendMesh = G.MorphBlendMesh;

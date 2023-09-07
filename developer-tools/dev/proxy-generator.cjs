@@ -4,7 +4,7 @@ module.exports.generate = ({ libs }) => {
       const three = require('three')
       const fs = require('fs')
 
-      let str = `const G = window.Globals['three']; \n`
+      let str = `const G = (self || window).Globals['three']; \n`
       Object.keys(three).forEach((key) => {
         str += `export const ${key} = G.${key};\n`
       })
@@ -17,7 +17,7 @@ module.exports.generate = ({ libs }) => {
       const react = require('react')
       const fs = require('fs')
 
-      let str = `const G = window.Globals['react']; \n`
+      let str = `const G = (self || window).Globals['react']; \n`
       Object.keys(react).forEach((key) => {
         str += `export const ${key} = G.${key};\n`
       })
@@ -30,7 +30,7 @@ module.exports.generate = ({ libs }) => {
       const zustand = require('zustand')
       const fs = require('fs')
 
-      let str = `const G = window.Globals['zustand']; \n`
+      let str = `const G = (self || window).Globals['zustand']; \n`
       Object.keys(zustand).forEach((key) => {
         str += `export const ${key} = G.${key};\n`
       })
@@ -42,7 +42,7 @@ module.exports.generate = ({ libs }) => {
       const r3f = require('@react-three/fiber')
       const fs = require('fs')
 
-      let str = `const G = window.Globals["@react-three/fiber"]; \n`
+      let str = `const G = (self || window).Globals["@react-three/fiber"]; \n`
       Object.keys(r3f).forEach((key) => {
         str += `export const ${key} = G.${key};\n`
       })
@@ -54,7 +54,7 @@ module.exports.generate = ({ libs }) => {
       const mod = require('@react-three/drei')
       const fs = require('fs')
 
-      let str = `const G = window.Globals["@react-three/drei"]; \n`
+      let str = `const G = (self || window).Globals["@react-three/drei"]; \n`
       Object.keys(mod).forEach((key) => {
         str += `export const ${key} = G.${key};\n`
       })
@@ -66,7 +66,7 @@ module.exports.generate = ({ libs }) => {
       const mod = require('@react-three/xr')
       const fs = require('fs')
 
-      let str = `const G = window.Globals["@react-three/xr"]; \n`
+      let str = `const G = (self || window).Globals["@react-three/xr"]; \n`
       Object.keys(mod).forEach((key) => {
         str += `export const ${key} = G.${key};\n`
       })
@@ -79,7 +79,7 @@ module.exports.generate = ({ libs }) => {
       const mod = require('three-stdlib')
       const fs = require('fs')
 
-      let str = `const G = window.Globals["three-stdlib"]; \n`
+      let str = `const G = (self || window).Globals["three-stdlib"]; \n`
       Object.keys(mod).forEach((key) => {
         str += `export const ${key} = G.${key};\n`
       })

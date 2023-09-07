@@ -37,6 +37,7 @@ generate({
 
 module.exports = {
   entry: {
+    worker: path.resolve(__dirname, '../../src-swan/entry/worker.js'),
     main: path.resolve(__dirname, '../../src-swan/entry/main.jsx'),
     preload: path.resolve(__dirname, '../../src-swan/entry/preload.js'),
   },
@@ -72,6 +73,15 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+      {
+        test: /\.worker\.js$/,
+        use: {
+          loader: 'worker-loader',
+          options: {
+            esModule: true,
           },
         },
       },

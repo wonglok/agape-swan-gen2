@@ -1,4 +1,4 @@
-const G = window.Globals["@react-three/xr"]; 
+const G = (self || window).Globals["@react-three/xr"]; 
 export const Controllers = G.Controllers;
 export const Ray = G.Ray;
 export const Hands = G.Hands;

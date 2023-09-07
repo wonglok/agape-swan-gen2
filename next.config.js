@@ -54,6 +54,16 @@ module.exports = {
       ],
     })
 
+    config.module.rules.push({
+      test: /\.worker\.js$/,
+      use: {
+        loader: 'worker-loader',
+        options: {
+          esModule: true,
+        },
+      },
+    })
+
     // shader support
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag)$/,

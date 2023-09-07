@@ -1,4 +1,4 @@
-const G = window.Globals['three']; 
+const G = (self || window).Globals['three']; 
 export const ACESFilmicToneMapping = G.ACESFilmicToneMapping;
 export const AddEquation = G.AddEquation;
 export const AddOperation = G.AddOperation;

@@ -1,4 +1,4 @@
-const G = window.Globals['react']; 
+const G = (self || window).Globals['react']; 
 export const Children = G.Children;
 export const Component = G.Component;
 export const Fragment = G.Fragment;

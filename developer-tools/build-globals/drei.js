@@ -1,4 +1,4 @@
-const G = window.Globals["@react-three/drei"]; 
+const G = (self || window).Globals["@react-three/drei"]; 
 export const AccumulativeShadows = G.AccumulativeShadows;
 export const AdaptiveDpr = G.AdaptiveDpr;
 export const AdaptiveEvents = G.AdaptiveEvents;

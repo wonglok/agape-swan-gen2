@@ -74,6 +74,7 @@
     "zustand": "^4.4.1"
   },
   "dependencies": {
+    "comlink": "^4.4.1",
     "copy-to-clipboard": "^3.3.3",
     "express-http-proxy": "^1.6.3",
     "file-loader": "^6.2.0",
@@ -82,6 +83,8 @@
     "lodash": "^4.17.21",
     "microsoft-cognitiveservices-speech-sdk": "^1.32.0",
     "raw-loader": "^4.0.2",
-    "url-loader": "^4.1.1"
+    "react-reconciler": "^0.29.0",
+    "url-loader": "^4.1.1",
+    "worker-loader": "^3.0.8"
   }
 }

@@ -3,6 +3,7 @@ import { Environment, OrbitControls } from '@react-three/drei'
 import { SwanLocalHTML, SwanLocalRuntime } from './SwanLoader/SwanLocalRuntime'
 import { Suspense, useEffect, useState } from 'react'
 import { SwanRemoteHTMLGen2, SwanRemoteRuntimeGen2 } from './SwanLoader/SwanRemoteRuntimeGen2'
+import { WorkerLoader } from './WorkerLoader/WorkerLoader'
 
 function Preview() {
   let [origin, setOrigin] = useState(false)
@@ -33,27 +34,36 @@ function Preview() {
         {/* for testing on your own */}
         <group position={[0, 0, 0]}>
           <Suspense fallback={null}>
-            <SwanLocalRuntime></SwanLocalRuntime>
+            <WorkerLoader
+              //
+              baseURL={`${origin}`}
+              swanPath={`swan-build`}
+              socketURL={false}
+            ></WorkerLoader>
           </Suspense>
+
+          {/* <Suspense fallback={null}>
+            <SwanLocalRuntime></SwanLocalRuntime>
+          </Suspense> */}
         </group>
 
         {/* Remote Loading... */}
         {/* For loading production code */}
         <group position={[0, -15, 0]}>
-          <Suspense fallback={null}>
+          {/* <Suspense fallback={null}>
             <SwanRemoteRuntimeGen2
               baseURL={`https://agape-swan-gen2.vercel.app`}
               swanPath={`swan-build`}
               socketURL={false}
             ></SwanRemoteRuntimeGen2>
-          </Suspense>
+          </Suspense> */}
         </group>
 
         <Suspense fallback={null}>
           <Environment files={`/hdr/grass.hdr`} background></Environment>
         </Suspense>
 
-        <OrbitControls object-position={[0, 1.75, 0.5]} target={[0, 1.75, 0]}></OrbitControls>
+        <OrbitControls object-position={[0, 1.75 * 0.0, 5]} target={[0, 1.75 * 0.0, 0]}></OrbitControls>
       </Canvas>
 
       <SwanLocalHTML></SwanLocalHTML>
