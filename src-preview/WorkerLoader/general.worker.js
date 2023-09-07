@@ -232,6 +232,8 @@ addEventListener('message', async ({ data }) => {
         postMessage({ action: 'renderer-commit-update', result: detail })
       })
 
+      //
+
       let rAFID = 0
       let rAF = () => {
         rAFID = requestAnimationFrame(rAF)
