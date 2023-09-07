@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Worker from './general.worker.js'
 import EventEmitter from 'events'
+import { Gltf } from '@react-three/drei'
 
 export function WorkerLoader({ baseURL, swanPath, socketURL }) {
   //
@@ -111,6 +112,12 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
       console.log(node.type)
       return (
         <>
+          {node?.type === 'gltf' && (
+            <Gltf ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+              {kids()}
+            </Gltf>
+          )}
+
           {node?.type === 'root' && (
             <group ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
               {kids()}

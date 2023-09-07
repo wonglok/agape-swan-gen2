@@ -163,8 +163,8 @@ function getFiles() {
         // let name = item.basename.split('.')
         // let ext = name.pop().toUpperCase()
         // let date = name.pop()
-
-        item.ts = segs[3] // Number(date || performance.now())
+        item.name = segs[3] // name.join('.')
+        item.ts = segs[4] // Number(date || performance.now())
 
         files.push(item)
       }

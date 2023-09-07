@@ -92,11 +92,11 @@ async function optimiseGLB({ data, name }) {
     let ts = new Date().getTime()
 
     await fs.promises
-      .mkdir(`./public/blender-livelink-dropzone/${dateStr}/${ts}`, {
+      .mkdir(`./public/blender-livelink-dropzone/${dateStr}/${name}/${ts}`, {
         recursive: true,
       })
       .catch(console.error)
-    await io.write(`./public/blender-livelink-dropzone/${dateStr}/${ts}/${name}.glb`, document)
+    await io.write(`./public/blender-livelink-dropzone/${dateStr}/${name}/${ts}/${name}.glb`, document)
 
     return glb
   } catch (e) {

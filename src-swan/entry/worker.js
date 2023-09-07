@@ -33,7 +33,7 @@ export const BoxRoot = () => {
     <>
       <group ref={ref} position={[0, 0, 0]}>
         <mesh
-          onPointerDown={() => {
+          onPointerDown={(ev) => {
             //
             console.log(ev)
           }}
@@ -55,6 +55,7 @@ export const BoxRoot = () => {
 export const getRoot = () => {
   return (
     <group>
+      <gltf src={`/avatar/loklok-modern.glb`}></gltf>
       <group position={[1, 0, 0]}>
         <BoxRoot />
       </group>
