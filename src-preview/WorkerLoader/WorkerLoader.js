@@ -86,7 +86,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
       useEffect(() => {
         //
         let hm = ({ data: { action, result } }) => {
-          if (action === 'renderer-commit-update') {
+          if (action === 'renderer-commit-update' && result?.props?.key === node?.props?.key) {
             if (ref.current && ref.current.rotation && result?.props?.rotation) {
               ref.current.rotation.fromArray(result?.props?.rotation)
             }

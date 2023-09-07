@@ -9,7 +9,7 @@ export const AppRoot = () => {
         <mesh
           onPointerDown={(ev) => {
             // console.log(ev)
-            setRot1((s) => s + 0.1)
+            setRot1((s) => s + 0.11)
           }}
           rotation={[0, rot1, 0]}
           position={[0, 0, 0]}

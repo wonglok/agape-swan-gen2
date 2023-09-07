@@ -35,7 +35,6 @@ function Preview() {
         <group position={[0, 0, 0]}>
           <Suspense fallback={null}>
             <WorkerLoader
-              //
               baseURL={`${origin}`}
               swanPath={`swan-build`}
               socketURL={'http://localhost:8521'}
