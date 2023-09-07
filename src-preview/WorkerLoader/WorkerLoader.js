@@ -224,9 +224,10 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
           worker.postMessage({
             action: name,
             result: {
+              type: name,
               key: ev?.object?.userData?.key,
               keys,
-              type: name,
+              uuid: ev?.object?.uuid,
               point: ev.point,
             },
           })

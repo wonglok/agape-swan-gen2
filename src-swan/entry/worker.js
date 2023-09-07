@@ -60,6 +60,10 @@ export const getRoot = () => {
           //
           console.log(ev)
         }}
+        onPointerMove={(ev) => {
+          //
+          console.log(ev)
+        }}
         onPointerEnter={(ev) => {
           //
           console.log(ev)
