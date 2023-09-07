@@ -43,18 +43,37 @@ export function MyAnimations({ libs, activeAction, children }) {
       return
     }
 
-    Promise.resolve().then(async () => {
-      ref.current.traverse((it) => {
-        console.log(it)
-      })
+    let getParent = () => {
+      return new Promise((resolve) => {
+        let tttt = 0
+        tttt = setInterval(() => {
+          let target = false
+          ref?.current?.traverseAncestors((it) => {
+            if (it?.userData?.gltfCompos) {
+              target = it
+            }
+          })
 
-      let mixer = new AnimationMixer(ref.current)
+          if (target) {
+            clearInterval(tttt)
+            resolve(target)
+          }
+        })
+      })
+    }
+
+    Promise.resolve().then(async () => {
+      let target = await getParent()
+
+      console.log(target)
+
+      let mixer = new AnimationMixer(target)
       setMixer(mixer)
 
       actionsLib
         .map((lib) => {
           lib.clippedActions = lib.clips.map((clip) => {
-            return mixer.clipAction(clip, ref.current)
+            return mixer.clipAction(clip, target)
           })
           return lib
         })

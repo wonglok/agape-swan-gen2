@@ -103,12 +103,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
       return (
         <>
           {node?.type === 'gltf' && (
-            <MyGLB
-              key={nodeProps.key}
-              ref={ref}
-              userData={{ key: nodeProps.key, gltfCompos: true }}
-              {...(nodeProps || {})}
-            >
+            <MyGLB key={nodeProps.key} userData={{ key: nodeProps.key, gltfCompos: true }} {...(nodeProps || {})}>
               {kids()}
             </MyGLB>
           )}

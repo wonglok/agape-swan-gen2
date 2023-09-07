@@ -64,23 +64,23 @@ function App() {
           console.log(ev)
         }}
       >
-        <animations
-          activeAction={action}
-          libs={[
-            {
-              name: 'float',
-              src: `/avatar/rpm/rpm-actions-locomotion/swim-forward.fbx`,
-              playClips: [0],
-            },
-            {
-              name: 'salute',
-              src: `/avatar/rpm/rpm-actions-emoji/salute.fbx`,
-              playClips: [0],
-            },
-          ]}
-        >
-          <gltf src={`/avatar/loklok-modern.glb`}></gltf>
-        </animations>
+        <gltf src={`/avatar/loklok-modern.glb`}>
+          <animations
+            activeAction={action}
+            libs={[
+              {
+                name: 'float',
+                src: `/avatar/rpm/rpm-actions-locomotion/swim-forward.fbx`,
+                playClips: [0],
+              },
+              {
+                name: 'salute',
+                src: `/avatar/rpm/rpm-actions-emoji/salute.fbx`,
+                playClips: [0],
+              },
+            ]}
+          ></animations>
+        </gltf>
       </group>
       {/* <group position={[1, 0, 0]}>
         <BoxRoot />
