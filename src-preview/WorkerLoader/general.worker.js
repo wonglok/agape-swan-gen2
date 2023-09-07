@@ -244,10 +244,14 @@ addEventListener('message', async ({ data }) => {
           }
         })
 
-        //
-        arr.forEach((it) => {
-          postMessage({ action: 'renderer-commit-update', result: it.getJSON() })
-        })
+        // arr.forEach((it) => {
+        //   postMessage({ action: 'renderer-commit-update', result: it.getJSON() })
+        // })
+
+        if (arr.length > 0) {
+          let tree = rootElement.getJSON()
+          postMessage({ action: 'leaf', result: tree })
+        }
       }
       rAFID = requestAnimationFrame(rAF)
 

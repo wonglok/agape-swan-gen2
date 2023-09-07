@@ -85,7 +85,8 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
 
       useEffect(() => {
         //
-        let hm = ({ data: { action, result } }) => {
+        let hm = (event) => {
+          let { action, result } = event.data || event.detail
           if (action === 'renderer-commit-update' && result?.props?.key === node?.props?.key) {
             if (ref.current && ref.current.rotation && result?.props?.rotation) {
               ref.current.rotation.fromArray(result?.props?.rotation)
@@ -98,9 +99,12 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
             }
           }
         }
+
+        window.addEventListener('leaf', hm)
         worker.addEventListener('message', hm)
 
         return () => {
+          window.removeEventListener('leaf', hm)
           worker.removeEventListener('message', hm)
         }
       }, [])
@@ -159,6 +163,24 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     bus.on('tree', ({ result }) => {
       console.log(result)
       setO3D(<WalkNode key={'myroot'} node={result}></WalkNode>)
+    })
+
+    let kids = ({ node }) => {
+      window.dispatchEvent(
+        new CustomEvent('leaf', {
+          detail: {
+            action: `renderer-commit-update`,
+            result: node,
+          },
+        }),
+      )
+
+      return node?.children?.map((r) => {
+        return kids({ node: r })
+      })
+    }
+    bus.on('leaf', ({ result }) => {
+      kids({ node: result })
     })
 
     //
