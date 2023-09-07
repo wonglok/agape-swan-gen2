@@ -1,11 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import Worker from './general.worker.js'
 import EventEmitter from 'events'
 import { Gltf } from '@react-three/drei'
+import { MyAnimations } from './MyAnimations.js'
+import { MyGLB } from './MyGLB.js'
 
 export function WorkerLoader({ baseURL, swanPath, socketURL }) {
   //
   let [o3d, setO3D] = useState(null)
+  //
   let [{ worker, bus }, setAPIs] = useState({ worker: false, bus: false })
 
   useEffect(() => {
@@ -76,91 +79,88 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     }
 
     let WalkNode = ({ node }) => {
+      let [nodeProps, setNodeProps] = useState(node.props)
       let kids = () => {
         return node?.children?.map((r) => {
           return <WalkNode key={r.props.key} node={r}></WalkNode>
         })
       }
 
-      let ref = useRef()
-
       useEffect(() => {
-        //
-        let hm = (event) => {
-          let { action, result } = event.data || event.detail
-          if (action === 'renderer-commit-update' && result?.props?.key === node?.props?.key) {
-            if (ref.current && ref.current.rotation && result?.props?.rotation) {
-              ref.current.rotation.fromArray(result?.props?.rotation)
-            }
-            if (ref.current && ref.current.position && result?.props?.position) {
-              ref.current.position.fromArray(result?.props?.position)
-            }
-            if (ref.current && ref.current.scale && result?.props?.scale) {
-              ref.current.scale.fromArray(result?.props?.scale)
-            }
+        let hh = ({ result }) => {
+          if (result.props.key === node.props.key) {
+            setNodeProps(result.props)
           }
         }
-
-        window.addEventListener('leaf', hm)
-        worker.addEventListener('message', hm)
+        bus.on('renderer-commit-update', hh)
 
         return () => {
-          window.removeEventListener('leaf', hm)
-          worker.removeEventListener('message', hm)
+          bus.off('renderer-commit-update', hh)
         }
-      }, [])
+      }, [node])
 
-      // console.log(node.type)
+      let ref = useRef()
       return (
         <>
           {node?.type === 'gltf' && (
-            <Gltf ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <MyGLB
+              key={nodeProps.key}
+              ref={ref}
+              userData={{ key: nodeProps.key, gltfCompos: true }}
+              {...(nodeProps || {})}
+            >
               {kids()}
-            </Gltf>
+            </MyGLB>
+          )}
+
+          {node?.type === 'animations' && (
+            <MyAnimations key={nodeProps.key} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
+              {kids()}
+            </MyAnimations>
           )}
 
           {node?.type === 'root' && (
-            <group ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <group ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
             </group>
           )}
 
           {node?.type === 'group' && (
-            <group ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <group ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
             </group>
           )}
 
           {node?.type === 'object3d' && (
-            <group ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <group ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
             </group>
           )}
 
           {node?.type === 'mesh' && (
-            <mesh ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <mesh ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
             </mesh>
           )}
           {node?.type === 'sphereGeometry' && (
-            <sphereGeometry ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <sphereGeometry ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
             </sphereGeometry>
           )}
 
           {node?.type === 'boxGeometry' && (
-            <boxGeometry ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <boxGeometry ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
             </boxGeometry>
           )}
 
           {node?.type === 'meshBasicMaterial' && (
-            <meshBasicMaterial ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <meshBasicMaterial ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
             </meshBasicMaterial>
           )}
           {node?.type === 'meshStandardMaterial' && (
-            <meshStandardMaterial ref={ref} userData={{ key: node.props.key }} {...(node.props || {})}>
+            <meshStandardMaterial ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
             </meshStandardMaterial>
           )}
@@ -169,29 +169,13 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     }
 
     bus.on('tree', ({ result }) => {
-      console.log(result)
-      setO3D(<WalkNode key={'myroot'} node={result}></WalkNode>)
-    })
-
-    let kids = ({ node }) => {
-      window.dispatchEvent(
-        new CustomEvent('leaf', {
-          detail: {
-            action: `renderer-commit-update`,
-            result: node,
-          },
-        }),
+      setO3D(
+        <Suspense fallback={null}>
+          <WalkNode key={'myroot'} node={result}></WalkNode>
+        </Suspense>,
       )
-
-      return node?.children?.map((r) => {
-        return kids({ node: r })
-      })
-    }
-    bus.on('leaf', ({ result }) => {
-      kids({ node: result })
     })
 
-    //
     return () => {
       //
     }
@@ -216,7 +200,6 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
 
           ev?.object?.traverseAncestors((it) => {
             if (it?.userData?.key) {
-              // userData?.key
               keys.push(it.userData.key)
             }
           })
@@ -239,20 +222,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
   })
   return (
     <>
-      <group
-        {...eventHandlers}
-        // onPointerDown={(ev) => {
-        //   worker.postMessage({
-        //     action: 'onPointerDown',
-        //     result: {
-        //       point: ev.point,
-        //       key: ev?.object?.userData?.key,
-        //     },
-        //   })
-        // }}
-      >
-        {o3d}
-      </group>
+      <group {...eventHandlers}>{o3d}</group>
     </>
   )
 }

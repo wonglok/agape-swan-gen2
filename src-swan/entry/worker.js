@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { Clock } from 'three'
 
 export const useMyFrame = (fnc) => {
@@ -52,31 +52,59 @@ export const BoxRoot = () => {
   )
 }
 
-export const getRoot = () => {
+function App() {
+  let [action, setAction] = useState('float')
   return (
-    <group>
+    <>
       <group
         onPointerDown={(ev) => {
-          //
-          console.log(ev)
-        }}
-        onPointerEnter={(ev) => {
-          //
           console.log(ev)
         }}
         onPointerLeave={(ev) => {
-          //
           console.log(ev)
         }}
       >
-        <gltf src={`/avatar/loklok-modern.glb`}></gltf>
+        <animations
+          activeAction={action}
+          libs={[
+            {
+              name: 'float',
+              src: `/avatar/rpm/rpm-actions-locomotion/swim-forward.fbx`,
+              playClips: [0],
+            },
+            {
+              name: 'salute',
+              src: `/avatar/rpm/rpm-actions-emoji/salute.fbx`,
+              playClips: [0],
+            },
+          ]}
+        >
+          <gltf src={`/avatar/loklok-modern.glb`}></gltf>
+        </animations>
       </group>
-      <group position={[1, 0, 0]}>
+      {/* <group position={[1, 0, 0]}>
+        <BoxRoot />
+      </group> */}
+      <group
+        onPointerDown={(ev) => {
+          //
+          if (action === 'float') {
+            setAction('salute')
+          } else if (action === 'salute') {
+            setAction('float')
+          }
+        }}
+        position={[-1, 0, 0]}
+      >
         <BoxRoot />
       </group>
-      <group position={[-1, 0, 0]}>
-        <BoxRoot />
-      </group>
+    </>
+  )
+}
+export const getRoot = () => {
+  return (
+    <group>
+      <App></App>
     </group>
   )
 }

@@ -62,6 +62,8 @@ export const getEl = ({ type = 'empty', newProps = {} }) => {
       }
 
       return {
+        id: key,
+        key: key,
         type,
         props,
         children: enigma.children.map((r) => r.getJSON()),
@@ -120,7 +122,7 @@ const hostConfig = {
 
       domElement.props[propName] = propValue
 
-      console.log(propName, propValue)
+      // console.log(propName, propValue)
     })
     //
     dispatchEvent(new CustomEvent('renderer-commit-update', { detail: domElement.getJSON() }))
@@ -238,32 +240,11 @@ addEventListener('message', async ({ data }) => {
         })
       })
 
+      //
+
       addEventListener('renderer-commit-update', ({ detail }) => {
         postMessage({ action: 'renderer-commit-update', result: detail })
       })
-
-      //
-
-      let rAFID = 0
-      let rAF = () => {
-        rAFID = requestAnimationFrame(rAF)
-        let arrLength = 0
-        elMap.forEach((r) => {
-          if (r.needsSync) {
-            arrLength += 1
-          }
-        })
-
-        // arr.forEach((it) => {
-        //   postMessage({ action: 'renderer-commit-update', result: it.getJSON() })
-        // })
-
-        if (arrLength > 0) {
-          let tree = rootElement.getJSON()
-          postMessage({ action: 'leaf', result: tree })
-        }
-      }
-      rAFID = requestAnimationFrame(rAF)
 
       let sync = () => {
         renderSwan(WorkerEngine.getRoot(), rootElement, () => {
