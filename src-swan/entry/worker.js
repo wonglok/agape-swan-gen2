@@ -55,7 +55,18 @@ export const BoxRoot = () => {
 export const getRoot = () => {
   return (
     <group>
-      <gltf src={`/avatar/loklok-modern.glb`}></gltf>
+      <group
+        onPointerDown={(ev) => {
+          //
+          console.log(ev)
+        }}
+        onPointerEnter={(ev) => {
+          //
+          console.log(ev)
+        }}
+      >
+        <gltf src={`/avatar/loklok-modern.glb`}></gltf>
+      </group>
       <group position={[1, 0, 0]}>
         <BoxRoot />
       </group>

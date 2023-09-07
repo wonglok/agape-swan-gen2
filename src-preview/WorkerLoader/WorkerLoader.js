@@ -212,10 +212,20 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
         'onPointerOver',
       ].forEach((name) => {
         eventHandlers[name] = (ev) => {
+          let keys = []
+
+          ev?.object?.traverseAncestors((it) => {
+            if (it?.userData?.key) {
+              // userData?.key
+              keys.push(it.userData.key)
+            }
+          })
+
           worker.postMessage({
             action: name,
             result: {
               key: ev?.object?.userData?.key,
+              keys,
               type: name,
               point: ev.point,
             },
