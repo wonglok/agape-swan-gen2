@@ -40,11 +40,11 @@ function Preview() {
               socketURL={'http://localhost:8521'}
             ></WorkerLoader>
           </Suspense>
+        </group>
 
-          {/* <Suspense fallback={null}>
+        {/* <Suspense fallback={null}>
             <SwanLocalRuntime></SwanLocalRuntime>
           </Suspense> */}
-        </group>
 
         {/* Remote Loading... */}
         {/* For loading production code */}
