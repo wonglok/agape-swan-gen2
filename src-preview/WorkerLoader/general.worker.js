@@ -83,8 +83,8 @@ const hostConfig = {
   getChildHostContext: () => {
     return childHostContext
   },
-  getPublicInstance: () => {
-    return { id: 123 }
+  getPublicInstance: (instance) => {
+    return instance
   },
   detachDeletedInstance: () => {},
   shouldSetTextContent: (type, props) => {
@@ -231,6 +231,22 @@ addEventListener('message', async ({ data }) => {
       addEventListener('renderer-commit-update', ({ detail }) => {
         postMessage({ action: 'renderer-commit-update', result: detail })
       })
+
+      let rAFID = 0
+      let rAF = () => {
+        rAFID = requestAnimationFrame(rAF)
+        let arr = []
+        elMap.forEach((r) => {
+          if (r.needsUpdate) {
+            arr.push(r)
+          }
+        })
+
+        arr.forEach((it) => {
+          postMessage({ action: 'renderer-commit-update', result: it.getJSON() })
+        })
+      }
+      rAFID = requestAnimationFrame(rAF)
 
       let sync = () => {
         renderSwan(WorkerEngine.getRoot(), rootElement, () => {
