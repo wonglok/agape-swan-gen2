@@ -6,7 +6,7 @@ export function MyGLB({ src, children }) {
   //
   return (
     <>
-      <group userData={{ gltfCompos: true }}>
+      <group userData={{ animationTargetParent: true }}>
         {createPortal(children, glb.scene)}
         <primitive object={glb.scene}></primitive>
       </group>

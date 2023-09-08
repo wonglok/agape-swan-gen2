@@ -50,17 +50,17 @@ export function MyAnimations({ libs, activeAction, children }) {
 
     let getParent = ({ o3d }) => {
       return new Promise((resolve) => {
-        let tttt = 0
-        tttt = setInterval(() => {
+        let tt = 0
+        tt = setInterval(() => {
           let target = false
           o3d.traverseAncestors((it) => {
-            if (it?.userData?.gltfCompos) {
+            if (it?.userData?.animationTargetParent) {
               target = it
             }
           })
 
           if (target) {
-            clearInterval(tttt)
+            clearInterval(tt)
             resolve(target)
           }
         })
