@@ -1,7 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import Worker from './general.worker.js'
 import EventEmitter from 'events'
-import { Gltf } from '@react-three/drei'
 import { MyAnimations } from './MyAnimations.js'
 import { MyGLB } from './MyGLB.js'
 import { AISpeakFace } from './AISpeakFace/AISpeakFace.js'
@@ -34,7 +33,6 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
         }
 
         newWorker.postMessage({
-          //
           action: 'initLoad',
           baseURL: baseURL,
           workerURL: workerURL,
@@ -42,10 +40,10 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
         })
 
         let onDone = () => {
-          bus.removeListener('doneInitLoad', onDone)
+          bus.off('doneInitLoad', onDone)
           setAPIs({ worker: newWorker, bus })
         }
-        bus.addListener('doneInitLoad', onDone)
+        bus.on('doneInitLoad', onDone)
 
         cleanUpStuff()
         cleanUpStuff = () => {
@@ -57,6 +55,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     }
     load()
 
+    let cleanSocket = () => {}
     if (socketURL) {
       Promise.resolve().then(async () => {
         let io = await import('socket.io-client').then((r) => r.io)
@@ -65,11 +64,14 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
         socket.on('reload', (ev) => {
           load()
         })
+        cleanSocket = () => {
+          socket.close()
+        }
       })
     }
 
-    //
     return () => {
+      cleanSocket()
       cleanUpStuff()
     }
   }, [])

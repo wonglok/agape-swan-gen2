@@ -5,7 +5,6 @@ export const useSwan = create((set) => {
     baseURL: '',
     setBaseURL: ({ baseURL }) => {
       baseURL[baseURL.length - 1] === '/' ? baseURL.slice(0, baseURL.length - 1) : baseURL
-
       set({ baseURL })
     },
 
