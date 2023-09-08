@@ -1,5 +1,5 @@
 import { meshBounds, useGLTF } from '@react-three/drei'
-import { useSwan } from '../../src-swan/store/useSwan'
+import { useSwan } from 'src-swan/store/useSwan'
 
 export function MyGLB({ src, children, ...props }) {
   let baseURL = useSwan((r) => r.baseURL) || ''
