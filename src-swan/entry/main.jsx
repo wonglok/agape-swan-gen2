@@ -11,9 +11,9 @@ export function SmartObject() {
   return (
     <>
       <group>
-        <group position={[0, 0.0, 0]} scale={0.01 * 1}>
+        {/* <group position={[0, 0.0, 0]} scale={0.01 * 1}>
           <TheVortex></TheVortex>
-        </group>
+        </group> */}
 
         {/* <group position={[0, 0, 0]}>
           <Suspense fallback={null}>
