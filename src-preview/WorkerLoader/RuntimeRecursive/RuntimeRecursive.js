@@ -5,7 +5,6 @@ import { AISpeakFace } from '../AISpeakFace/AISpeakFace.js'
 
 export const RuntimeRecursive = ({ node }) => {
   let nodeProps = node.props
-  // let [nodeProps, setNodeProps] = useState(node.props)
   let kids = () => {
     return node?.children?.map((r) => {
       return <RuntimeRecursive key={r.props.key} node={r}></RuntimeRecursive>
