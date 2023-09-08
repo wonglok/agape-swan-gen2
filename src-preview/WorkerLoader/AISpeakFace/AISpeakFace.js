@@ -88,7 +88,7 @@ export function AISpeakFace({ children, ...props }) {
       })
   }, [])
 
-  let [text, setSt] = useState(`How are you dear?`)
+  let [text, setSt] = useState(`How to be kind?`)
 
   return (
     <>
@@ -96,6 +96,7 @@ export function AISpeakFace({ children, ...props }) {
         <div className='bg-white p-2 flex'>
           <div className='flex'>
             <textarea
+              rows={3}
               onInput={(event) => {
                 setSt(event.target.value)
               }}
