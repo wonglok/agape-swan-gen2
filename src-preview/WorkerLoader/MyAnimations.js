@@ -38,17 +38,22 @@ export function MyAnimations({ libs, activeAction, children }) {
       mixer.update(dt)
     }
   })
+
+  useEffect(() => {
+    let mixer = new AnimationMixer()
+    setMixer(mixer)
+  }, [])
   useEffect(() => {
     if (!activeAction) {
       return
     }
 
-    let getParent = () => {
+    let getParent = ({ o3d }) => {
       return new Promise((resolve) => {
         let tttt = 0
         tttt = setInterval(() => {
           let target = false
-          ref?.current?.traverseAncestors((it) => {
+          o3d.traverseAncestors((it) => {
             if (it?.userData?.gltfCompos) {
               target = it
             }
@@ -63,12 +68,7 @@ export function MyAnimations({ libs, activeAction, children }) {
     }
 
     Promise.resolve().then(async () => {
-      let target = await getParent()
-
-      console.log(target)
-
-      let mixer = new AnimationMixer(target)
-      setMixer(mixer)
+      let target = await getParent({ o3d: ref?.current })
 
       actionsLib
         .map((lib) => {
@@ -80,11 +80,11 @@ export function MyAnimations({ libs, activeAction, children }) {
         .forEach((lib) => {
           if (lib.name === activeAction) {
             lib.clippedActions.forEach((act) => {
-              act.reset().play()
+              act.reset().fadeIn(0.3).play()
             })
           } else {
             lib.clippedActions.forEach((act) => {
-              act.reset().stop()
+              act.reset().fadeOut(0.3)
             })
           }
         })
