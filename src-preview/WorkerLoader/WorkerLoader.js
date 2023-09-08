@@ -38,7 +38,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
         })
 
         let onDone = () => {
-          bus.offAllOf('doneInitLoad', onDone)
+          bus.off('doneInitLoad', onDone)
           setAPIs({ worker: newWorker, bus })
         }
         bus.on('doneInitLoad', onDone)
