@@ -74,6 +74,7 @@
     "zustand": "^4.4.1"
   },
   "dependencies": {
+    "@untemps/react-vocal": "^1.7.21",
     "comlink": "^4.4.1",
     "copy-to-clipboard": "^3.3.3",
     "express-http-proxy": "^1.6.3",

@@ -15,23 +15,24 @@
 
 module.exports = {
   // important: true,
-  mode: "jit",
+  mode: 'jit',
   content: [
     //
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./src-swan/**/*.{js,ts,jsx,tsx}",
-    "./src-blender/**/*.{js,ts,jsx,tsx}",
+    './app/**/*.{js,ts,jsx,tsx}',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './src-preview/**/*.{js,ts,jsx,tsx}',
+    './src-swan/**/*.{js,ts,jsx,tsx}',
+    './src-blender/**/*.{js,ts,jsx,tsx}',
 
-    "./node_modules/flowbite-react/**/*.js",
-    "./pages/**/*.{ts,tsx}",
-    "./public/**/*.html",
-    "./pages/**/*.{ts,tsx}",
-    "./public/**/*.html",
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './node_modules/flowbite-react/**/*.js',
+    './pages/**/*.{ts,tsx}',
+    './public/**/*.html',
+    './pages/**/*.{ts,tsx}',
+    './public/**/*.html',
+    './app/**/*.{js,ts,jsx,tsx}',
+    './src/**/*.{js,ts,jsx,tsx}',
   ], // remove unused styles in production
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {},
   },
@@ -42,26 +43,26 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: "#1d4ed8",
+          primary: '#1d4ed8',
 
-          secondary: "#0ea5e9",
+          secondary: '#0ea5e9',
 
-          accent: "#4f46e5",
+          accent: '#4f46e5',
 
-          neutral: "#3D4451",
+          neutral: '#3D4451',
 
-          "base-100": "#FFFFFF",
+          'base-100': '#FFFFFF',
 
-          info: "#3ABFF8",
+          info: '#3ABFF8',
 
-          success: "#36D399",
+          success: '#36D399',
 
-          warning: "#FBBD23",
+          warning: '#FBBD23',
 
-          error: "#F87272",
+          error: '#F87272',
         },
       },
     ],
   },
-  plugins: [require("daisyui")],
-};
+  plugins: [require('daisyui')],
+}

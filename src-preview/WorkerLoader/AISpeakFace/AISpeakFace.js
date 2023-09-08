@@ -3,6 +3,8 @@ import { useCallback, useRef, useState } from 'react'
 import createAnimation from './dataToClip'
 import { AnimationMixer, LoopOnce, Object3D } from 'three'
 import { useFrame } from '@react-three/fiber'
+import { VoiceButton } from './VoiceButton'
+
 // import { useSwan } from '../../../src-swan/store/useSwan'
 
 export function AISpeakFace({ children, ...props }) {
@@ -91,21 +93,35 @@ export function AISpeakFace({ children, ...props }) {
   return (
     <>
       <Html center position={[-1, 1.75, 0]}>
-        <div className='bg-white'>
-          <textarea
-            onInput={(event) => {
-              setSt(event.target.value)
-            }}
-            defaultValue={text}
-          ></textarea>
-          <button
-            onClick={() => {
-              sayDear({ text: text })
-            }}
-            className='bg-gray-200'
-          >
-            Say!
-          </button>
+        <div className='bg-white p-2 flex'>
+          <div className='flex'>
+            <textarea
+              onInput={(event) => {
+                setSt(event.target.value)
+              }}
+              value={text}
+            ></textarea>
+            <button
+              onClick={() => {
+                sayDear({ text: text })
+              }}
+              className='bg-gray-200 '
+            >
+              Speak
+            </button>
+          </div>
+
+          <div className='relative' style={{ width: `40px`, backgroundColor: 'pink' }}>
+            <div className='w-full h-full flex items-center justify-center'>
+              <VoiceButton
+                onVoiceText={(text) => {
+                  console.log(text)
+                  setSt(text)
+                  sayDear({ text: text })
+                }}
+              />
+            </div>
+          </div>
         </div>
       </Html>
 
