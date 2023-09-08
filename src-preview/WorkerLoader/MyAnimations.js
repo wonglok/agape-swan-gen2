@@ -43,6 +43,7 @@ export function MyAnimations({ libs, activeAction, children, ...props }) {
     let mixer = new AnimationMixer()
     setMixer(mixer)
   }, [])
+
   useEffect(() => {
     if (!activeAction) {
       return

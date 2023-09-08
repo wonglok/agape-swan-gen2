@@ -125,7 +125,7 @@ const hostConfig = {
       // console.log(propName, propValue)
     })
     //
-    dispatchEvent(new CustomEvent('renderer-commit-update', { detail: domElement.getJSON() }))
+    dispatchEvent(new CustomEvent('fragmentOps', { detail: domElement.getJSON() }))
   },
   commitTextUpdate(textInstance, oldText, newText) {
     textInstance.props.text = newText
@@ -242,9 +242,23 @@ addEventListener('message', async ({ data }) => {
 
       //
 
-      addEventListener('renderer-commit-update', ({ detail }) => {
-        postMessage({ action: 'renderer-commit-update', result: detail })
+      let items = []
+      addEventListener('fragmentOps', ({ detail }) => {
+        items.push(detail)
       })
+
+      let rAFID = 0
+      function onWork() {
+        rAFID = requestAnimationFrame(onWork)
+
+        if (items.length > 0) {
+          postMessage({ action: 'renderer-commit-update-batch', result: items })
+          items = []
+        }
+      }
+      rAFID = requestAnimationFrame(onWork)
+
+      //
 
       let sync = () => {
         renderSwan(WorkerEngine.getRoot(), rootElement, () => {

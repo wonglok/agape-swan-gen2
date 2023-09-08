@@ -1,37 +1,17 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
-import { Clock } from 'three'
-
-export const useMyFrame = (fnc) => {
-  useEffect(() => {
-    let clock = new Clock()
-    let rafID = 0
-
-    let hh = () => {
-      rafID = requestAnimationFrame(hh)
-      fnc(clock.getDelta())
-    }
-    rafID = requestAnimationFrame(hh)
-
-    return () => {
-      cancelAnimationFrame(rafID)
-    }
-  }, [])
-}
+import { useRef, useState } from 'react'
+import { useWorker } from '../store/useWorker'
 
 export const BoxRoot = () => {
-  let ref = useRef()
+  let [yo, setYo] = useState(0)
+  let onLoop = useWorker((r) => r.onLoop)
 
-  useMyFrame((dt) => {
-    if (ref.current) {
-      ref.current.needsSync = true
-      ref.current.props.rotation = ref.current.props.rotation || [0, 0, 0]
-      ref.current.props.rotation[1] += 0.5 * dt
-    }
+  onLoop((_, dt) => {
+    setYo((r) => r + 1 * dt)
   })
 
   return (
     <>
-      <group ref={ref} position={[0, 0, 0]}>
+      <group rotation={[0, yo, 0]} position={[0, 0, 0]}>
         <mesh
           onPointerDown={(ev) => {
             console.log(ev)

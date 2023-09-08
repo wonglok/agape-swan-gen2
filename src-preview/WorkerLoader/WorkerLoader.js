@@ -88,14 +88,15 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
 
       useEffect(() => {
         let hh = ({ result }) => {
-          if (result.props.key === node.props.key) {
-            setNodeProps(result.props)
-          }
+          result.forEach((item) => {
+            if (item.props.key === node.props.key) {
+              setNodeProps(item.props)
+            }
+          })
         }
-        bus.on('renderer-commit-update', hh)
-
+        bus.on('renderer-commit-update-batch', hh)
         return () => {
-          bus.off('renderer-commit-update', hh)
+          bus.off('renderer-commit-update-batch', hh)
         }
       }, [node])
 
@@ -154,6 +155,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
               {kids()}
             </meshBasicMaterial>
           )}
+
           {node?.type === 'meshStandardMaterial' && (
             <meshStandardMaterial ref={ref} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
               {kids()}
