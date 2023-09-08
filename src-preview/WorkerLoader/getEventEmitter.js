@@ -8,6 +8,17 @@ export const getEventEmitter = () => {
       }
       this.events[event].listeners.push(listener)
     },
+    off(event, hh) {
+      // remove listeners
+
+      if (!this.events[event]) {
+        this.events[event] = { listeners: [] }
+      }
+      let idx = this.events[event].listener.findIndex((r) => r === hh)
+      if (idx !== -1) {
+        this.events[event].listener.splice(idx, 1)
+      }
+    },
     offAllOf(event) {
       // remove listeners
       delete this.events[event]
