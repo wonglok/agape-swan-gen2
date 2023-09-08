@@ -157,14 +157,15 @@ const Hf = new HfInference(process.env.HUGGINGFACE_API_KEY)
 
 export default async function POST(req, res) {
   // Extract the `messages` from the body of the request
-  const { text } = JSON.stringify(req.body)
+  const { text } = JSON.parse(req.body)
 
+  console.log(text)
   // Initialize a text-generation stream using the Hugging Face Inference SDK
   const data = await Hf.textGeneration({
     model: 'OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5',
     inputs: experimental_buildOpenAssistantPrompt([
       {
-        id: '1',
+        id: 9,
         content: text,
         role: 'user',
       },
@@ -178,9 +179,10 @@ export default async function POST(req, res) {
       return_full_text: false,
     },
   })
-  let answer = data.generated_text
 
-  textToSpeech(answer).then(
+  let answer = data.generated_text.split('<|assistant|>')[1]
+
+  await textToSpeech(answer).then(
     (result) => {
       res.json(result)
     },
