@@ -13,8 +13,6 @@ export function MyGLB({ src, children, ...props }) {
 
       it.geometry.center()
       it.geometry.translate(sphereCenter.x, sphereCenter.y, sphereCenter.z)
-
-      // console.log(sphereCenter)
     }
   })
 
