@@ -4,6 +4,7 @@ import createAnimation from './dataToClip'
 import { AnimationMixer, LoopOnce, Object3D } from 'three'
 import { useFrame } from '@react-three/fiber'
 import { VoiceButton } from './VoiceButton'
+import { resolve } from 'styled-jsx/css'
 
 // import { useSwan } from '../../../src-swan/store/useSwan'
 
@@ -19,7 +20,7 @@ export function AISpeakFace({ children, ...props }) {
   })
 
   let sayDear = useCallback(({ text = 'hi im loklok' }) => {
-    fetch(`/api/dear/think`, {
+    return fetch(`/api/dear/think`, {
       method: 'POST',
       body: JSON.stringify({
         text: text,
@@ -87,6 +88,10 @@ export function AISpeakFace({ children, ...props }) {
         loadPart({ partName: 'Skin' })
         loadPart({ partName: 'EyeLeft' })
         loadPart({ partName: 'EyeRight' })
+
+        return new Promise((resolve) => {
+          setTimeout(resolve, r.durationMS)
+        })
       })
   }, [])
 
@@ -105,8 +110,11 @@ export function AISpeakFace({ children, ...props }) {
               value={text}
             ></textarea>
             <button
-              onClick={() => {
-                sayDear({ text: text })
+              onClick={(ev) => {
+                ev.target.innerText = 'Loading...'
+                sayDear({ text: text }).then(() => {
+                  ev.target.innerText = 'Send'
+                })
               }}
               className='bg-gray-200 p-2'
             >
