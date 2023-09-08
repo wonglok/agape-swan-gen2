@@ -240,8 +240,6 @@ addEventListener('message', async ({ data }) => {
         })
       })
 
-      //
-
       let items = []
       addEventListener('fragmentOps', ({ detail }) => {
         items.push(detail)

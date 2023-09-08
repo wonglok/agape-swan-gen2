@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 export const useSwan = create((set) => {
+  console.log(process.env.VERCEL_URL)
   return {
     baseURL: '',
     setBaseURL: ({ baseURL }) => {
@@ -8,6 +9,7 @@ export const useSwan = create((set) => {
 
       set({ baseURL })
     },
+    vercelDeployedURL: process.env.VERCEL_URL,
 
     //
     openOverlay: false,
