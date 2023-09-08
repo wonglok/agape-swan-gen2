@@ -88,7 +88,7 @@ export function AISpeakFace({ children, ...props }) {
       })
   }, [])
 
-  let [text, setSt] = useState(`Good day. How are you? Welcome to Reunite Limited Avatar AI Speech`)
+  let [text, setSt] = useState(`How are you dear?`)
 
   return (
     <>
