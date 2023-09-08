@@ -83,6 +83,8 @@ export function AISpeakFace({ children, ...props }) {
 
         loadPart({ partName: 'Head' })
         loadPart({ partName: 'Teeth' })
+        loadPart({ partName: 'Tongue' })
+        loadPart({ partName: 'Skin' })
         loadPart({ partName: 'EyeLeft' })
         loadPart({ partName: 'EyeRight' })
       })
