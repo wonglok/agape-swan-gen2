@@ -201,7 +201,6 @@ addEventListener('message', async ({ data }) => {
       return await Engine.preload({ loadGlobals })
     })
 
-    //
     await self.importShim(`${data.workerURL}`).then(async (WorkerEngine) => {
       let rootElement = getEl({ type: 'root', newProps: {} })
 
