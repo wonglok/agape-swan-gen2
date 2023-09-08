@@ -1,4 +1,4 @@
-import { useGLTF, Html } from '@react-three/drei'
+import { Html } from '@react-three/drei'
 import { useCallback, useRef, useState } from 'react'
 import createAnimation from './dataToClip'
 import { AnimationMixer, LoopOnce, Object3D } from 'three'
