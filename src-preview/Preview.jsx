@@ -18,7 +18,7 @@ function Preview() {
       <Canvas>
         {/* Test Component Livelink */}
         {/* for loading collab code */}
-        <Suspense fallback={null}>
+        {/* <Suspense fallback={null}>
           <group position={[1, 0, 0]}>
             {origin && (
               <SwanRemoteRuntimeGen2
@@ -28,7 +28,7 @@ function Preview() {
               ></SwanRemoteRuntimeGen2>
             )}
           </group>
-        </Suspense>
+        </Suspense> */}
 
         {/* Swan lib runtime */}
         {/* for testing on your own */}

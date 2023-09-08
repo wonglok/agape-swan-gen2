@@ -55,7 +55,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     load()
 
     let cleanSocket = () => {}
-    if (socketURL) {
+    if (socketURL && process?.env?.NODE_ENV === 'development') {
       Promise.resolve().then(async () => {
         let io = await import('socket.io-client').then((r) => r.io)
         let socket = io(`${socketURL}`, {})

@@ -40,9 +40,6 @@ function App() {
         onPointerDown={(ev) => {
           console.log(ev)
         }}
-        // onPointerLeave={(ev) => {
-        //   console.log(ev)
-        // }}
       >
         <gltf src={`/avatar/loklok-modern.glb`}>
           <animations
