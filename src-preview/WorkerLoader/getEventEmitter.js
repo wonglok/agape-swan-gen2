@@ -16,7 +16,7 @@ export const getEventEmitter = () => {
       }
       let idx = this.events[event].listeners.findIndex((r) => r === hh)
       if (idx !== -1) {
-        this.events[event].listener.splice(idx, 1)
+        this.events[event].listeners.splice(idx, 1)
       }
     },
     offAllOf(event) {
