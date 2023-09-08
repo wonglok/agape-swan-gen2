@@ -34,7 +34,6 @@ export const BoxRoot = () => {
       <group ref={ref} position={[0, 0, 0]}>
         <mesh
           onPointerDown={(ev) => {
-            //
             console.log(ev)
           }}
           onPointerEnter={(ev) => {
@@ -57,12 +56,12 @@ function App() {
   return (
     <>
       <group
-      // onPointerDown={(ev) => {
-      //   console.log(ev)
-      // }}
-      // onPointerLeave={(ev) => {
-      //   console.log(ev)
-      // }}
+        onPointerDown={(ev) => {
+          console.log(ev)
+        }}
+        // onPointerLeave={(ev) => {
+        //   console.log(ev)
+        // }}
       >
         <gltf src={`/avatar/loklok-modern.glb`}>
           <animations

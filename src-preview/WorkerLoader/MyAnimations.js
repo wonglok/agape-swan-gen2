@@ -3,7 +3,7 @@ import { FBXLoader } from 'three-stdlib'
 import { AnimationMixer } from 'three'
 import { useFrame } from '@react-three/fiber'
 
-export function MyAnimations({ libs, activeAction, children }) {
+export function MyAnimations({ libs, activeAction, children, ...props }) {
   let ref = useRef()
 
   // console.log(activeAction)
@@ -92,7 +92,11 @@ export function MyAnimations({ libs, activeAction, children }) {
 
     return () => {}
   }, [actionsLib, activeAction])
-  return <group ref={ref}>{children}</group>
+  return (
+    <group {...props} ref={ref}>
+      {children}
+    </group>
+  )
 }
 
 //

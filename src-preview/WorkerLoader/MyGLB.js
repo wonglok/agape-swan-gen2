@@ -1,13 +1,16 @@
-import { useGLTF } from '@react-three/drei'
-import { createPortal } from '@react-three/fiber'
+import { meshBounds, useGLTF } from '@react-three/drei'
 
-export function MyGLB({ src, children }) {
+export function MyGLB({ src, children, ...props }) {
   let glb = useGLTF(src)
-  //
+
+  glb.scene.traverse((it) => {
+    console.log(it)
+  })
+
   return (
     <>
-      <group userData={{ animationTargetParent: true }}>
-        {createPortal(children, glb.scene)}
+      <group {...props} raycast={meshBounds} userData={{ animationTargetParent: true }}>
+        {children}
         <primitive object={glb.scene}></primitive>
       </group>
     </>

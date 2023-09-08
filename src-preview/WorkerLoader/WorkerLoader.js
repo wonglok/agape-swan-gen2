@@ -181,6 +181,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
 
     {
       ;[
+        'onClick',
         'onPointerDown',
         'onPointerUp',
         'onPointerMove',
@@ -205,6 +206,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
               type: name,
               key: ev?.object?.userData?.key,
               keys,
+              name: ev?.object?.name,
               uuid: ev?.object?.uuid,
               point: ev.point,
             },
