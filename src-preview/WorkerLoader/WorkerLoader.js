@@ -38,8 +38,8 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
         })
 
         let onDone = () => {
-          bus.off('doneInitLoad', onDone)
           setAPIs({ worker: newWorker, bus })
+          bus.off('doneInitLoad', onDone)
         }
         bus.on('doneInitLoad', onDone)
 
@@ -79,11 +79,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     }
 
     bus.on('tree', ({ result }) => {
-      setO3D(
-        <Suspense fallback={null}>
-          <RuntimeRecursive key={'myroot'} bus={bus} node={result}></RuntimeRecursive>
-        </Suspense>,
-      )
+      setO3D(<AppTree bus={bus} nodeRoot={result}></AppTree>)
     })
 
     return () => {
@@ -136,5 +132,46 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     <>
       <group {...eventHandlers}>{o3d}</group>
     </>
+  )
+}
+
+function AppTree({ bus, nodeRoot }) {
+  let [root, setRoot] = useState(nodeRoot)
+  useEffect(() => {
+    if (!bus) {
+      return
+    }
+
+    let walk = (me, fnc) => {
+      fnc(me)
+      if (me.children) {
+        me.children.forEach((child) => {
+          walk(child, fnc)
+        })
+      }
+    }
+    let hh = ({ result }) => {
+      walk(nodeRoot, (node) => {
+        result.forEach((item) => {
+          if (item.props.key === node.props.key) {
+            node.props = item.props
+          }
+        })
+      })
+
+      setRoot({
+        ...nodeRoot,
+      })
+    }
+    bus.on('renderer-commit-update-batch', hh)
+    return () => {
+      bus.off('renderer-commit-update-batch', hh)
+    }
+  }, [nodeRoot, bus])
+
+  return (
+    <Suspense fallback={null}>
+      <RuntimeRecursive key={'myroot'} node={root}></RuntimeRecursive>
+    </Suspense>
   )
 }

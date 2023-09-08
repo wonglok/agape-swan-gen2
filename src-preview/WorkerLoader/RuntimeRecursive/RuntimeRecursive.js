@@ -3,30 +3,14 @@ import { MyAnimations } from '../MyAnimations/MyAnimations.js'
 import { MyGLB } from '../MyGLB/MyGLB.js'
 import { AISpeakFace } from '../AISpeakFace/AISpeakFace.js'
 
-export const RuntimeRecursive = ({ bus, node }) => {
-  let [nodeProps, setNodeProps] = useState(node.props)
+export const RuntimeRecursive = ({ node }) => {
+  let nodeProps = node.props
+  // let [nodeProps, setNodeProps] = useState(node.props)
   let kids = () => {
     return node?.children?.map((r) => {
       return <RuntimeRecursive key={r.props.key} node={r}></RuntimeRecursive>
     })
   }
-
-  useEffect(() => {
-    if (!bus) {
-      return
-    }
-    let hh = ({ result }) => {
-      result.forEach((item) => {
-        if (item.props.key === node.props.key) {
-          setNodeProps(item.props)
-        }
-      })
-    }
-    bus.on('renderer-commit-update-batch', hh)
-    return () => {
-      bus.off('renderer-commit-update-batch', hh)
-    }
-  }, [node, bus])
 
   let ref = useRef()
   return (

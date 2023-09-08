@@ -125,7 +125,7 @@ const hostConfig = {
       // console.log(propName, propValue)
     })
     //
-    dispatchEvent(new CustomEvent('fragmentOps', { detail: domElement.getJSON() }))
+    dispatchEvent(new CustomEvent('renderer-commit', { detail: domElement.getJSON() }))
   },
   commitTextUpdate(textInstance, oldText, newText) {
     textInstance.props.text = newText
@@ -248,7 +248,7 @@ addEventListener('message', async ({ data }) => {
       })
 
       let items = []
-      addEventListener('fragmentOps', ({ detail }) => {
+      addEventListener('renderer-commit', ({ detail }) => {
         items.push(detail)
       })
 
