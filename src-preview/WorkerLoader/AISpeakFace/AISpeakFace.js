@@ -92,7 +92,7 @@ export function AISpeakFace({ children, ...props }) {
 
   return (
     <>
-      <Html center position={[-1, 1.75, 0]}>
+      <Html center transform scale={0.2} rotation={[-0.6, 0, 0]} position={[0, 0.5, 0.5]}>
         <div className='bg-white p-2 flex'>
           <div className='flex'>
             <textarea
