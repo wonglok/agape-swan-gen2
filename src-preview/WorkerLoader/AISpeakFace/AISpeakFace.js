@@ -113,7 +113,7 @@ export function AISpeakFace({ children, ...props }) {
 
           <div className='relative' style={{ width: `45px`, height: `80px`, backgroundColor: 'pink' }}>
             <div className='w-full h-full flex items-center justify-center'>
-              <div className='flex items-center flex-col'>
+              <div className='flex items-center flex-col h-full w-full'>
                 <VoiceButton
                   onVoiceText={(text) => {
                     console.log(text)
@@ -121,7 +121,6 @@ export function AISpeakFace({ children, ...props }) {
                     sayDear({ text: text })
                   }}
                 />
-                <div className='text-xs text-center'></div>
               </div>
             </div>
           </div>

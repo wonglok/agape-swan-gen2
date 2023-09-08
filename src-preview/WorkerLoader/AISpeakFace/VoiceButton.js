@@ -6,7 +6,19 @@ export const VoiceButton = ({ onVoiceText = () => {} }) => {
   useEffect(() => {
     import('@untemps/react-vocal').then((r) => {
       let Vocal = r.default
-      setVocal(<Vocal onResult={onVoiceText} />)
+      setVocal(
+        <Vocal
+          onResult={onVoiceText}
+          style={{
+            //
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: `100%`,
+            height: `100%`,
+          }}
+        />,
+      )
     })
   }, [])
 
