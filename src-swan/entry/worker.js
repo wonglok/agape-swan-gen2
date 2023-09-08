@@ -32,7 +32,7 @@ export const BoxRoot = () => {
 }
 
 function App() {
-  let [action, setAction] = useState('float')
+  let [action, setAction] = useState('salute')
 
   return (
     <>
@@ -46,8 +46,8 @@ function App() {
             activeAction={action}
             libs={[
               {
-                name: 'float',
-                src: `/avatar/rpm/rpm-actions-locomotion/swim-forward.fbx`,
+                name: 'standing',
+                src: `/avatar/rpm/rpm-actions-emoji/wave.fbx`,
                 playClips: [0],
               },
               {
@@ -64,10 +64,10 @@ function App() {
       <group
         onPointerDown={(ev) => {
           //
-          if (action === 'float') {
+          if (action === 'standing') {
             setAction('salute')
           } else if (action === 'salute') {
-            setAction('float')
+            setAction('standing')
           }
         }}
         position={[-1, 0, 0]}
