@@ -118,7 +118,6 @@ export function AISpeakFace({ children, ...props }) {
                   onVoiceText={(text) => {
                     console.log(text)
                     setSt(text)
-                    sayDear({ text: text })
                   }}
                 />
               </div>
