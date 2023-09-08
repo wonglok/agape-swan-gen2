@@ -55,7 +55,7 @@ export function MyAnimations({ libs, activeAction, children, ...props }) {
         tt = setInterval(() => {
           let target = false
           o3d.traverseAncestors((it) => {
-            if (it?.userData?.animationTargetParent) {
+            if (it?.userData?.groupTargetParent) {
               target = it
             }
           })

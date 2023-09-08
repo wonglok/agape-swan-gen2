@@ -11,15 +11,15 @@ export function SmartObject() {
   return (
     <>
       <group>
-        {/* <group position={[0, 0.0, 0]} scale={0.01 * 6}>
+        <group position={[0, 0.0, 0]} scale={0.01 * 1}>
           <TheVortex></TheVortex>
-        </group> */}
+        </group>
 
-        <group position={[0, 0, 0]}>
+        {/* <group position={[0, 0, 0]}>
           <Suspense fallback={null}>
             <DearLok></DearLok>
           </Suspense>
-        </group>
+        </group> */}
 
         {/* <Text>hi</Text> */}
 

@@ -43,6 +43,10 @@ module.exports = {
   },
   resolve: {
     alias: {
+      ['src-swan']: path.resolve(__dirname, '../../src-swan'),
+      ['src-preview']: path.resolve(__dirname, '../../src-preview'),
+      ['src-blender']: path.resolve(__dirname, '../../src-blender'),
+
       ['three']: path.resolve(__dirname, '../build-globals/three.js'),
       ['react']: path.resolve(__dirname, '../build-globals/react.js'),
       ['zustand']: path.resolve(__dirname, '../build-globals/zustand.js'),

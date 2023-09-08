@@ -18,17 +18,17 @@ function Preview() {
       <Canvas>
         {/* Test Component Livelink */}
         {/* for loading collab code */}
-        {/* <Suspense fallback={null}>
-          <group position={[0, 15, 0]}>
+        <Suspense fallback={null}>
+          <group position={[1, 0, 0]}>
             {origin && (
               <SwanRemoteRuntimeGen2
                 baseURL={`${origin}`}
                 swanPath={`swan-build`}
-                socketURL={"http://localhost:8521"}
+                socketURL={'http://localhost:8521'}
               ></SwanRemoteRuntimeGen2>
             )}
           </group>
-        </Suspense> */}
+        </Suspense>
 
         {/* Swan lib runtime */}
         {/* for testing on your own */}

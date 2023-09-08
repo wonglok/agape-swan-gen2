@@ -33,6 +33,7 @@ export const BoxRoot = () => {
 
 function App() {
   let [action, setAction] = useState('float')
+
   return (
     <>
       <group
@@ -59,6 +60,7 @@ function App() {
               },
             ]}
           ></animations>
+          <aiface></aiface>
         </gltf>
       </group>
 

@@ -1,7 +1,9 @@
 import { meshBounds, useGLTF } from '@react-three/drei'
+import { useSwan } from '../../src-swan/store/useSwan'
 
 export function MyGLB({ src, children, ...props }) {
-  let glb = useGLTF(src)
+  let baseURL = useSwan((r) => r.baseURL) || ''
+  let glb = useGLTF(baseURL + src)
 
   glb.scene.traverse((it) => {
     if (it.geometry) {
@@ -18,7 +20,7 @@ export function MyGLB({ src, children, ...props }) {
 
   return (
     <>
-      <group {...props} raycast={meshBounds} userData={{ animationTargetParent: true }}>
+      <group {...props} raycast={meshBounds} userData={{ groupTargetParent: true }}>
         <primitive object={glb.scene}></primitive>
         {children}
       </group>

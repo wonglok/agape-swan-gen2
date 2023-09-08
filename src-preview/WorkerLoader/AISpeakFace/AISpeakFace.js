@@ -1,22 +1,21 @@
-import { useGLTF, Text, Html } from '@react-three/drei'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useGLTF, Html } from '@react-three/drei'
+import { useCallback, useRef, useState } from 'react'
 import createAnimation from './dataToClip'
-import { AnimationMixer, LoopOnce } from 'three'
+import { AnimationMixer, LoopOnce, Object3D } from 'three'
 import { useFrame } from '@react-three/fiber'
-import { useSwan } from '../../store/useSwan'
+// import { useSwan } from '../../../src-swan/store/useSwan'
 
-export function DearLok() {
-  let baseURL = useSwan((r) => r.baseURL) || ''
-  let glb = useGLTF(baseURL + '/avatar/loklok-modern.glb')
-
+export function AISpeakFace({ children, ...props }) {
+  // let baseURL = useSwan((r) => r.baseURL) || ''
   let loop = useRef({})
 
+  let ref = useRef()
   useFrame((st, dt) => {
     Object.values(loop.current).forEach((it) => {
-      // console.log(it)
       it(st, dt)
     })
   })
+
   let sayDear = useCallback(({ text = 'hi im loklok' }) => {
     fetch(`/api/dear/say`, {
       method: 'POST',
@@ -39,7 +38,15 @@ export function DearLok() {
         let loadPart = ({ partName = 'Head' }) => {
           let PartFound = false
 
-          glb.scene.traverse((it) => {
+          let avatarGroup = new Object3D()
+
+          ref.current.traverseAncestors((it) => {
+            if (it?.userData?.groupTargetParent) {
+              avatarGroup = it
+            }
+          })
+
+          avatarGroup.traverse((it) => {
             it.frustumCulled = false
             if (it.name.includes(partName) && it.geometry) {
               PartFound = it
@@ -48,6 +55,7 @@ export function DearLok() {
 
           if (!PartFound) {
             console.log(!partName, 'not found')
+            return
           }
 
           if (!PartFound.morphTargetDictionary) {
@@ -56,8 +64,8 @@ export function DearLok() {
 
           let clip = createAnimation(r.blendData, PartFound.morphTargetDictionary, PartFound.name, r.durationMS)
 
-          if (clip) {
-            let mixer = new AnimationMixer(glb.scene)
+          if (clip && PartFound) {
+            let mixer = new AnimationMixer(PartFound.parent)
 
             loop.current['mixer' + PartFound.name] = (st, dt) => {
               mixer.update(dt)
@@ -71,12 +79,6 @@ export function DearLok() {
           }
         }
 
-        // glb.scene.traverse((it) => {
-        //   if (it.name && it.geometry) {
-        //     loadPart({ partName: it.name })
-        //   }
-        // })
-
         loadPart({ partName: 'Head' })
         loadPart({ partName: 'Teeth' })
         loadPart({ partName: 'EyeLeft' })
@@ -88,7 +90,7 @@ export function DearLok() {
 
   return (
     <>
-      <Html center position={[1, 1.75, 0]}>
+      <Html center position={[-1, 1.75, 0]}>
         <div className='bg-white'>
           <textarea
             onInput={(event) => {
@@ -107,7 +109,9 @@ export function DearLok() {
         </div>
       </Html>
 
-      <primitive object={glb.scene}></primitive>
+      <group {...props} ref={ref}>
+        {children}
+      </group>
     </>
   )
 }

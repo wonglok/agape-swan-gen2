@@ -4,6 +4,7 @@ import EventEmitter from 'events'
 import { Gltf } from '@react-three/drei'
 import { MyAnimations } from './MyAnimations.js'
 import { MyGLB } from './MyGLB.js'
+import { AISpeakFace } from './AISpeakFace/AISpeakFace.js'
 
 export function WorkerLoader({ baseURL, swanPath, socketURL }) {
   //
@@ -107,6 +108,12 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
             <MyGLB key={nodeProps.key} userData={{ key: nodeProps.key, gltfCompos: true }} {...(nodeProps || {})}>
               {kids()}
             </MyGLB>
+          )}
+
+          {node?.type === 'aiface' && (
+            <AISpeakFace key={nodeProps.key} userData={{ key: nodeProps.key }} {...(nodeProps || {})}>
+              {kids()}
+            </AISpeakFace>
           )}
 
           {node?.type === 'animations' && (
