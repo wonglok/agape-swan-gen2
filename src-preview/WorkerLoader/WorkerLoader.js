@@ -88,6 +88,9 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
       }
 
       useEffect(() => {
+        if (!bus) {
+          return
+        }
         let hh = ({ result }) => {
           result.forEach((item) => {
             if (item.props.key === node.props.key) {
@@ -99,7 +102,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
         return () => {
           bus.off('renderer-commit-update-batch', hh)
         }
-      }, [node])
+      }, [node, bus])
 
       let ref = useRef()
       return (
