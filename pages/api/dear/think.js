@@ -180,7 +180,7 @@ export default async function POST(req, res) {
     },
   })
 
-  let answer = data.generated_text.split('<|assistant|>')[1]
+  let answer = data.generated_text
 
   await textToSpeech(answer).then(
     (result) => {
@@ -193,6 +193,5 @@ export default async function POST(req, res) {
       })
     },
   )
-
   // return streamToResponse(stream, res)
 }
