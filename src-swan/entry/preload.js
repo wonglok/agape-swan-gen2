@@ -9,7 +9,7 @@ export async function preload({ loadGlobals }) {
       { name: '@react-three/drei', needs: true },
 
       // advanced
-      { name: '@react-three/xr', needs: false },
+      { name: '@react-three/xr', needs: true },
       { name: 'three-stdlib', needs: false },
       { name: 'agape-sdk', needs: false },
     ],

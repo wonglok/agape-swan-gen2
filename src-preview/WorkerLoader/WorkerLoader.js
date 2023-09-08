@@ -1,9 +1,9 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import Worker from './general.worker.js'
-import EventEmitter from 'events'
 import { MyAnimations } from './MyAnimations.js'
 import { MyGLB } from './MyGLB.js'
 import { AISpeakFace } from './AISpeakFace/AISpeakFace.js'
+import { getEventEmitter } from './getEventEmitter.js'
 
 export function WorkerLoader({ baseURL, swanPath, socketURL }) {
   //
@@ -27,7 +27,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
     let load = () => {
       Promise.resolve().then(async () => {
         let newWorker = new Worker()
-        let bus = new EventEmitter()
+        let bus = getEventEmitter()
         newWorker.onmessage = ({ data }) => {
           bus.emit(data.action, data)
         }
@@ -40,14 +40,13 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
         })
 
         let onDone = () => {
-          bus.off('doneInitLoad', onDone)
+          bus.offAllOf('doneInitLoad', onDone)
           setAPIs({ worker: newWorker, bus })
         }
         bus.on('doneInitLoad', onDone)
 
         cleanUpStuff()
         cleanUpStuff = () => {
-          bus.removeAllListeners()
           newWorker.terminate()
           cleanUpStuff = () => {}
         }
