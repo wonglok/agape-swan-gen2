@@ -111,15 +111,18 @@ export function AISpeakFace({ children, ...props }) {
             </button>
           </div>
 
-          <div className='relative' style={{ width: `40px`, backgroundColor: 'pink' }}>
+          <div className='relative' style={{ width: `40px`, height: `80px`, backgroundColor: 'pink' }}>
             <div className='w-full h-full flex items-center justify-center'>
-              <VoiceButton
-                onVoiceText={(text) => {
-                  console.log(text)
-                  setSt(text)
-                  sayDear({ text: text })
-                }}
-              />
+              <div className='flex items-center flex-col'>
+                <VoiceButton
+                  onVoiceText={(text) => {
+                    console.log(text)
+                    setSt(text)
+                    sayDear({ text: text })
+                  }}
+                />
+                <div className='text-xs text-center'>Talk Back</div>
+              </div>
             </div>
           </div>
         </div>
