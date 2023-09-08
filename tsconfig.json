@@ -11,12 +11,28 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {},
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "exclude": ["public", "./developer-tools", "**/*/node_modules"],
-  "include": ["**/*"]
+  "exclude": [
+    "public",
+    "./developer-tools",
+    "**/*/node_modules"
+  ],
+  "include": [
+    "**/*",
+    ".next/types/**/*.ts"
+  ]
 }

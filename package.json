@@ -74,7 +74,9 @@
     "zustand": "^4.4.1"
   },
   "dependencies": {
+    "@huggingface/inference": "^2.6.1",
     "@untemps/react-vocal": "^1.7.21",
+    "ai": "^2.2.12",
     "comlink": "^4.4.1",
     "copy-to-clipboard": "^3.3.3",
     "express-http-proxy": "^1.6.3",

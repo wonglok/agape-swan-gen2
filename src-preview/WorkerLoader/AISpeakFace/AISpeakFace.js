@@ -19,7 +19,7 @@ export function AISpeakFace({ children, ...props }) {
   })
 
   let sayDear = useCallback(({ text = 'hi im loklok' }) => {
-    fetch(`/api/dear/say`, {
+    fetch(`/api/dear/think`, {
       method: 'POST',
       body: JSON.stringify({
         text: text,
@@ -105,13 +105,13 @@ export function AISpeakFace({ children, ...props }) {
               onClick={() => {
                 sayDear({ text: text })
               }}
-              className='bg-gray-200 '
+              className='bg-gray-200 p-2'
             >
-              Speak
+              Send
             </button>
           </div>
 
-          <div className='relative' style={{ width: `40px`, height: `80px`, backgroundColor: 'pink' }}>
+          <div className='relative' style={{ width: `45px`, height: `80px`, backgroundColor: 'pink' }}>
             <div className='w-full h-full flex items-center justify-center'>
               <div className='flex items-center flex-col'>
                 <VoiceButton
@@ -121,7 +121,7 @@ export function AISpeakFace({ children, ...props }) {
                     sayDear({ text: text })
                   }}
                 />
-                <div className='text-xs text-center'>Talk Back</div>
+                <div className='text-xs text-center'></div>
               </div>
             </div>
           </div>
