@@ -161,27 +161,35 @@ addEventListener('message', async ({ data }) => {
           // if (!window.Globals[name] && name === "agape-sdk") {
           //   window.Globals["agape-sdk"] = await import("agape-sdk");
           // }
+
           if (!self.Globals[name] && name === 'react') {
             self.Globals['react'] = await import('react')
           }
+
           if (!self.Globals[name] && name === 'three') {
             self.Globals['three'] = await import('three')
           }
+
           if (!self.Globals[name] && name === 'zustand') {
             self.Globals['zustand'] = await import('zustand')
           }
+
           if (!self.Globals[name] && name === '@react-three/fiber') {
             self.Globals['@react-three/fiber'] = await import('@react-three/fiber')
           }
+
           if (!self.Globals[name] && name === '@react-three/drei') {
             self.Globals['@react-three/drei'] = await import('@react-three/drei')
           }
+
           if (!self.Globals[name] && name === '@react-three/postprocessing') {
             self.Globals['@react-three/postprocessing'] = await import('@react-three/postprocessing')
           }
+
           if (!self.Globals[name] && name === '@react-three/xr') {
             self.Globals['@react-three/xr'] = await import('@react-three/xr')
           }
+
           if (!self.Globals[name] && name === 'three-stdlib') {
             self.Globals['three-stdlib'] = await import('three-stdlib')
           }
