@@ -95,7 +95,7 @@ export function AISpeakFace({ children, ...props }) {
       })
   }, [])
 
-  let [text, setSt] = useState(`How to be kind?`)
+  let [text, setSt] = useState(`how do you do?`)
 
   return (
     <>
