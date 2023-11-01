@@ -1,24 +1,24 @@
-import { useSwan } from "../../store/useSwan.js";
-import { useRef, useEffect } from "react";
-import { MeshTransmissionMaterial, Text3D, Center } from "@react-three/drei";
-import { Clock } from "three";
+import { useSwan } from '../../store/useSwan.js'
+import { useRef, useEffect } from 'react'
+import { MeshTransmissionMaterial, Text3D, Center } from '@react-three/drei'
+import { Clock } from 'three'
 
 export function TextRow() {
-  let baseURL = useSwan((r) => r.baseURL);
-  let text = useSwan((r) => r.text);
-  let tjRef = useRef();
+  let baseURL = useSwan((r) => r.baseURL)
+  let text = useSwan((r) => r.text)
+  let tjRef = useRef()
 
   useEffect(() => {
-    let clock = new Clock();
+    let clock = new Clock()
     let lenisScroll = ({ detail }) => {
       // console.log(detail);
-      let dt = clock.getDelta();
-      let current = detail.animatedScroll;
-      let total = detail.dimensions.scrollHeight - detail.dimensions.height;
+      let dt = clock.getDelta()
+      let current = detail.animatedScroll
+      let total = detail.dimensions.scrollHeight - detail.dimensions.height
 
-      let pageHeight = detail.dimensions.height;
+      let pageHeight = detail.dimensions.height
 
-      console.log(current / total);
+      console.log(current / total)
 
       // console.log(
       //   detail.animatedScroll,
@@ -26,19 +26,19 @@ export function TextRow() {
       // );
 
       if (tjRef.current) {
-        tjRef.current.rotation.y = (current / total) * Math.PI * 2.0;
+        tjRef.current.rotation.y = (current / total) * Math.PI * 2.0
       }
-    };
+    }
 
-    window.addEventListener("lenis-scroll", lenisScroll);
+    window.addEventListener('lenis-scroll', lenisScroll)
     return () => {
-      window.removeEventListener("lenis-scroll", lenisScroll);
-    };
-  }, []);
+      window.removeEventListener('lenis-scroll', lenisScroll)
+    }
+  }, [])
 
   useEffect(() => {
     if (!baseURL) {
-      return;
+      return
     }
 
     fetch(`${baseURL}/api/hi`)
@@ -46,12 +46,12 @@ export function TextRow() {
       .then((r) => r.rand)
       .then((v) => {
         useSwan.setState({
-          text: `hi from server.\nrandom number - ${(v * 100).toFixed(0)}`,
-        });
-      });
+          text: `hi from server.\nrandom number - ${v}`,
+        })
+      })
 
     //
-  }, [baseURL]);
+  }, [baseURL])
 
   return (
     <>
@@ -71,7 +71,7 @@ export function TextRow() {
               // transmission={1}
               // thickness={1.0}
               roughness={0.15}
-              color={"#0000ff"}
+              color={'#0000ff'}
               // attenuationDistance={5}
               // attenuationColor={"#0000ff"}
               metalness={1}
@@ -84,7 +84,7 @@ export function TextRow() {
         </Center>
       </group>
     </>
-  );
+  )
 }
 
 //

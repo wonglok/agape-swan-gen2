@@ -43,6 +43,7 @@ export function Blender() {
                   copyToClipboard(files[idx].file)
                 }}
               >
+                {/*  */}
                 <div className='text-xs text-gray-600' style={{ fontSize: '14px' }}>
                   {it.basename}
                 </div>
@@ -78,17 +79,13 @@ export function Blender() {
               <Canvas shadows='variance'>
                 <Stage
                   environment={{ files: `/hdr/grass.hdr` }}
-                  key={`stage${fileURL}?v=${performance.now()}`}
+                  key={`stage${fileURL}}`}
                   adjustCamera={1.5}
                   shadows='contact'
                 >
-                  <GLB key={`glb${fileURL}?v=${performance.now()}`} src={`${fileURL}?v=${performance.now()}`}></GLB>
+                  <GLB key={`glb${fileURL}}`} src={`${fileURL}`}></GLB>
                 </Stage>
-                <OrbitControls
-                  key={`cam${fileURL}?v=${performance.now()}`}
-                  object-position={[0, 4, 8]}
-                  makeDefault
-                ></OrbitControls>
+                <OrbitControls key={`cam${fileURL}}`} object-position={[0, 4, 8]} makeDefault></OrbitControls>
               </Canvas>
             </>
           )}

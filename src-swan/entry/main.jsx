@@ -11,9 +11,11 @@ export function SmartObject() {
   return (
     <>
       <group>
-        {/* <group position={[0, 0.0, 0]} scale={0.01 * 1}>
-          <TheVortex></TheVortex>
-        </group> */}
+        <group position={[0, 2, 0]}>
+          <group position={[0, 0.0, 0]} scale={0.01 * 1}>
+            <TheVortex></TheVortex>
+          </group>
+        </group>
 
         {/* <group position={[0, 0, 0]}>
           <Suspense fallback={null}>
@@ -23,12 +25,12 @@ export function SmartObject() {
 
         {/* <Text>hi</Text> */}
 
-        {/* <group position={[0, 2, 0]}>
+        <group position={[0, 2, 0]}>
           <TextRow></TextRow>
-        </group> */}
-        {/* <group position={[0, -2, 0]}>
+        </group>
+        <group position={[0, -2, 0]}>
           <DiamondBox></DiamondBox>
-        </group> */}
+        </group>
 
         {/* <Sphere scale={1}>
           <MeshTransmissionMaterial thickness={1.1}></MeshTransmissionMaterial>

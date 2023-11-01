@@ -4,6 +4,7 @@ import { SwanLocalHTML, SwanLocalRuntime } from './SwanLoader/SwanLocalRuntime'
 import { Suspense, useEffect, useState } from 'react'
 import { SwanRemoteHTMLGen2, SwanRemoteRuntimeGen2 } from './SwanLoader/SwanRemoteRuntimeGen2'
 import { WorkerLoader } from './WorkerLoader/WorkerLoader'
+import { TheVortex } from 'src-swan/components/TheVortex/TheVortex'
 
 function Preview() {
   let [origin, setOrigin] = useState(false)
@@ -12,13 +13,14 @@ function Preview() {
     setOrigin(window.location.origin)
   }, [])
 
-  //
   return (
     <>
       <Canvas>
+        {/* Test */}
+
         {/* Test Component Livelink */}
         {/* for loading collab code */}
-        {/* <Suspense fallback={null}>
+        <Suspense fallback={null}>
           <group position={[1, 0, 0]}>
             {origin && (
               <SwanRemoteRuntimeGen2
@@ -28,11 +30,11 @@ function Preview() {
               ></SwanRemoteRuntimeGen2>
             )}
           </group>
-        </Suspense> */}
+        </Suspense>
 
         {/* Swan lib runtime */}
         {/* for testing on your own */}
-        <group position={[0, 0, 0]}>
+        {/* <group position={[0, 0, 0]}>
           <Suspense fallback={null}>
             <WorkerLoader
               baseURL={`${origin}`}
@@ -40,7 +42,7 @@ function Preview() {
               socketURL={'http://localhost:8521'}
             ></WorkerLoader>
           </Suspense>
-        </group>
+        </group> */}
 
         {/* <Suspense fallback={null}>
             <SwanLocalRuntime></SwanLocalRuntime>
