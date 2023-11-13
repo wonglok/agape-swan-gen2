@@ -18,6 +18,7 @@ export function WorkerLoader({ baseURL, swanPath, socketURL }) {
       console.error('need swanPath')
       return
     }
+
     let workerURL = `${baseURL}/${swanPath}/worker.module.js`
     let preloadURL = `${baseURL}/${swanPath}/preload.module.js`
 
